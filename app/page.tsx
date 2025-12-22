@@ -1,64 +1,83 @@
-import Image from "next/image";
+import PrimaryButton from '@/components/common/PrimaryButton';
+import SectorGrid from '@/components/partials/SectorGrid';
+import ProcessSection from '@/components/partials/ProcessSection';
+import FeedbackSection from '@/components/partials/FeedbackSection';
+import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <div className="min-h-screen flex flex-col font-sans bg-white">
+      <main className="grow">
+
+        {/* 1. HERO SECTION */}
+        <section className="relative h-[80vh] md:h-[91vh] min-h-125 w-full flex items-center overflow-hidden bg-slate-900">
+          <div className="absolute inset-0 z-0">
+            <video autoPlay muted loop playsInline className="w-full h-full object-cover opacity-80">
+              <source src="/Videohome.webm" type="video/webm" />
+              <source src="/Videohome.mp4" type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/40 to-transparent z-10" />
+          </div>
+          <div className="relative z-20 max-w-360 mx-auto w-full px-6 md:px-12 text-white text-center md:text-left">
+            <h2 className="text-5xl md:text-8xl font-black mb-4 tracking-tighter leading-tight">
+              Y&T <span className="text-orange-500">CAPITAL</span>
+            </h2>
+            <p className="text-lg md:text-2xl font-light mb-10 tracking-wide opacity-95 leading-relaxed max-w-2xl mx-auto md:mx-0 uppercase">
+              Shaping Tomorrow Through Agile Innovation
+            </p>
+            <div className="flex justify-center md:justify-start">
+              <PrimaryButton label="Bắt đầu hành trình" href="/about" />
+            </div>
+          </div>
+        </section>
+
+        {/* 2. SECTOR ANALYSIS - Gọi cái Grid đã xử lý "use client" */}
+        <section className="py-20 md:py-32 max-w-360 mx-auto px-6 md:px-12 text-left">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+            <div className="max-w-2xl">
+              <h4 className="text-orange-500 font-bold uppercase tracking-[0.3em] text-[10px] mb-4">What we explore</h4>
+              <h2 className="text-4xl md:text-6xl font-black text-[#001a41] uppercase tracking-tighter leading-none">
+                Lĩnh vực kiến thức
+              </h2>
+            </div>
+            <p className="text-gray-400 text-sm md:text-base font-light max-w-87.5 md:text-right border-r-4 border-orange-500 pr-6">
+              Chúng tôi tập trung vào những mảng thị trường cốt lõi, nơi sự đổi mới đang diễn ra mạnh mẽ nhất.
+            </p>
+          </div>
+
+          <SectorGrid />
+        </section>
+
+        {/* 3. ABOUT MINI SECTION */}
+        <section className="py-20 bg-gray-50 overflow-hidden text-left">
+          <div className="max-w-360 mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="relative z-10 border-l-8 border-[#001a41] pl-8 space-y-6">
+              <h3 className="text-3xl md:text-5xl font-black text-[#001a41] uppercase tracking-tighter">
+                Không chỉ là đầu tư, đó là sự học tập.
+              </h3>
+              <p className="text-gray-600 text-lg font-light leading-relaxed">
+                Y&T Capital ra đời từ khát khao của 3 người trẻ muốn tạo ra một cộng đồng chia sẻ kiến thức đầu tư khách quan và minh bạch.
+              </p>
+              <Link href="/about" className="inline-flex items-center gap-2 text-orange-500 font-bold uppercase tracking-widest text-xs hover:gap-4 transition-all">
+                Tìm hiểu về đội ngũ <ArrowRight size={16} />
+              </Link>
+            </div>
+            <div className="bg-[#001a41] p-12 text-white relative">
+              <p className="text-3xl font-light italic opacity-80 mb-8 leading-snug">
+                "Khoản đầu tư vào kiến thức luôn mang lại lãi suất cao nhất."
+              </p>
+              <p className="font-bold uppercase tracking-widest text-sm text-orange-500">— Benjamin Franklin</p>
+            </div>
+          </div>
+        </section>
+
+        {/* 4. PROCESS SECTION */}
+        <ProcessSection />
+
+        {/* 5. FEEDBACK SECTION */}
+        <FeedbackSection />
+
       </main>
     </div>
   );
