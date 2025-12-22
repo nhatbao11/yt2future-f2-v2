@@ -5,6 +5,13 @@
 
 ---
 
+## 🤝 Thành viên Team
+* Trần Minh Nhật - Founder
+* Phạm Phương Nga - Co-Founder
+* Nguyễn Nhất Bảo - Co-Founder
+
+---
+
 ## 🚀 Tính năng nổi bật (Frontend Phase)
 
 * **Market Dashboard:** Theo dõi 3 chỉ số chính (VN-Index, VN30, VN30F1M) cùng biểu đồ dòng tiền khối ngoại trực quan bằng Recharts.
@@ -39,8 +46,3 @@ components/
 ├── common/          # Các nút, input dùng chung
 ├── layout/          # Header, Footer, PageHeader
 └── sector/          # Các component đặc thù từng trang
-
-## 🤝 Thành viên Team
-* Trần Minh Nhật - Founder
-* Phạm Phương Nga - Co-Founder
-* Nguyễn Nhất Bảo - Co-Founder
