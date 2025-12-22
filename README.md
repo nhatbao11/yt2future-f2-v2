@@ -39,3 +39,8 @@ components/
 ├── common/          # Các nút, input dùng chung
 ├── layout/          # Header, Footer, PageHeader
 └── sector/          # Các component đặc thù từng trang
+
+## 🤝 Thành viên Team
+* Trần Minh Nhật - Founder
+* Phạm Phương Nga - Co-Founder
+* Nguyễn Nhất Bảo - Co-Founder
