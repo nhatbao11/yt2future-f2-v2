@@ -46,3 +46,5 @@ components/
 ├── common/          # Các nút, input dùng chung
 ├── layout/          # Header, Footer, PageHeader
 └── sector/          # Các component đặc thù từng trang
+
+© 2025 Y&T Capital - Shaping Tomorrow through agile innovation
