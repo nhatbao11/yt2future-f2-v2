@@ -17,6 +17,7 @@ export default function Footer() {
                 src="/Logo.jpg"
                 alt="Y&T Capital Logo"
                 fill
+                sizes="(max-width: 768px) 36px, 36px"
                 className="object-cover rounded-full border border-white/10"
               />
             </div>
@@ -37,7 +38,7 @@ export default function Footer() {
               <ul className="space-y-4 lg:space-y-5 text-[12px] font-medium text-white/60 tracking-widest">
                 <li><Link href="/" className="hover:text-white transition-colors">TRANG CHỦ</Link></li>
                 <li><Link href="/about" className="hover:text-white transition-colors">VỀ CHÚNG TÔI</Link></li>
-                <li><Link href="/sectors" className="hover:text-white transition-colors">KHO KIẾN THỨC</Link></li>
+                {/* <li><Link href="/sectors" className="hover:text-white transition-colors">KHO KIẾN THỨC</Link></li> */}
                 <li><Link href="/contact" className="hover:text-white transition-colors">LIÊN HỆ</Link></li>
               </ul>
             </div>

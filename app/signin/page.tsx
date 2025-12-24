@@ -1,85 +1,68 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { handleSignIn } from './actions';
+import { handleGoogleSignup } from '@/app/signup/actions';
 import PrimaryButton from '@/components/common/PrimaryButton';
-import { FcGoogle } from 'react-icons/fc'; // Cài đặt: npm install react-icons
+import { FcGoogle } from 'react-icons/fc';
+import PasswordField from '@/components/partials/PasswordField';
 
-export default function LoginPage() {
+export default async function SigninPage({ searchParams }: { searchParams: Promise<{ error?: string, success?: string, logout?: string }> }) {
+  const { error: errorMessage, success: successMessage } = await searchParams;
+
   return (
-    <div className="relative min-h-[90vh] flex items-center justify-center overflow-hidden px-4 py-10">
-
-      {/* BACKGROUND LAYER */}
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 py-12 font-sans">
       <div className="absolute inset-0 z-0">
-        <Image
-          src="/bgSign.jpg"
-          alt="Login background"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px]" />
+        <Image src="/bgSign.jpg" alt="Signin background" fill className="object-cover" priority />
+        <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-[2px]" />
       </div>
 
-      {/* LOGIN CARD - Responsive width */}
-      <div className="relative z-10 bg-white p-6 md:p-10 rounded-sm shadow-2xl w-full max-w-112.5 transition-all">
-
-        {/* HEADER FORM */}
+      <div className="relative z-10 bg-white p-6 md:p-10 rounded-lg shadow-2xl w-full max-w-120 border border-slate-100">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-black text-[#001a41] uppercase tracking-tighter">Signin</h2>
-          <div className="w-10 h-1 bg-orange-500 mx-auto mt-2"></div>
-          <p className="text-[10px] text-gray-400 mt-4 italic uppercase tracking-wider">
-            By logging in, you agree to the Terms of Use
-          </p>
+          <h2 className="text-3xl font-black text-slate-900 uppercase tracking-tighter italic">Sign In</h2>
+          <div className="w-12 h-1.5 bg-orange-500 mx-auto mt-2 rounded-full"></div>
+
+          {errorMessage && (
+            <div className="mt-6 p-4 bg-red-50 border-l-4 border-red-500 text-red-700 text-[11px] font-bold text-left animate-in fade-in slide-in-from-top-2">
+              <span className="flex items-center gap-2">⚠️ {decodeURIComponent(errorMessage)}</span>
+            </div>
+          )}
         </div>
 
-        {/* INPUT FORM */}
-        <form className="space-y-5 text-left">
-          <div className="group">
-            <label className="text-[11px] font-bold text-[#001a41] uppercase tracking-wider">Email Address</label>
+        {/* SỬA TẠI ĐÂY: Thêm autoComplete="off" để trình duyệt không tự điền rồi submit ngầm */}
+        <form action={handleSignIn} className="space-y-5" autoComplete="off">
+          <div className="group text-left">
+            <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Email Address</label>
             <input
+              name="email"
               type="email"
-              placeholder="Enter your email"
-              className="w-full bg-gray-50 border border-gray-100 p-3 mt-1 text-sm outline-none focus:border-blue-500 transition-all"
+              required
+              autoComplete="new-password" // Trick để chặn autofill triệt để
+              placeholder="nhatbao@ytcapital.vn"
+              className="w-full bg-slate-50 border border-slate-200 p-3.5 mt-1 text-sm text-slate-900 font-bold rounded-md outline-none focus:border-orange-500 focus:bg-white transition-all"
             />
           </div>
 
-          <div className="group">
-            <label className="text-[11px] font-bold text-[#001a41] uppercase tracking-wider">Password</label>
-            <input
-              type="password"
-              placeholder="••••••••"
-              className="w-full bg-gray-50 border border-gray-100 p-3 mt-1 text-sm outline-none focus:border-blue-500 transition-all"
-            />
-          </div>
+          <PasswordField name="password" label="Password" />
 
-          <div className="text-right">
-            <Link href="#" className="text-[10px] text-blue-600 hover:underline font-medium">
-              Forgot password?
-            </Link>
+          <div className="pt-2">
+            <PrimaryButton label="Đăng nhập ngay" type="submit" fullWidth={true} className="cursor-pointer font-black uppercase tracking-wider py-4" />
           </div>
-
-          {/* NÚT SIGNIN CHÍNH */}
-          <PrimaryButton label="Sign In" type="submit" fullWidth={true} />
         </form>
 
-        {/* CHUYỂN SANG ĐĂNG KÝ */}
-        <p className="text-[12px] mt-8 text-gray-600 text-center">
-          Chưa có tài khoản?{' '}
-          <Link href="/signup" className="font-bold text-[#001a41] hover:text-orange-500 transition-colors underline">
-            Đăng ký ngay
-          </Link>
-        </p>
-
-        {/* PHẦN CHIA CÁCH */}
-        <div className="relative my-6">
-          <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-gray-100"></span></div>
-          <div className="relative flex justify-center text-[10px] uppercase"><span className="bg-white px-2 text-gray-400">Or continue with</span></div>
+        <div className="relative my-8">
+          <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-slate-100"></span></div>
+          <div className="relative flex justify-center text-[10px] uppercase font-bold tracking-widest text-slate-400"><span className="bg-white px-4">Social Login</span></div>
         </div>
 
-        {/* NÚT LOGIN GOOGLE - Tùy biến PrimaryButton cho Google */}
-        <button className="w-full border border-gray-200 py-3 rounded-sm flex items-center justify-center gap-3 hover:bg-gray-50 transition-all text-sm font-bold text-gray-700 shadow-sm">
-          <FcGoogle size={22} />
-          Login with Google
-        </button>
+        <form action={handleGoogleSignup}>
+          <button type="submit" className="w-full border border-slate-200 py-3.5 rounded-md flex items-center justify-center gap-3 hover:bg-slate-50 text-sm font-bold text-slate-700">
+            <FcGoogle size={22} /> Đăng nhập bằng Google
+          </button>
+        </form>
+
+        <p className="text-[13px] mt-8 text-slate-500 text-center font-medium">
+          Chưa có tài khoản? <Link href="/signup" className="font-bold text-orange-600 underline underline-offset-4">Đăng ký ngay</Link>
+        </p>
       </div>
     </div>
   );
