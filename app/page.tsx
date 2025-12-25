@@ -1,9 +1,10 @@
 import PrimaryButton from '@/components/common/PrimaryButton';
 import SectorGrid from '@/components/partials/SectorGrid';
 import ProcessSection from '@/components/partials/ProcessSection';
-import FeedbackSection from '@/components/partials/FeedbackSection';
+import FeedbackSection from '@/components/partials/FeedbackHome';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import FeedbackHome from '@/components/partials/FeedbackHome';
 
 export default function HomePage() {
   return (
@@ -76,7 +77,7 @@ export default function HomePage() {
         <ProcessSection />
 
         {/* 5. FEEDBACK SECTION */}
-        <FeedbackSection />
+        <FeedbackHome />
 
       </main>
     </div>
