@@ -1,13 +1,9 @@
+"use client";
 import { Metadata } from 'next';
 import PageHeader from '@/components/layout/PageHeader';
 import MemberCard from '@/components/partials/MemberCard';
 import Image from 'next/image';
 import { BookOpen, Users, Lightbulb } from 'lucide-react';
-
-export const metadata: Metadata = {
-  title: 'Về Chúng Tôi | Y&T Capital',
-  description: 'Y&T Capital là cộng đồng học tập, chia sẻ kiến thức đầu tư minh bạch và khách quan dành cho những nhà đầu tư trẻ.',
-};
 
 export default function AboutPage() {
   const learningPillars = [
@@ -34,11 +30,8 @@ export default function AboutPage() {
 
       <main className="grow">
         {/* SECTION 1: GIỚI THIỆU */}
-        {/* SECTION 1: GIỚI THIỆU */}
         <section className="py-10 md:py-15 max-w-360 mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-
-            {/* Sửa từ order-2 thành order-1 để chữ lên trước trên Mobile */}
             <article className="space-y-8 order-1 lg:order-1">
               <div className="space-y-4">
                 <p className="text-orange-500 font-bold uppercase tracking-[0.4em] text-[10px]">About Y&TCapital</p>
@@ -63,10 +56,7 @@ export default function AboutPage() {
               </div>
             </article>
 
-            {/* Sửa từ order-1 thành order-2 để hình xuống sau trên Mobile */}
             <div className="relative group overflow-hidden rounded-sm shadow-xl order-2 lg:order-2 aspect-video lg:aspect-square bg-gray-50">
-              <div className="absolute inset-0 bg-[#001a41]/5 lg:group-hover:bg-transparent transition-all duration-700 z-10 hidden lg:block" />
-
               <Image
                 src="/group.png"
                 alt="Tầm nhìn và Sứ mệnh Y&T Capital"
@@ -74,10 +64,6 @@ export default function AboutPage() {
                 className="object-cover grayscale-0 lg:grayscale lg:group-hover:grayscale-0 transition-all duration-1000 ease-in-out scale-100 lg:scale-105 lg:group-hover:scale-100"
                 priority
               />
-
-              <div className="absolute inset-0 z-20 flex items-end pointer-events-none">
-                <div className="absolute inset-0 bg-linear-to-t from-[#001a41]/40 via-transparent to-transparent hidden lg:block" />
-              </div>
             </div>
           </div>
         </section>
@@ -97,20 +83,64 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* SECTION 3: ĐỘI NGŨ FOUNDERS */}
-        <section className="py-24 max-w-360 mx-auto px-6 md:px-12">
-          <div className="text-center mb-16 md:mb-24">
+        {/* SECTION 3: ĐỘI NGŨ FOUNDERS (FIXED: SLIDE ON MOBILE) */}
+        <section className="py-24 max-w-360 mx-auto">
+          <div className="text-center mb-16 md:mb-24 px-6 md:px-12">
             <h2 className="text-3xl md:text-5xl font-black text-[#001a41] uppercase tracking-tighter">Core Founders</h2>
             <div className="w-16 h-1.5 bg-orange-500 mx-auto mt-6"></div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-16">
-            <MemberCard name="Trần Minh Nhật" role="Founder" image="/Nhat.jpg" field="Anh Nhật định hướng tầm nhìn và chiến lược tổng thể." />
-            <MemberCard name="Phạm Phương Nga" role="Co-Founder" image="/Nga.jpg" field="Chị Nga phụ trách phát triển kinh doanh và đối tác." />
-            <MemberCard name="Nguyễn Nhất Bảo" role="Co-Founder" image="/Bao.jpg" field="Anh Bảo phụ trách công nghệ và tối ưu trải nghiệm người dùng." />
+          {/* Container cho phép cuộn ngang trên điện thoại */}
+          <div className="flex overflow-x-auto pb-10 px-6 gap-6 md:grid md:grid-cols-3 md:px-12 md:gap-16 no-scrollbar snap-x snap-mandatory">
+
+            <div className="min-w-[85%] sm:min-w-[45%] md:min-w-full snap-center">
+              <MemberCard
+                name="Trần Minh Nhật"
+                role="Founder"
+                image="/Nhat.jpg"
+                field="Anh Nhật định hướng tầm nhìn và chiến lược tổng thể."
+              />
+            </div>
+
+            <div className="min-w-[85%] sm:min-w-[45%] md:min-w-full snap-center">
+              <MemberCard
+                name="Phạm Phương Nga"
+                role="Co-Founder"
+                image="/Nga.jpg"
+                field="Chị Nga phụ trách phát triển kinh doanh và đối tác."
+              />
+            </div>
+
+            <div className="min-w-[85%] sm:min-w-[45%] md:min-w-full snap-center">
+              <MemberCard
+                name="Nguyễn Nhất Bảo"
+                role="Co-Founder"
+                image="/Bao.jpg"
+                field="Anh Bảo phụ trách công nghệ và tối ưu trải nghiệm người dùng."
+              />
+            </div>
+
+          </div>
+
+          {/* Gợi ý lướt (chỉ hiện trên mobile) */}
+          <div className="md:hidden text-center mt-2">
+            <p className="text-[10px] font-black uppercase text-slate-300 tracking-widest italic animate-pulse">
+              ← Trượt ngang để xem thêm →
+            </p>
           </div>
         </section>
       </main>
+
+      {/* Style để ẩn thanh cuộn và căn chỉnh */}
+      <style jsx global>{`
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </div>
   );
 }

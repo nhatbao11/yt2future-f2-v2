@@ -7,7 +7,7 @@ export default function ContactPage() {
     {
       icon: <MapPin className="text-orange-500" size={24} />,
       title: "Địa chỉ",
-      content: "92, 19E, Phường An Lạc, Quận Bình Tân, TP. Hồ Chí Minh"
+      content: "Bình Tân, TP. Hồ Chí Minh"
     },
     {
       icon: <Mail className="text-orange-500" size={24} />,
@@ -17,7 +17,7 @@ export default function ContactPage() {
     {
       icon: <Phone className="text-orange-500" size={24} />,
       title: "Hotline",
-      content: "0909 123 456"
+      content: "0822 082 407"
     },
     {
       icon: <Clock className="text-orange-500" size={24} />,

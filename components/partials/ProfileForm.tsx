@@ -1,3 +1,4 @@
+// ProfileForm.tsx
 "use client";
 
 import { useState } from 'react';
@@ -7,25 +8,28 @@ import { handleUpdateProfile } from '@/app/profile/actions.js';
 
 export default function ProfileForm({ profile }: { profile: any }) {
   const [loading, setLoading] = useState(false);
+  // State để cập nhật ảnh preview khi sếp dán link mới
+  const [avatarPreview, setAvatarPreview] = useState(profile?.avatarUrl || '/Logo.jpg');
 
   return (
     <form action={async (formData) => {
       setLoading(true);
       await handleUpdateProfile(formData);
       setLoading(false);
+      // Phát sự kiện để Navbar tự cập nhật lại ảnh ngay lập tức
+      window.dispatchEvent(new Event('profileUpdated'));
     }} className="space-y-6">
 
-      {/* Hiển thị Avatar hiện tại */}
       <div className="flex flex-col items-center gap-4">
         <div className="relative w-24 h-24 rounded-full overflow-hidden border-4 border-orange-100 shadow-md">
           <Image
-            src={profile?.avatarUrl || '/Logo.jpg'}
+            src={avatarPreview} // Dùng preview để thay đổi tức thì
             alt="Avatar"
             fill
             className="object-cover"
           />
         </div>
-        <p className="text-[10px] text-slate-400 uppercase font-bold tracking-widest">Avatar URL (Link ảnh)</p>
+        <p className="text-[10px] text-slate-400 uppercase font-bold tracking-widest">Avatar Hiện Tại</p>
       </div>
 
       <div className="space-y-4">
@@ -43,6 +47,7 @@ export default function ProfileForm({ profile }: { profile: any }) {
           <input
             name="avatarUrl"
             defaultValue={profile?.avatarUrl}
+            onChange={(e) => setAvatarPreview(e.target.value)} // Cập nhật preview khi gõ
             placeholder="https://example.com/image.jpg"
             className="w-full bg-slate-50 border border-slate-200 p-3.5 mt-1 text-sm text-slate-900 font-bold rounded-md outline-none focus:border-orange-500 transition-all"
           />

@@ -1,12 +1,12 @@
 "use server";
 
 import { v2 as cloudinary } from 'cloudinary';
-import { createClient } from '@/utils/supabase/server';
+import { cookies } from 'next/headers';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 export async function handleUpdateProfile(formData: FormData) {
-  // 1. ÉP CẤU HÌNH NGAY TRONG HÀM để tránh lỗi "Must supply cloud_name"
+  // 1. Cấu hình Cloudinary bằng API Secret (Signed)
   cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
@@ -14,15 +14,17 @@ export async function handleUpdateProfile(formData: FormData) {
     secure: true,
   });
 
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) redirect('/signin');
+  const cookieStore = await cookies();
+  const token = cookieStore.get('yt_capital_token')?.value;
+  if (!token) redirect('/signin');
 
   const fullName = formData.get('fullName') as string;
   const file = formData.get('avatarFile') as File;
   let avatarUrl = formData.get('currentAvatarUrl') as string;
 
-  // 2. Xử lý upload nếu có file mới
+  let isSuccess = false;
+
+  // 2. Xử lý Upload Cloudinary
   if (file && file.size > 0) {
     try {
       const arrayBuffer = await file.arrayBuffer();
@@ -31,35 +33,44 @@ export async function handleUpdateProfile(formData: FormData) {
       const uploadResult: any = await new Promise((resolve, reject) => {
         const stream = cloudinary.uploader.upload_stream(
           {
-            // CHỈ ĐỂ DUY NHẤT upload_preset, KHÔNG THÊM GÌ KHÁC
+            folder: 'avatars',
+            // Vì dùng API Key/Secret nên không cần upload_preset nếu không muốn
+            // Nếu dùng, hãy chắc chắn preset đó là Signed
             upload_preset: 'yt2future',
-            // resource_type: 'auto',
           },
-          (error: any, result: any) => { // Thêm :any để hết gạch đỏ
-            if (error) reject(error);
-            else resolve(result);
-          }
+          (error, result) => error ? reject(error) : resolve(result)
         );
         stream.end(buffer);
       });
-
-      avatarUrl = uploadResult.secure_url; // Lấy link ảnh từ Cloudinary
-    } catch (error: any) {
-      console.error("Cloudinary upload error:", error);
-      return redirect('/profile?error=' + encodeURIComponent('Upload avatar thất bại: ' + error.message));
+      avatarUrl = uploadResult.secure_url; // Đây là URL link text để lưu DB
+    } catch (error) {
+      console.error("Lỗi Signed Upload Cloudinary:", error);
     }
   }
 
-  // 3. Cập nhật Text/Link vào Database
-  const { error: dbError } = await supabase
-    .from('User')
-    .update({ fullName, avatarUrl })
-    .eq('id', user.id);
+  // 3. Gửi Link về Backend Prisma (Cổng 5000)
+  try {
+    const response = await fetch('http://localhost:5000/api/auth/update-user', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Cookie': `yt_capital_token=${token}`
+      },
+      body: JSON.stringify({ fullName, avatarUrl }), // Chỉ gửi Text URL
+    });
 
-  if (dbError) {
-    return redirect('/profile?error=' + encodeURIComponent('Lỗi lưu DB: ' + dbError.message));
+    if (response.ok) {
+      isSuccess = true;
+      revalidatePath('/', 'layout'); // Làm mới Navbar
+    }
+  } catch (err) {
+    console.error("Lỗi Backend:", err);
   }
 
-  revalidatePath('/', 'layout');
-  return redirect('/profile?success=' + encodeURIComponent('Cập nhật thành công'));
+  // 4. Chuyển hướng (Luôn để ngoài try/catch)
+  if (isSuccess) {
+    redirect('/profile?success=' + encodeURIComponent('Đã lưu vào DB thành công!'));
+  } else {
+    redirect('/profile?error=' + encodeURIComponent('Lưu thất bại, sếp check Terminal BE xem!'));
+  }
 }

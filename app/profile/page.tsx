@@ -1,66 +1,60 @@
-import Image from 'next/image';
-import Link from 'next/link'; // Sửa lỗi thiếu Link
-import { createClient } from '@/utils/supabase/server';
+import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { handleUpdateProfile } from './actions';
 import PrimaryButton from '@/components/common/PrimaryButton';
 import AvatarUpload from '@/components/partials/AvatarUpload';
 
-export default async function ProfilePage({
-  searchParams
-}: {
-  searchParams: Promise<{ error?: string, success?: string }>
-}) {
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) redirect('/signin');
+export default async function ProfilePage() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get('yt_capital_token')?.value;
 
-  const { data: profile } = await supabase
-    .from('User')
-    .select('fullName, avatarUrl')
-    .eq('id', user.id)
-    .single();
+  if (!token) redirect('/signin');
 
-  const { error, success } = await searchParams;
+  // Gọi Backend để lấy profile hiện tại
+  const res = await fetch('http://localhost:5000/api/auth/me', {
+    headers: { 'Cookie': `yt_capital_token=${token}` },
+    cache: 'no-store'
+  });
+
+  if (!res.ok) redirect('/signin');
+  const { user: profile } = await res.json();
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center py-12 px-4 font-sans text-slate-900">
-      <div className="absolute inset-0 z-0">
-        <Image src="/bgSign.jpg" alt="bg" fill className="object-cover opacity-50" priority />
-        <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-[4px]" />
-      </div>
-
-      <div className="relative z-10 bg-white p-8 rounded-lg shadow-2xl w-full max-w-[480px]">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-black uppercase italic italic tracking-tighter">Hồ sơ</h2>
-          <div className="w-12 h-1.5 bg-orange-500 mx-auto mt-2 rounded-full"></div>
-
-          {success && <div className="mt-4 p-3 bg-green-50 border-l-4 border-green-500 text-green-700 text-[11px] font-bold uppercase">{decodeURIComponent(success)}</div>}
-          {error && <div className="mt-4 p-3 bg-red-50 border-l-4 border-red-500 text-red-700 text-[11px] font-bold uppercase">{decodeURIComponent(error)}</div>}
-        </div>
+    <div className="min-h-[80vh] flex items-center justify-center py-12 px-4 bg-slate-50">
+      <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-lg border border-slate-100">
+        <h2 className="text-2xl font-black text-[#1a365d] uppercase italic mb-8 text-center tracking-tight">
+          Hồ sơ của sếp
+        </h2>
 
         <form action={handleUpdateProfile} className="space-y-6">
+          {/* AvatarUpload sẽ lo việc đẩy ảnh lên Cloudinary và trả về URL */}
           <AvatarUpload initialAvatar={profile?.avatarUrl || '/Logo.jpg'} />
-          <input type="hidden" name="currentAvatarUrl" defaultValue={profile?.avatarUrl || ''} />
 
-          <div className="group text-left">
-            <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Họ và Tên</label>
-            <input
-              name="fullName"
-              defaultValue={profile?.fullName || ''}
-              required
-              className="w-full bg-slate-50 border border-slate-200 p-3.5 mt-1 text-sm font-bold rounded-md outline-none focus:border-orange-500 transition-all"
-            />
+          <div className="space-y-4">
+            <div className="group text-left">
+              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Họ và Tên</label>
+              <input
+                name="fullName"
+                defaultValue={profile?.fullName || ''}
+                placeholder="Nhập họ tên sếp..."
+                className="w-full bg-slate-50 border border-slate-200 p-4 mt-1 text-sm font-bold text-[#1a365d] rounded-xl outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all"
+              />
+            </div>
+
+            <div className="group text-left">
+              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Email hệ thống</label>
+              <input
+                value={profile?.email || ''}
+                disabled
+                className="w-full bg-slate-100 border border-slate-200 p-4 mt-1 text-sm font-medium text-slate-400 rounded-xl cursor-not-allowed"
+              />
+            </div>
           </div>
 
-          <PrimaryButton label="Lưu thay đổi" type="submit" fullWidth={true} />
+          <div className="pt-4">
+            <PrimaryButton label="Lưu thay đổi ngay" type="submit" fullWidth={true} className="py-4 shadow-lg shadow-orange-200" />
+          </div>
         </form>
-
-        <div className="mt-6 text-center">
-          <Link href="/" className="text-[11px] text-slate-400 font-bold uppercase hover:text-orange-600 transition-all">
-            ← Quay lại trang chủ
-          </Link>
-        </div>
       </div>
     </div>
   );

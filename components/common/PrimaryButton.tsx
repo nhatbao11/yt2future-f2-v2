@@ -30,7 +30,7 @@ export default function PrimaryButton({
       onClick={href ? handleClick : undefined}
       className={`
         relative overflow-hidden group bg-[#001a41] text-white 
-        px-8 py-4 rounded-sm text-sm font-bold uppercase tracking-widest 
+        px-8 py-4 text-sm font-bold uppercase tracking-widest 
         transition-all duration-500 shadow-xl
         ${fullWidth ? 'w-full' : 'w-auto'} 
         ${className}

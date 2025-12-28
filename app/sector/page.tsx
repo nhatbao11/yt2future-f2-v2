@@ -1,99 +1,235 @@
+"use client";
+import React, { useEffect, useState } from 'react';
 import PageHeader from '@/components/layout/PageHeader';
-import SectorFilter from '@/components/partials/SectorFilter';
-import { Download, Eye, Calendar, User, ShieldCheck } from 'lucide-react';
-import Link from 'next/link';
-
-const sectorReports = [
-  {
-    id: 1,
-    title: "Chiến lược Ngành Ngân Hàng 2025",
-    description: "Phân tích sâu về NIM và nợ xấu của hệ thống ngân hàng thương mại Việt Nam.",
-    category: "Banking",
-    date: "23/12/2025",
-    author: "Minh Nhật",
-    role: "Founder & Macro Lead",
-    thumbnail: "https://images.unsplash.com/photo-1501167786227-4cba60f6d58f?q=80&w=600",
-  },
-  {
-    id: 2,
-    title: "Báo cáo thị trường Crypto Quý 4",
-    description: "Đánh giá dòng tiền on-chain và các dự án Layer 2 tiềm năng trong giai đoạn tới.",
-    category: "Crypto",
-    date: "22/12/2025",
-    author: "Phương Nga",
-    role: "Co-Founder & Researcher",
-    thumbnail: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?q=80&w=600",
-  }
-];
+import { reportService } from '@/services/reportService';
+import { Search, PlusCircle, User, FileText, X, ChevronDown, Calendar, Download } from 'lucide-react';
+import CreateReportPage from '@/components/common/CreateReportPage';
 
 export default function SectorPage() {
-  const categories = ['All Sectors', 'Banking', 'Crypto', 'Real Estate', 'Tech'];
+  const [reports, setReports] = useState<any[]>([]);
+  const [categories, setCategories] = useState<any[]>([]);
+  const [activeCatId, setActiveCatId] = useState<number | undefined>(undefined);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [userData, setUserData] = useState<{ role?: string } | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [readingPdfUrl, setReadingPdfUrl] = useState<string | null>(null);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+  // Khởi tạo dữ liệu
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await fetch(`/api/auth/me?v=${Date.now()}`, { credentials: 'include' });
+        if (res.ok) {
+          const data = await res.json();
+          setUserData(data.user);
+        }
+      } catch (err) { console.error("Lỗi xác thực:", err); }
+    };
+    fetchUser();
+    reportService.getCategories().then(res => {
+      if (res.success) setCategories(res.categories);
+    });
+  }, []);
+
+  // Tải báo cáo
+  const loadReports = async () => {
+    setLoading(true);
+    try {
+      const data = await reportService.getPublicReports(page, activeCatId, searchQuery);
+      if (data.success) {
+        setReports(data.reports);
+        setTotalPages(data.totalPages);
+      }
+    } finally { setLoading(false); }
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(loadReports, 300);
+    return () => clearTimeout(timer);
+  }, [page, activeCatId, searchQuery]);
 
   return (
-    <div className="min-h-screen bg-[#fafafa]">
+    <div className="min-h-screen bg-[#fafafa] font-black italic uppercase tracking-tight">
       <PageHeader title="Sector Analysis" />
 
-      <main className="max-w-360 mx-auto px-6 md:px-12 py-20">
+      <main className="max-w-[1440px] mx-auto px-4 md:px-12 py-10">
 
-        {/* Bộ lọc (Client Component) */}
-        <SectorFilter categories={categories} />
+        {/* THANH ĐIỀU KHIỂN */}
+        <div className="mb-12 flex flex-col lg:flex-row items-center justify-between gap-6 border-b-2 border-slate-200 pb-8">
+          <div className="flex flex-col md:flex-row items-center gap-4 w-full lg:w-auto">
+            <div className="relative w-full lg:w-80">
+              <input
+                type="text"
+                placeholder="TÌM KIẾM BÁO CÁO..."
+                value={searchQuery}
+                onChange={(e) => { setSearchQuery(e.target.value); setPage(1); }}
+                className="w-full bg-white border-2 border-slate-300 pl-12 pr-4 py-3.5 text-[11px] text-slate-900 placeholder-slate-600 outline-none focus:border-[#001a41] transition-all shadow-sm not-italic"
+              />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-900" size={18} />
+            </div>
 
-        {/* Danh sách bài viết (Server Side Rendering - SEO cực tốt) */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          {sectorReports.map((report) => (
-            <div key={report.id} className="group bg-white border border-gray-100 flex flex-col md:flex-row overflow-hidden hover:shadow-2xl transition-all duration-500">
+            <div
+              className="relative w-full lg:w-auto"
+              onMouseEnter={() => setIsFilterOpen(true)}
+              onMouseLeave={() => setIsFilterOpen(false)}
+            >
+              <button
+                onClick={() => setIsFilterOpen(!isFilterOpen)}
+                className="w-full flex items-center justify-between gap-6 bg-white border-2 border-slate-300 px-5 py-3.5 text-[10px] text-slate-900 tracking-widest hover:border-[#001a41] transition-all"
+              >
+                <span>{categories.find(c => c.id === activeCatId)?.name || 'CHUYÊN MỤC'}</span>
+                <ChevronDown size={14} className={`text-slate-900 transition-transform duration-300 ${isFilterOpen ? 'rotate-180' : ''}`} />
+              </button>
 
-              {/* Hình ảnh */}
-              <div className="md:w-2/5 relative h-64 md:h-auto overflow-hidden">
-                <img
-                  src={report.thumbnail}
-                  alt={report.title}
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
-                />
-                <div className="absolute top-0 left-0 bg-orange-500 text-white text-[9px] font-black px-4 py-1 uppercase">
-                  {report.category}
+              <div className={`absolute left-0 top-full mt-1 w-full lg:w-60 bg-white border-2 border-slate-900 z-50 shadow-2xl transition-all ${isFilterOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
+                <button
+                  onClick={() => { setActiveCatId(undefined); setPage(1); setIsFilterOpen(false); }}
+                  className="w-full text-left px-5 py-4 text-[10px] hover:bg-slate-50 border-b border-slate-100 text-slate-900"
+                >
+                  TẤT CẢ DANH MỤC
+                </button>
+                {categories.map((cat) => (
+                  <button
+                    key={cat.id}
+                    onClick={() => { setActiveCatId(cat.id); setPage(1); setIsFilterOpen(false); }}
+                    className="w-full text-left px-5 py-4 text-[10px] hover:bg-slate-50 border-b border-slate-100 text-slate-900 last:border-0"
+                  >
+                    {cat.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {userData?.role === 'CTV' && (
+            <button onClick={() => setIsModalOpen(true)} className="w-full md:w-auto flex items-center justify-center gap-3 bg-[#001a41] text-white px-8 py-4 text-[11px] tracking-widest hover:bg-orange-600 transition-all border-2 border-slate-900 shadow-md">
+              <PlusCircle size={18} /> THÊM BÁO CÁO (CTV)
+            </button>
+          )}
+        </div>
+
+        {/* DANH SÁCH BÁO CÁO */}
+        {loading ? (
+          <div className="text-center py-20 text-[12px] animate-pulse text-slate-400 tracking-[0.4em]">SYNCING INTELLIGENCE...</div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {reports.map((report) => (
+              <div
+                key={report.id}
+                onClick={() => setReadingPdfUrl(report.pdfUrl)}
+                className="group bg-white border-2 border-slate-200 flex flex-col cursor-pointer hover:shadow-2xl hover:border-[#001a41] transition-all duration-500"
+              >
+                <div className="aspect-video relative overflow-hidden bg-slate-50 border-b-2 border-slate-100">
+                  <img src={report.thumbnail || '/Logo.jpg'} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-transform duration-700 group-hover:scale-105" alt={report.title} />
+                  <div className="absolute top-3 right-3 bg-[#001a41] text-white text-[8px] font-black px-2 py-1">{report.category?.name}</div>
+                </div>
+
+                <div className="p-6 flex flex-col justify-between flex-1 space-y-5">
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2 text-[9px] text-slate-500 font-black">
+                      <Calendar size={12} className="text-orange-500" />
+                      {new Date(report.createdAt).toLocaleDateString('vi-VN')}
+                    </div>
+                    <h3 className="text-[14px] font-black leading-tight text-[#001a41] group-hover:text-orange-600 transition-colors line-clamp-2 h-10">
+                      {report.title}
+                    </h3>
+                    <div className="relative group/desc">
+                      <p className="text-[11px] text-slate-500 line-clamp-2 leading-relaxed italic border-l-2 border-slate-300 pl-3 min-h-[32px] lowercase first-letter:uppercase">
+                        "{report.description || 'Chưa có mô tả chi tiết cho báo cáo này.'}"
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="pt-5 flex items-center justify-between border-t border-slate-100">
+                    <span className="text-[9px] text-slate-400 flex items-center gap-2 italic">
+                      <User size={12} className="text-[#001a41]" /> @{report.user?.fullName}
+                    </span>
+                    <div className="flex items-center gap-2 text-[#001a41] text-[9px] tracking-widest group-hover:text-orange-600 transition-all font-black">
+                      <FileText size={14} /> CHI TIẾT
+                    </div>
+                  </div>
                 </div>
               </div>
+            ))}
+          </div>
+        )}
 
-              {/* Nội dung */}
-              <div className="md:w-3/5 p-8 flex flex-col justify-between">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-2 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-                    <Calendar size={12} /> {report.date}
-                  </div>
-                  <h3 className="text-xl font-black text-[#001a41] uppercase tracking-tighter leading-tight group-hover:text-orange-500 transition-colors">
-                    {report.title}
-                  </h3>
-                  <p className="text-xs text-gray-500 leading-relaxed line-clamp-2">
-                    {report.description}
-                  </p>
+        {/* PHÂN TRANG */}
+        {totalPages > 1 && (
+          <div className="mt-16 flex justify-center items-center gap-4">
+            <button
+              disabled={page === 1}
+              onClick={(e) => { e.stopPropagation(); setPage(page - 1); }}
+              className="px-6 py-2.5 border-2 border-slate-300 text-slate-900 hover:border-[#001a41] disabled:opacity-20 transition-all active:scale-95"
+            >
+              TRƯỚC
+            </button>
+            <span className="text-[11px] text-slate-900">TRANG {page} / {totalPages}</span>
+            <button
+              disabled={page === totalPages}
+              onClick={(e) => { e.stopPropagation(); setPage(page + 1); }}
+              className="px-6 py-2.5 border-2 border-slate-300 text-slate-900 hover:border-[#001a41] disabled:opacity-20 transition-all active:scale-95"
+            >
+              SAU
+            </button>
+          </div>
+        )}
 
-                  {/* Phần Tác Giả xịn sò hơn */}
-                  <div className="flex items-center gap-3 pt-6 border-t border-gray-50">
-                    <div className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-[#001a41]">
-                      <User size={18} />
-                    </div>
-                    <div>
-                      <p className="text-[10px] font-black text-[#001a41] uppercase">{report.author}</p>
-                      <div className="flex items-center gap-1 text-[9px] text-orange-500 font-bold uppercase tracking-tighter">
-                        <ShieldCheck size={10} /> {report.role}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+        {/* MODAL XEM PDF CÓ NÚT TẢI XUỐNG */}
+        {readingPdfUrl && (
+          <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-sm p-0 md:p-10 animate-in fade-in duration-300">
+            <div className="bg-white w-full h-full md:max-w-7xl md:h-[90vh] flex flex-col relative shadow-2xl">
 
-                <div className="flex gap-3 mt-8">
-                  <Link href="#" className="flex-1 bg-[#001a41] text-white text-[10px] font-black uppercase tracking-widest py-3 text-center hover:bg-orange-500 transition-colors flex items-center justify-center gap-2">
-                    <Eye size={14} /> Đọc Báo Cáo
-                  </Link>
-                  <button className="px-4 border border-gray-100 hover:bg-gray-100 transition-colors">
-                    <Download size={16} className="text-[#001a41]" />
+              <div className="bg-[#001a41] p-4 flex justify-between items-center text-white border-b-2 border-slate-900 font-black">
+                <span className="text-[10px] tracking-widest flex items-center gap-3">
+                  <FileText size={18} className="text-orange-500" /> BÁO CÁO PHÂN TÍCH CHIẾN LƯỢC
+                </span>
+
+                <div className="flex items-center gap-3">
+                  {/* NÚT TẢI XUỐNG */}
+                  <a
+                    href={readingPdfUrl.replace('/upload/', '/upload/fl_attachment/')}
+                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 text-[9px] tracking-widest transition-all shadow-md active:translate-y-0.5"
+                  >
+                    <Download size={14} /> TẢI VỀ MÁY
+                  </a>
+
+                  <button
+                    onClick={() => setReadingPdfUrl(null)}
+                    className="bg-rose-600 p-2 border-2 border-slate-900 hover:rotate-90 transition-all"
+                  >
+                    <X size={22} />
                   </button>
                 </div>
               </div>
+
+              <iframe
+                src={`https://docs.google.com/viewer?url=${encodeURIComponent(readingPdfUrl)}&embedded=true`}
+                className="flex-1 w-full border-0"
+                title="Intelligence Viewer"
+              />
             </div>
-          ))}
-        </div>
+          </div>
+        )}
+
+        {/* MODAL THÊM BÁO CÁO */}
+        {isModalOpen && (
+          <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md">
+            <div className="bg-white w-full max-w-5xl relative overflow-y-auto max-h-[95vh] border-4 border-slate-900">
+              <button onClick={() => setIsModalOpen(false)} className="absolute top-4 right-4 z-50 p-2 bg-rose-600 text-white border-2 border-slate-900 hover:rotate-90 transition-all">
+                <X size={24} />
+              </button>
+              <CreateReportPage onClose={() => { setIsModalOpen(false); loadReports(); }} />
+            </div>
+          </div>
+        )}
       </main>
     </div>
   );

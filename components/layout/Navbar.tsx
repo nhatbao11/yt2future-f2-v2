@@ -31,7 +31,11 @@ export default function Navbar() {
   ];
 
   const getAvatarSrc = (url: string | null) => {
-    if (!url) return '/Logo.jpg';
+    // Nếu không có url hoặc url là ảnh mặc định local, trả về path sạch
+    if (!url || url === '/Logo.jpg' || url.startsWith('/')) {
+      return '/Logo.jpg';
+    }
+    // Chỉ thêm timestamp cho ảnh từ bên ngoài (Cloudinary, Google) để tránh cache
     return `${url}${url.includes('?') ? '&' : '?'}t=${Date.now()}`;
   };
 
@@ -79,25 +83,37 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [pathname, fetchUser, isInitialRender]);
 
+  // src/components/Navbar.tsx
+
   useEffect(() => {
     const handleSync = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       const hasMyToken = document.cookie.includes('yt_capital_token');
 
-      if (session?.user?.email && !hasMyToken) {
+      // Kiểm tra nếu có session từ Supabase nhưng chưa có Token của Backend mình
+      if (session?.user && !hasMyToken) {
         try {
+          // Gửi đầy đủ thông tin sang Backend cổng 5000
           await fetch('http://localhost:5000/api/auth/grant-google-role', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: session.user.email }),
+            body: JSON.stringify({
+              email: session.user.email,
+              // Bốc dữ liệu từ metadata của Google trả về
+              name: session.user.user_metadata?.full_name || session.user.user_metadata?.name,
+              picture: session.user.user_metadata?.avatar_url || session.user.user_metadata?.picture
+            }),
             credentials: 'include'
           });
+
+          // Sau khi Backend lưu xong và trả về Cookie, gọi lại hàm lấy thông tin để hiện Navbar
           await fetchUser(true);
         } catch (err) {
           console.error("Sync error:", err);
         }
       }
     };
+
     handleSync();
 
     window.addEventListener('profileUpdated', () => fetchUser(true));

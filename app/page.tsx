@@ -28,44 +28,51 @@ export default function HomePage() {
               Shaping Tomorrow Through Agile Innovation
             </p>
             <div className="flex justify-center md:justify-start">
-              <PrimaryButton label="Bắt đầu hành trình" href="/about" />
+              <PrimaryButton label="Bắt đầu hành trình" href="/investment" />
             </div>
           </div>
         </section>
 
         {/* 2. SECTOR ANALYSIS - Gọi cái Grid đã xử lý "use client" */}
-        <section className="py-20 md:py-32 max-w-360 mx-auto px-6 md:px-12 text-left">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+        <section className="py-7 md:py-24 max-w-360 mx-auto px-6 md:px-12 text-left">
+          <div className="flex flex-col md:flex-row justify-between items-start mb-16 gap-8">
             <div className="max-w-2xl">
-              <h4 className="text-orange-500 font-bold uppercase tracking-[0.3em] text-[10px] mb-4">What we explore</h4>
-              <h2 className="text-4xl md:text-6xl font-black text-[#001a41] uppercase tracking-tighter leading-none">
+              <h4 className="text-orange-500 font-black uppercase tracking-[0.4em] text-[10px] mb-4 italic">
+                What we explore
+              </h4>
+              <h2 className="text-2xl md:text-6xl font-black text-[#001a41] uppercase tracking-tighter leading-none italic">
                 Lĩnh vực kiến thức
               </h2>
             </div>
-            <p className="text-gray-400 text-sm md:text-base font-light max-w-87.5 md:text-right border-r-4 border-orange-500 pr-6">
-              Chúng tôi tập trung vào những mảng thị trường cốt lõi, nơi sự đổi mới đang diễn ra mạnh mẽ nhất.
-            </p>
+            <div className="md:text-right">
+              <p className="text-gray-400 text-sm md:text-base font-bold max-w-sm md:ml-auto border-r-4 border-orange-500 pr-6 uppercase tracking-wider italic">
+                Chúng tôi tập trung vào những mảng thị trường cốt lõi, nơi sự đổi mới đang diễn ra mạnh mẽ nhất.
+              </p>
+            </div>
           </div>
 
-          <SectorGrid />
+          {/* ÉP CHIỀU CAO CỐ ĐỊNH TẠI ĐÂY */}
+          <div className="relative w-full border-t border-slate-100">
+            <SectorGrid />
+          </div>
         </section>
 
         {/* 3. ABOUT MINI SECTION */}
         <section className="py-20 bg-gray-50 overflow-hidden text-left">
           <div className="max-w-360 mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="relative z-10 border-l-8 border-[#001a41] pl-8 space-y-6">
-              <h3 className="text-3xl md:text-5xl font-black text-[#001a41] uppercase tracking-tighter">
+              <h3 className="text-2xl md:text-5xl font-black text-[#001a41] uppercase tracking-tighter">
                 Không chỉ là đầu tư, đó là sự học tập.
               </h3>
               <p className="text-gray-600 text-lg font-light leading-relaxed">
-                Y&T Capital ra đời từ khát khao của 3 người trẻ muốn tạo ra một cộng đồng chia sẻ kiến thức đầu tư khách quan và minh bạch.
+                Y&T Capital ra đời từ khát khao của những người trẻ muốn tạo ra một cộng đồng chia sẻ kiến thức đầu tư khách quan và minh bạch.
               </p>
               <Link href="/about" className="inline-flex items-center gap-2 text-orange-500 font-bold uppercase tracking-widest text-xs hover:gap-4 transition-all">
                 Tìm hiểu về đội ngũ <ArrowRight size={16} />
               </Link>
             </div>
             <div className="bg-[#001a41] p-12 text-white relative">
-              <p className="text-3xl font-light italic opacity-80 mb-8 leading-snug">
+              <p className="text-2xl font-light italic opacity-80 mb-8 leading-snug">
                 "Khoản đầu tư vào kiến thức luôn mang lại lãi suất cao nhất."
               </p>
               <p className="font-bold uppercase tracking-widest text-sm text-orange-500">— Benjamin Franklin</p>
