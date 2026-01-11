@@ -50,7 +50,7 @@ export async function handleUpdateProfile(formData: FormData) {
 
   // 3. Gửi Link về Backend Prisma (Cổng 5000)
   try {
-    const response = await fetch('http://localhost:5000/api/auth/update-user', {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'}/auth/update-user`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

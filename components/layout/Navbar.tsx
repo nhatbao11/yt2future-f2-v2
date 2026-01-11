@@ -94,7 +94,7 @@ export default function Navbar() {
       if (session?.user && !hasMyToken) {
         try {
           // Gửi đầy đủ thông tin sang Backend cổng 5000
-          await fetch('http://localhost:5000/api/auth/grant-google-role', {
+          await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'}/auth/grant-google-role`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

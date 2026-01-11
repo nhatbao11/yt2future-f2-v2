@@ -11,7 +11,7 @@ export default async function ProfilePage() {
   if (!token) redirect('/signin');
 
   // Gọi Backend để lấy profile hiện tại
-  const res = await fetch('http://localhost:5000/api/auth/me', {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'}/auth/me`, {
     headers: { 'Cookie': `yt2future_token=${token}` },
     cache: 'no-store'
   });

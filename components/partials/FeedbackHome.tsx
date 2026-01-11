@@ -15,7 +15,7 @@ export default function FeedbackHome() {
   const [loading, setLoading] = useState(false);
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
-  const BACKEND_URL = 'http://localhost:5000/api';
+  const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
   const MAX_LENGTH = 250;
 
   const loadFeedbacks = async () => {
