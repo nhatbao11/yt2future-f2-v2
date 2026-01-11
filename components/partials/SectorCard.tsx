@@ -8,22 +8,103 @@ interface SectorProps {
 
 export default function SectorCard({ title, desc, icon: Icon }: SectorProps) {
   return (
-    <div className="group relative p-10 bg-white border border-gray-100 hover:bg-[#001a41] transition-all duration-500 flex flex-col items-start overflow-hidden">
-      {/* Icon lớn mờ nằm ẩn ở góc */}
-      <Icon className="absolute -right-6 -bottom-6 size-32 text-gray-50 group-hover:text-white/5 transition-all duration-700" />
+    <>
+      <div
+        className="group relative p-10 border border-gray-100 transition-all duration-500 flex flex-col items-start overflow-hidden sector-card"
+      >
+        {/* Icon lớn mờ ở góc */}
+        <Icon className="absolute -right-6 -bottom-6 size-32 sector-icon-bg transition-all duration-700" />
 
-      <div className="relative z-10">
-        <div className="mb-8 p-4 bg-orange-50 group-hover:bg-orange-500 transition-colors duration-500 rounded-sm">
-          <Icon className="text-orange-500 group-hover:text-white transition-colors duration-500" size={32} />
+        <div className="relative z-10">
+          {/* Icon box */}
+          <div className="mb-8 p-4 transition-colors duration-500 rounded-sm sector-icon-box">
+            <Icon className="transition-colors duration-500 sector-icon" size={32} />
+          </div>
+
+          {/* Title */}
+          <h3 className="text-xl font-black uppercase tracking-tighter mb-4 transition-colors sector-title">
+            {title}
+          </h3>
+
+          {/* Description */}
+          <p className="text-sm leading-relaxed font-light transition-colors sector-desc">
+            {desc}
+          </p>
+
+          {/* Bottom bar */}
+          <div className="mt-8 h-1 bg-orange-500 transition-all duration-500 sector-bar"></div>
         </div>
-        <h3 className="text-xl font-black text-[#001a41] group-hover:text-white uppercase tracking-tighter mb-4 transition-colors">
-          {title}
-        </h3>
-        <p className="text-gray-500 group-hover:text-white/70 text-sm leading-relaxed font-light transition-colors">
-          {desc}
-        </p>
-        <div className="mt-8 w-8 h-1 bg-orange-500 group-hover:w-full transition-all duration-500"></div>
       </div>
-    </div>
+
+      <style jsx>{`
+        .sector-card {
+          background-color: rgb(15, 23, 42); /* slate-900 for mobile */
+        }
+        .sector-icon-bg {
+          color: rgba(255, 255, 255, 0.05);
+        }
+        .sector-icon-box {
+          background-color: rgb(249, 115, 22); /* orange-500 */
+        }
+        .sector-icon {
+          color: white;
+        }
+        .sector-title {
+          color: white;
+        }
+        .sector-desc {
+          color: rgba(255, 255, 255, 0.7);
+        }
+        .sector-bar {
+          width: 100%;
+        }
+
+        /* Desktop styles */
+        @media (min-width: 1024px) {
+          .sector-card {
+            background-color: white;
+          }
+          .sector-card:hover {
+            background-color: rgb(15, 23, 42);
+          }
+          .sector-icon-bg {
+            color: rgb(249, 250, 251); /* gray-50 */
+          }
+          .group:hover .sector-icon-bg {
+            color: rgba(255, 255, 255, 0.05);
+          }
+          .sector-icon-box {
+            background-color: rgb(255, 237, 213); /* orange-50 */
+          }
+          .group:hover .sector-icon-box {
+            background-color: rgb(249, 115, 22);
+          }
+          .sector-icon {
+            color: rgb(249, 115, 22);
+          }
+          .group:hover .sector-icon {
+            color: white;
+          }
+          .sector-title {
+            color: rgb(15, 23, 42); /* slate-900 */
+          }
+          .group:hover .sector-title {
+            color: white;
+          }
+          .sector-desc {
+            color: rgb(107, 114, 128); /* gray-500 */
+          }
+          .group:hover .sector-desc {
+            color: rgba(255, 255, 255, 0.7);
+          }
+          .sector-bar {
+            width: 2rem; /* w-8 */
+          }
+          .group:hover .sector-bar {
+            width: 100%;
+          }
+        }
+      `}</style>
+    </>
   );
 }

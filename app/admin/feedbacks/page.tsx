@@ -3,13 +3,15 @@ import React, { useEffect, useState } from 'react';
 import { adminService } from '@/services/adminService';
 import {
   Check, X, MessageSquare, ListFilter,
-  Clock, CheckCircle2, User, Calendar, Star // Thêm icon Star
+  Clock, CheckCircle2, User, Calendar, Star, Trash2
 } from 'lucide-react';
+import { toast } from 'react-hot-toast';
 
 export default function AdminFeedback() {
   const [list, setList] = useState<any[]>([]);
   const [filter, setFilter] = useState<'PENDING' | 'ALL'>('PENDING');
   const [loading, setLoading] = useState(true);
+  const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
 
   const loadData = async () => {
     setLoading(true);
@@ -30,136 +32,186 @@ export default function AdminFeedback() {
   const handleAction = async (id: string, status: 'APPROVED' | 'REJECTED') => {
     try {
       await adminService.reviewFeedback(id, status);
-      setList(prev => prev.filter(item => item.id !== id));
+      toast.success(status === 'APPROVED' ? 'Đã duyệt phản hồi!' : 'Đã từ chối phản hồi!');
       loadData();
     } catch (err) {
-      alert("Lỗi thao tác!");
+      toast.error("Lỗi thao tác!");
+    }
+  };
+
+  const handleDelete = async (id: string) => {
+    try {
+      await adminService.deleteFeedback(id);
+      toast.success("Đã xóa phản hồi!");
+      setDeleteConfirm(null);
+      loadData();
+    } catch (err) {
+      toast.error("Lỗi xóa phản hồi!");
     }
   };
 
   return (
-    <div className="p-4 md:p-8 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <div className="p-4 md:p-8 space-y-6">
 
-      {/* HEADER SECTION - VUÔNG VỨC */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b-4 border-slate-900 pb-8">
+      {/* HEADER SECTION - MINIMALIST */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-gray-200">
         <div className="space-y-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-orange-500 text-white font-black text-[10px] uppercase tracking-widest rounded-none">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-gray-100 text-gray-700 font-semibold text-xs uppercase tracking-wide">
             Admin Console
           </div>
-          <h1 className="text-4xl font-black text-[#001a41] uppercase tracking-tighter flex items-center gap-3">
-            <MessageSquare size={36} className="text-orange-500" /> Quản lý đánh giá
+          <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
+            <MessageSquare size={28} className="text-gray-600" /> Quản lý đánh giá
           </h1>
         </div>
 
-        {/* TAB FILTER VUÔNG */}
-        <div className="flex bg-slate-200 p-1 rounded-none border-2 border-slate-900">
+        {/* TAB FILTER - CLEAN */}
+        <div className="flex bg-gray-100 rounded-lg p-1">
           <button
             onClick={() => setFilter('PENDING')}
-            className={`flex items-center gap-2 px-6 py-3 font-black text-[11px] uppercase transition-all ${filter === 'PENDING'
-              ? 'bg-[#001a41] text-white'
-              : 'text-slate-600 hover:bg-white'
-              } rounded-none`}
+            className={`flex items-center gap-2 px-5 py-2.5 font-semibold text-xs uppercase transition-all rounded-md ${filter === 'PENDING'
+              ? 'bg-white text-gray-900 shadow-sm'
+              : 'text-gray-600 hover:text-gray-900'
+              }`}
           >
-            <Clock size={16} /> Chờ duyệt
+            <Clock size={14} /> Chờ duyệt
           </button>
           <button
             onClick={() => setFilter('ALL')}
-            className={`flex items-center gap-2 px-6 py-3 font-black text-[11px] uppercase transition-all ${filter === 'ALL'
-              ? 'bg-[#001a41] text-white'
-              : 'text-slate-600 hover:bg-white'
-              } rounded-none`}
+            className={`flex items-center gap-2 px-5 py-2.5 font-semibold text-xs uppercase transition-all rounded-md ${filter === 'ALL'
+              ? 'bg-white text-gray-900 shadow-sm'
+              : 'text-gray-600 hover:text-gray-900'
+              }`}
           >
-            <ListFilter size={16} /> Tất cả
+            <ListFilter size={14} /> Tất cả
           </button>
         </div>
       </div>
 
       {loading ? (
         <div className="flex flex-col items-center justify-center py-32 space-y-4">
-          <div className="w-12 h-12 border-4 border-[#001a41] border-t-orange-500 animate-spin rounded-none"></div>
-          <p className="font-black text-[#001a41] uppercase text-xs tracking-widest">Đang quét dữ liệu...</p>
+          <div className="w-10 h-10 border-3 border-gray-300 border-t-gray-900 animate-spin rounded-full"></div>
+          <p className="font-semibold text-gray-600 uppercase text-xs tracking-wide">Đang tải dữ liệu...</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {list.map((fb) => (
             <div
               key={fb.id}
-              className="group bg-white rounded-none border-4 border-slate-900 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all duration-300 flex flex-col"
+              className="group bg-white border border-gray-200 hover:border-gray-300 hover:shadow-md transition-all duration-200 flex flex-col"
             >
-              <div className="p-6 space-y-4 flex-1">
+              <div className="p-5 space-y-4 flex-1">
                 <div className="flex justify-between items-start">
                   <div className="flex items-center gap-3">
                     <img
                       src={fb.user?.avatarUrl || '/Logo.jpg'}
-                      className="w-12 h-12 rounded-none object-cover border-2 border-slate-900"
+                      className="w-11 h-11 rounded-full object-cover border border-gray-200"
                       alt="User"
                     />
                     <div>
-                      <h4 className="font-black text-[#001a41] text-[10px] uppercase leading-tight">{fb.user?.fullName}</h4>
-                      <div className="flex items-center gap-1 text-slate-400 font-bold text-[8px] uppercase mt-1">
-                        <Calendar size={10} /> {new Date(fb.createdAt).toLocaleDateString('vi-VN')}
+                      <h4 className="font-semibold text-gray-900 text-sm">{fb.user?.fullName}</h4>
+                      <div className="flex items-center gap-1 text-gray-500 text-xs mt-0.5">
+                        <Calendar size={11} /> {new Date(fb.createdAt).toLocaleDateString('vi-VN')}
                       </div>
                     </div>
                   </div>
 
                   {fb.status !== 'PENDING' ? (
-                    <span className={`px-2 py-1 text-[8px] font-black uppercase border-2 ${fb.status === 'APPROVED' ? 'border-green-600 text-green-600' : 'border-rose-600 text-rose-600'
+                    <span className={`px-2.5 py-1 text-xs font-semibold rounded-md ${fb.status === 'APPROVED' ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'
                       }`}>
                       {fb.status === 'APPROVED' ? 'Đã duyệt' : 'Đã loại'}
                     </span>
                   ) : (
-                    <div className="bg-orange-500 text-white p-1">
-                      <Clock size={12} />
+                    <div className="bg-orange-50 text-orange-600 p-1.5 rounded-md">
+                      <Clock size={14} />
                     </div>
                   )}
                 </div>
 
-                {/* PHẦN HIỂN THỊ RATING (SỐ SAO) */}
-                <div className="flex gap-1 py-1">
+                {/* RATING */}
+                <div className="flex gap-1 items-center">
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
                       size={14}
                       fill={i < fb.rating ? "#f97316" : "none"}
-                      className={i < fb.rating ? "text-orange-500" : "text-slate-300"}
+                      className={i < fb.rating ? "text-orange-500" : "text-gray-300"}
                     />
                   ))}
-                  <span className="ml-2 text-[10px] font-black text-slate-900 italic">({fb.rating}/5)</span>
+                  <span className="ml-2 text-xs font-semibold text-gray-700">({fb.rating}/5)</span>
                 </div>
 
-                <div className="bg-slate-50 p-4 border-2 border-slate-100 italic">
-                  <p className="text-slate-900 font-bold text-sm leading-relaxed">
+                <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <p className="text-gray-800 text-sm leading-relaxed italic">
                     "{fb.content}"
                   </p>
                 </div>
               </div>
 
-              {/* THANH THAO TÁC VUÔNG */}
-              {fb.status === 'PENDING' && (
-                <div className="grid grid-cols-2 border-t-4 border-slate-900">
+              {/* ACTION BUTTONS - CLEAN */}
+              <div className="border-t border-gray-200">
+                {fb.status === 'PENDING' ? (
+                  <div className="grid grid-cols-2">
+                    <button
+                      onClick={() => handleAction(fb.id, 'APPROVED')}
+                      className="flex items-center justify-center gap-2 bg-green-50 text-green-700 py-3.5 font-semibold text-xs uppercase hover:bg-green-100 transition-colors"
+                    >
+                      <Check size={16} /> Duyệt
+                    </button>
+                    <button
+                      onClick={() => handleAction(fb.id, 'REJECTED')}
+                      className="flex items-center justify-center gap-2 bg-red-50 text-red-700 py-3.5 font-semibold text-xs uppercase hover:bg-red-100 transition-colors border-l border-gray-200"
+                    >
+                      <X size={16} /> Từ chối
+                    </button>
+                  </div>
+                ) : (
                   <button
-                    onClick={() => handleAction(fb.id, 'APPROVED')}
-                    className="flex items-center justify-center gap-2 bg-green-500 text-white py-4 font-black text-[10px] uppercase hover:bg-[#001a41] transition-all"
+                    onClick={() => setDeleteConfirm(fb.id)}
+                    className="w-full flex items-center justify-center gap-2 bg-gray-50 text-gray-700 py-3.5 font-semibold text-xs uppercase hover:bg-red-50 hover:text-red-700 transition-colors"
                   >
-                    <Check size={16} /> Duyệt ngay
+                    <Trash2 size={16} /> Xóa phản hồi
                   </button>
-                  <button
-                    onClick={() => handleAction(fb.id, 'REJECTED')}
-                    className="flex items-center justify-center gap-2 bg-white text-rose-600 py-4 font-black text-[10px] uppercase hover:bg-rose-600 hover:text-white transition-all border-l-4 border-slate-900"
-                  >
-                    <X size={16} /> Loại bỏ
-                  </button>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           ))}
 
           {list.length === 0 && (
-            <div className="col-span-full py-32 border-4 border-dashed border-slate-300 flex flex-col items-center">
-              <CheckCircle2 size={64} className="text-slate-200 mb-4" />
-              <p className="text-slate-400 font-black uppercase text-xs tracking-widest">Không có dữ liệu đánh giá</p>
+            <div className="col-span-full py-32 border-2 border-dashed border-gray-200 rounded-lg flex flex-col items-center">
+              <CheckCircle2 size={48} className="text-gray-300 mb-3" />
+              <p className="text-gray-400 font-semibold uppercase text-xs tracking-wide">Không có dữ liệu đánh giá</p>
             </div>
           )}
+        </div>
+      )}
+
+      {/* DELETE CONFIRMATION MODAL */}
+      {deleteConfirm && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm">
+          <div className="bg-white w-full max-w-md rounded-lg shadow-xl border border-gray-200 overflow-hidden">
+            <div className="p-6 border-b border-gray-200">
+              <h3 className="font-bold text-gray-900 text-lg">Xác nhận xóa</h3>
+            </div>
+            <div className="p-6">
+              <p className="text-gray-700 text-sm leading-relaxed">
+                Bạn có chắc chắn muốn xóa phản hồi này? Hành động này không thể hoàn tác.
+              </p>
+            </div>
+            <div className="p-6 bg-gray-50 flex gap-3 justify-end border-t border-gray-200">
+              <button
+                onClick={() => setDeleteConfirm(null)}
+                className="px-5 py-2.5 bg-white border border-gray-300 text-gray-700 font-semibold text-sm rounded-md hover:bg-gray-50 transition-colors"
+              >
+                Hủy
+              </button>
+              <button
+                onClick={() => handleDelete(deleteConfirm)}
+                className="px-5 py-2.5 bg-red-600 text-white font-semibold text-sm rounded-md hover:bg-red-700 transition-colors"
+              >
+                Xóa ngay
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>

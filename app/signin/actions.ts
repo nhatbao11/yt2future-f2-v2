@@ -17,6 +17,8 @@ export async function handleSignIn(formData: FormData) {
     return redirect(`/signin?error=${encodeURIComponent('Sếp vui lòng nhập đủ Email và Mật khẩu!')}`);
   }
 
+  let redirectPath = '/'; // Mặc định về Home
+
   try {
     // 2. Gọi API sang Backend cổng 5000
     const response = await fetch('http://localhost:5000/api/auth/login', {
@@ -29,37 +31,37 @@ export async function handleSignIn(formData: FormData) {
 
     // 3. Nếu Backend báo lỗi (400, 401, 404,...)
     if (!response.ok) {
-      return redirect(`/signin?error=${encodeURIComponent(result.message || 'Thông tin không chính xác sếp ơi!')}`);
-    }
-
-    // 4. Xử lý ghi Cookie vào trình duyệt
-    const cookieStore = await cookies();
-    const token = result.token; // Lấy Token mà sếp vừa thêm vào res.json ở BE
-
-    if (token) {
-      // Dán nhãn "yt_capital_token" cho túi hồ sơ của người dùng
-      cookieStore.set('yt_capital_token', token, {
-        httpOnly: true, // Bảo mật: JavaScript phía client không đọc được
-        secure: process.env.NODE_ENV === 'production', // Chỉ dùng HTTPS khi lên server thật
-        sameSite: 'lax', // Hỗ trợ gửi cookie an toàn giữa các cổng
-        path: '/',       // Cookie có hiệu lực trên toàn bộ trang web
-        maxAge: 7 * 24 * 60 * 60, // Sống trong 7 ngày (khớp với JWT)
-      });
-
-      console.log("✅ Đã cấp thẻ bài yt_capital_token cho sếp thành công!");
+      redirectPath = `/signin?error=${encodeURIComponent(result.message || 'Thông tin không chính xác sếp ơi!')}`;
     } else {
-      console.error("❌ Lỗi: Backend đăng nhập OK nhưng không trả về Token!");
-      return redirect(`/signin?error=${encodeURIComponent('Hệ thống lỗi không cấp được thẻ bài!')}`);
-    }
+      // 4. Xử lý ghi Cookie vào trình duyệt
+      const cookieStore = await cookies();
+      const token = result.token; // Lấy Token mà sếp vừa thêm vào res.json ở BE
 
-    // 5. Làm mới dữ liệu toàn trang để Navbar cập nhật Avatar ngay
-    revalidatePath('/', 'layout');
+      if (token) {
+        // Dán nhãn "yt2future_token" (đã đổi tên cho chuẩn mới) cho túi hồ sơ của người dùng
+        cookieStore.set('yt2future_token', token, {
+          httpOnly: true, // Bảo mật: JavaScript phía client không đọc được
+          secure: process.env.NODE_ENV === 'production', // Chỉ dùng HTTPS khi lên server thật
+          sameSite: 'lax', // Hỗ trợ gửi cookie an toàn giữa các cổng
+          path: '/',       // Cookie có hiệu lực trên toàn bộ trang web
+          maxAge: 7 * 24 * 60 * 60, // Sống trong 7 ngày (khớp với JWT)
+        });
+
+        console.log("✅ Đã cấp thẻ bài yt2future_token cho sếp thành công!");
+      } else {
+        console.error("❌ Lỗi: Backend đăng nhập OK nhưng không trả về Token!");
+        redirectPath = `/signin?error=${encodeURIComponent('Hệ thống lỗi không cấp được thẻ bài!')}`;
+      }
+
+      // 5. Làm mới dữ liệu toàn trang để Navbar cập nhật Avatar ngay
+      revalidatePath('/', 'layout');
+    }
 
   } catch (err: any) {
     console.error("💥 Lỗi kết nối Server:", err.message);
-    return redirect(`/signin?error=${encodeURIComponent('Không kết nối được với Server BE 5000 sếp ơi!')}`);
+    redirectPath = `/signin?error=${encodeURIComponent('Không kết nối được với Server BE 5000 sếp ơi!')}`;
   }
 
-  // 6. Đăng nhập xong, đẩy sếp về trang chủ rạng rỡ
-  return redirect('/');
+  // 6. Đăng nhập xong, chuyển hướng an toàn ngoài try/catch
+  redirect(redirectPath);
 }

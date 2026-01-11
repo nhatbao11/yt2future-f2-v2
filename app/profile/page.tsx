@@ -6,13 +6,13 @@ import AvatarUpload from '@/components/partials/AvatarUpload';
 
 export default async function ProfilePage() {
   const cookieStore = await cookies();
-  const token = cookieStore.get('yt_capital_token')?.value;
+  const token = cookieStore.get('yt2future_token')?.value;
 
   if (!token) redirect('/signin');
 
   // Gọi Backend để lấy profile hiện tại
   const res = await fetch('http://localhost:5000/api/auth/me', {
-    headers: { 'Cookie': `yt_capital_token=${token}` },
+    headers: { 'Cookie': `yt2future_token=${token}` },
     cache: 'no-store'
   });
 

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import PageHeader from '@/components/layout/PageHeader';
 import { reportService } from '@/services/reportService';
-import { Search, PlusCircle, User, FileText, X, ChevronDown, Calendar, Download } from 'lucide-react';
+import { Search, PlusCircle, User, FileText, X, ChevronDown, Calendar } from 'lucide-react';
 import CreateReportPage from '@/components/common/CreateReportPage';
 
 export default function SectorPage() {
@@ -124,7 +124,7 @@ export default function SectorPage() {
                 className="group bg-white border-2 border-slate-200 flex flex-col cursor-pointer hover:shadow-2xl hover:border-[#001a41] transition-all duration-500"
               >
                 <div className="aspect-video relative overflow-hidden bg-slate-50 border-b-2 border-slate-100">
-                  <img src={report.thumbnail || '/Logo.jpg'} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-transform duration-700 group-hover:scale-105" alt={report.title} />
+                  <img src={report.thumbnail || '/Logo.jpg'} className="w-full h-full object-cover lg:grayscale lg:group-hover:grayscale-0 transition-transform duration-700 group-hover:scale-105" alt={report.title} />
                   <div className="absolute top-3 right-3 bg-[#001a41] text-white text-[8px] font-black px-2 py-1">{report.category?.name}</div>
                 </div>
 
@@ -191,15 +191,7 @@ export default function SectorPage() {
 
                 <div className="flex items-center gap-3">
                   {/* NÚT TẢI XUỐNG */}
-                  <a
-                    href={readingPdfUrl.replace('/upload/', '/upload/fl_attachment/')}
-                    download
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 text-[9px] tracking-widest transition-all shadow-md active:translate-y-0.5"
-                  >
-                    <Download size={14} /> TẢI VỀ MÁY
-                  </a>
+
 
                   <button
                     onClick={() => setReadingPdfUrl(null)}

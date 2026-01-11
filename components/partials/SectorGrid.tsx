@@ -58,8 +58,8 @@ export default function SectorGrid() {
       >
         {sectors.map((s, i) => (
           <SwiperSlide key={i} className="border-r border-gray-100 !h-auto flex">
-            {/* Thêm h-full và flex-1 vào div bọc SectorCard */}
-            <div className="w-full h-full bg-white flex flex-col flex-1">
+            {/* Bỏ bg-white để SectorCard tự quản lý background */}
+            <div className="w-full h-full flex flex-col flex-1">
               <SectorCard title={s.title} desc={s.desc} icon={s.icon} />
             </div>
           </SwiperSlide>

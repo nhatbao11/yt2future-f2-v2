@@ -19,8 +19,9 @@ export const reportService = {
 
   // 2. Lấy danh sách cho ADMIN (Gồm cả bài PENDING)
   // Fix đường dẫn về đúng /reports/admin-list để khớp Backend
-  getAllReportsAdmin: async () => {
+  getAllReportsAdmin: async (page: number = 1) => {
     const response = await axios.get(`${API_URL}/reports/admin-list`, {
+      params: { page },
       withCredentials: true
     });
     return response.data;
@@ -75,6 +76,16 @@ export const reportService = {
   // Phải là /reports/review cho khớp với backend
   reviewReport: async (id: string, status: 'APPROVED' | 'REJECTED') => {
     const response = await axios.post(`${API_URL}/reports/review`, { id, status }, {
+      withCredentials: true
+    });
+    return response.data;
+  },
+
+
+  // 7. Cập nhật báo cáo
+  updateReport: async (id: string, formData: FormData) => {
+    const response = await axios.put(`${API_URL}/reports/${id}`, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
       withCredentials: true
     });
     return response.data;

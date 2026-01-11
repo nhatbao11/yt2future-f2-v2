@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-// Cấu hình axios để gửi kèm Cookie (yt_capital_token)
+// Cấu hình axios để gửi kèm Cookie (yt2future_token)
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api',
   withCredentials: true,
@@ -58,6 +58,16 @@ export const adminService = {
   getHomeFeedbacks: async () => {
     const res = await api.get('/feedback/home');
     return res.data.feedbacks;
+  },
+
+  async getDashboardStats() {
+    const res = await api.get('/admin/stats');
+    return res.data;
+  },
+
+  // 5. Xóa Feedback
+  deleteFeedback: async (id: string) => {
+    const res = await api.delete(`/admin/feedback/${id}`);
+    return res.data;
   }
 };
-

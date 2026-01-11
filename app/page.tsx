@@ -22,7 +22,7 @@ export default function HomePage() {
           </div>
           <div className="relative z-20 max-w-360 mx-auto w-full px-6 md:px-12 text-white text-center md:text-left">
             <h2 className="text-5xl md:text-8xl font-black mb-4 tracking-tighter leading-tight">
-              Y&T <span className="text-orange-500">CAPITAL</span>
+              YT2 <span className="text-orange-500">FUTURE</span>
             </h2>
             <p className="text-lg md:text-2xl font-light mb-10 tracking-wide opacity-95 leading-relaxed max-w-2xl mx-auto md:mx-0 uppercase">
               Shaping Tomorrow Through Agile Innovation
@@ -65,7 +65,7 @@ export default function HomePage() {
                 Không chỉ là đầu tư, đó là sự học tập.
               </h3>
               <p className="text-gray-600 text-lg font-light leading-relaxed">
-                Y&T Capital ra đời từ khát khao của những người trẻ muốn tạo ra một cộng đồng chia sẻ kiến thức đầu tư khách quan và minh bạch.
+                YT2Future ra đời từ khát khao của những người trẻ muốn tạo ra một cộng đồng chia sẻ kiến thức đầu tư khách quan và minh bạch.
               </p>
               <Link href="/about" className="inline-flex items-center gap-2 text-orange-500 font-bold uppercase tracking-widest text-xs hover:gap-4 transition-all">
                 Tìm hiểu về đội ngũ <ArrowRight size={16} />

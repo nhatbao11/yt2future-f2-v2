@@ -49,7 +49,7 @@ export default function Navbar() {
 
       if (res.status === 401 || res.status === 403) {
         setUserData(null);
-        document.cookie = "yt_capital_token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;";
+        document.cookie = "yt2future_token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;";
         if (pathname.startsWith('/admin')) {
           window.location.replace('/signin?err=expired');
         }
@@ -88,7 +88,7 @@ export default function Navbar() {
   useEffect(() => {
     const handleSync = async () => {
       const { data: { session } } = await supabase.auth.getSession();
-      const hasMyToken = document.cookie.includes('yt_capital_token');
+      const hasMyToken = document.cookie.includes('yt2future_token');
 
       // Kiểm tra nếu có session từ Supabase nhưng chưa có Token của Backend mình
       if (session?.user && !hasMyToken) {
@@ -125,7 +125,7 @@ export default function Navbar() {
     try {
       await supabase.auth.signOut({ scope: 'global' });
       await fetch('/api/auth/logout', { method: 'POST' });
-      document.cookie = "yt_capital_token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;";
+      document.cookie = "yt2future_token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;";
       window.location.replace(`/signin?status=logout&t=${Date.now()}`);
     } catch (error) {
       window.location.replace('/signin');
@@ -149,7 +149,7 @@ export default function Navbar() {
             <Image src="/Logo.jpg" alt="Logo" fill sizes="56px" className="object-cover" priority />
           </div>
           <div className="flex flex-col justify-center">
-            <h1 className="text-[#1a365d] font-extrabold text-base md:text-xl tracking-tighter uppercase leading-none whitespace-nowrap">Y&T CAPITAL</h1>
+            <h1 className="text-[#1a365d] font-extrabold text-base md:text-xl tracking-tighter uppercase leading-none whitespace-nowrap">YT2FUTURE</h1>
             {/* Slogan quay trở lại đây sếp */}
             {/* <span className="text-[8px] md:text-[10px] text-gray-400 font-bold uppercase tracking-[0.3em] mt-1 italic"></span> */}
           </div>

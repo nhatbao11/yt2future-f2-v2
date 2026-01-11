@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { MessageSquarePlus, Send, X, Star, ChevronDown, ChevronUp } from 'lucide-react';
+import toast from 'react-hot-toast';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
@@ -38,11 +39,28 @@ export default function FeedbackHome() {
         body: JSON.stringify({ content, rating }),
         credentials: 'include'
       });
+
       const data = await res.json();
-      if (data.success) {
-        setContent(''); setRating(5); setIsModalOpen(false);
+
+      if (res.status === 401 || res.status === 403) {
+        toast.error("Vui lòng đăng nhập để gửi phản hồi!", {
+          duration: 2000,
+        });
+        setTimeout(() => {
+          window.location.href = '/signin';
+        }, 2000);
+        return;
       }
-    } catch (err) { alert("Lỗi kết nối!"); } finally { setLoading(false); }
+
+      if (data.success) {
+        toast.success("Gửi phản hồi thành công!");
+        setContent(''); setRating(5); setIsModalOpen(false);
+      } else {
+        toast.error(data.message || "Gửi thất bại!");
+      }
+    } catch (err) {
+      toast.error("Lỗi kết nối server!");
+    } finally { setLoading(false); }
   };
 
   return (
@@ -54,7 +72,7 @@ export default function FeedbackHome() {
             Cảm nhận <span className="text-orange-500">khách hàng</span>
           </h2>
           <p className="text-[8px] md:text-xs font-bold text-slate-400 uppercase tracking-[0.2em] mt-1">
-            Hệ thống đánh giá từ Y&T Capital
+            Hệ thống đánh giá từ YT2Future
           </p>
         </div>
 

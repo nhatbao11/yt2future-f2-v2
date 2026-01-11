@@ -42,7 +42,7 @@ export default function AboutPage() {
               </div>
 
               <div className="space-y-6 text-gray-500 font-light text-lg leading-relaxed border-l-2 border-gray-100 pl-8">
-                <p><strong>Y&T Capital</strong> không phải là một tổ chức tài chính truyền thống. Chúng mình là đội ngũ những người trẻ đang trong hành trình khám phá thế giới đầu tư.</p>
+                <p><strong>YT2Future</strong> không phải là một tổ chức tài chính truyền thống. Chúng mình là đội ngũ những người trẻ đang trong hành trình khám phá thế giới đầu tư.</p>
                 <p>Mục tiêu của website là nơi <mark className="bg-orange-500 text-white px-1 rounded">học tập và chia sẻ</mark> kiến thức minh bạch nhất.</p>
               </div>
 
@@ -59,7 +59,7 @@ export default function AboutPage() {
             <div className="relative group overflow-hidden rounded-sm shadow-xl order-2 lg:order-2 aspect-video lg:aspect-square bg-gray-50">
               <Image
                 src="/group.png"
-                alt="Tầm nhìn và Sứ mệnh Y&T Capital"
+                alt="Tầm nhìn và Sứ mệnh YT2Future"
                 fill
                 className="object-cover grayscale-0 lg:grayscale lg:group-hover:grayscale-0 transition-all duration-1000 ease-in-out scale-100 lg:scale-105 lg:group-hover:scale-100"
                 priority

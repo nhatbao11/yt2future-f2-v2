@@ -15,7 +15,7 @@ export async function handleUpdateProfile(formData: FormData) {
   });
 
   const cookieStore = await cookies();
-  const token = cookieStore.get('yt_capital_token')?.value;
+  const token = cookieStore.get('yt2future_token')?.value;
   if (!token) redirect('/signin');
 
   const fullName = formData.get('fullName') as string;
@@ -54,7 +54,7 @@ export async function handleUpdateProfile(formData: FormData) {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        'Cookie': `yt_capital_token=${token}`
+        'Cookie': `yt2future_token=${token}`
       },
       body: JSON.stringify({ fullName, avatarUrl }), // Chỉ gửi Text URL
     });

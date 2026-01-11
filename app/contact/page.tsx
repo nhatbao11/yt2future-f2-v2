@@ -129,7 +129,7 @@ export default function ContactPage() {
               allowFullScreen={true}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Y&T Capital Location"
+              title="YT2Future Location"
               /* lg:grayscale: Chỉ xám trên Laptop, Mobile & Tablet hiện màu chuẩn */
               className="grayscale-0 lg:grayscale lg:group-hover:grayscale-0 transition-all duration-1000 ease-in-out scale-[1.01]"
             ></iframe>

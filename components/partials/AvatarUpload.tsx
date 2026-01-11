@@ -3,12 +3,19 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { Camera } from 'lucide-react';
 
+import { toast } from 'react-hot-toast';
+
 export default function AvatarUpload({ initialAvatar }: { initialAvatar: string }) {
   const [preview, setPreview] = useState(initialAvatar || '/Logo.jpg');
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      if (file.size > 1 * 1024 * 1024) { // 1MB
+        toast.error("Ảnh quá lớn! Vui lòng chọn ảnh < 1MB sếp ơi!");
+        e.target.value = ''; // Xóa file vừa chọn để không gửi lên server
+        return;
+      }
       setPreview(URL.createObjectURL(file)); // Chỉ hiện preview tạm thời
     }
   };

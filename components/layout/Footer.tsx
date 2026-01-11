@@ -26,11 +26,11 @@ export default function Footer() {
           {/* KHỐI 1: BRANDING */}
           <div className="w-full lg:w-[25%] flex flex-col items-center lg:items-start text-center lg:text-left space-y-6">
             <div className="relative w-14 h-14">
-              <Image src="/Logo.jpg" alt="Y&T Capital Logo" fill sizes="56px" className="object-cover rounded-full border border-white/10" />
+              <Image src="/Logo.jpg" alt="YT2Future Logo" fill sizes="56px" className="object-cover rounded-full border border-white/10" />
             </div>
             <div className="space-y-4">
               <h3 className="text-2xl font-black tracking-tighter uppercase leading-none">
-                Y&T <span className="text-orange-500">CAPITAL</span>
+                YT2 <span className="text-orange-500">FUTURE</span>
               </h3>
               <p className="text-white/50 font-light text-[13px] leading-relaxed max-w-70 lg:max-w-none">
                 Shaping Tomorrow Through Agile Innovation.
@@ -105,7 +105,7 @@ export default function Footer() {
         {/* ROW 2: BOTTOM BAR */}
         <div className="border-t border-white/5 pt-10 mt-16 lg:mt-20 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-[9px] font-medium opacity-20 uppercase tracking-[0.5em] text-center">
-            © 2025 Y&T Capital. Agile Innovation Team.
+            © 2025 YT2Future. Agile Innovation Team.
           </p>
           <div className="flex items-center gap-4 text-[9px] font-bold tracking-[0.3em] opacity-30 uppercase">
             <span>Sustainable Future</span>
