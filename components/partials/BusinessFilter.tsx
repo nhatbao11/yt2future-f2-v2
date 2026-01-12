@@ -11,8 +11,8 @@ export default function BusinessFilter({ sectors }: { sectors: string[] }) {
           key={sector}
           onClick={() => setActive(sector)}
           className={`px-8 py-2.5 rounded-sm text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 border ${active === sector
-              ? 'bg-orange-500 text-white border-orange-500 shadow-lg'
-              : 'bg-white text-[#001a41] border-gray-200 hover:border-orange-500'
+              ? 'bg-yellow-500 text-white border-yellow-500 shadow-lg'
+              : 'bg-white text-[#001a41] border-gray-200 hover:border-yellow-500'
             }`}
         >
           {sector}

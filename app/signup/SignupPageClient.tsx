@@ -29,7 +29,7 @@ export default function SignupPageClient({ errorMessage, successMessage }: Signu
             <div className="relative z-10 bg-white p-6 md:p-10 rounded-lg shadow-2xl w-full max-w-120 border border-slate-100 transition-all text-left">
                 <div className="text-center mb-8">
                     <h2 className="text-3xl font-black text-slate-900 uppercase tracking-tighter italic">Sign Up</h2>
-                    <div className="w-12 h-1.5 bg-orange-500 mx-auto mt-2 rounded-full"></div>
+                    <div className="w-12 h-1.5 bg-yellow-500 mx-auto mt-2 rounded-full"></div>
 
                     {/* THÔNG BÁO LỖI (MÀU ĐỎ) */}
                     {errorMessage && (
@@ -59,7 +59,7 @@ export default function SignupPageClient({ errorMessage, successMessage }: Signu
                             type="text"
                             required
                             placeholder="Nhất Bảo Admin"
-                            className="w-full bg-slate-50 border border-slate-200 p-3.5 mt-1 text-sm text-slate-900 font-bold rounded-md outline-none focus:border-orange-500 focus:bg-white transition-all placeholder:text-slate-300"
+                            className="w-full bg-slate-50 border border-slate-200 p-3.5 mt-1 text-sm text-slate-900 font-bold rounded-md outline-none focus:border-yellow-500 focus:bg-white transition-all placeholder:text-slate-300"
                         />
                     </div>
 
@@ -70,7 +70,7 @@ export default function SignupPageClient({ errorMessage, successMessage }: Signu
                             type="email"
                             required
                             placeholder="nhatbao@ytcapital.vn"
-                            className="w-full bg-slate-50 border border-slate-200 p-3.5 mt-1 text-sm text-slate-900 font-bold rounded-md outline-none focus:border-orange-500 focus:bg-white transition-all placeholder:text-slate-300"
+                            className="w-full bg-slate-50 border border-slate-200 p-3.5 mt-1 text-sm text-slate-900 font-bold rounded-md outline-none focus:border-yellow-500 focus:bg-white transition-all placeholder:text-slate-300"
                         />
                     </div>
 
@@ -80,13 +80,13 @@ export default function SignupPageClient({ errorMessage, successMessage }: Signu
                     </div>
 
                     <div className="flex items-start gap-2 py-1">
-                        <input type="checkbox" required id="terms" className="w-4 h-4 mt-0.5 cursor-pointer accent-orange-600" />
+                        <input type="checkbox" required id="terms" className="w-4 h-4 mt-0.5 cursor-pointer accent-yellow-600" />
                         <label htmlFor="terms" className="text-[11px] text-slate-500 leading-tight cursor-pointer select-none">
                             Tôi đồng ý với{' '}
                             <button
                                 type="button"
                                 onClick={() => openPdf(POLICY_LINKS.terms, "TERMS OF USE")}
-                                className="font-bold text-slate-900 hover:text-orange-600 transition-colors cursor-pointer outline-none align-baseline"
+                                className="font-bold text-slate-900 hover:text-yellow-600 transition-colors cursor-pointer outline-none align-baseline"
                             >
                                 Điều khoản sử dụng
                             </button>{' '}
@@ -94,7 +94,7 @@ export default function SignupPageClient({ errorMessage, successMessage }: Signu
                             <button
                                 type="button"
                                 onClick={() => openPdf(POLICY_LINKS.privacy, "PRIVACY POLICY")}
-                                className="font-bold text-slate-900 hover:text-orange-600 transition-colors cursor-pointer outline-none align-baseline"
+                                className="font-bold text-slate-900 hover:text-yellow-600 transition-colors cursor-pointer outline-none align-baseline"
                             >
                                 Chính sách bảo mật
                             </button>
@@ -106,7 +106,7 @@ export default function SignupPageClient({ errorMessage, successMessage }: Signu
                             label="Tạo tài khoản"
                             type="submit"
                             fullWidth={true}
-                            className="cursor-pointer hover:shadow-xl hover:shadow-orange-100 active:scale-[0.97] transition-all py-4 font-black uppercase tracking-wider"
+                            className="cursor-pointer hover:shadow-xl hover:shadow-yellow-100 active:scale-[0.97] transition-all py-4 font-black uppercase tracking-wider"
                         />
                     </div>
                 </form>
@@ -120,7 +120,7 @@ export default function SignupPageClient({ errorMessage, successMessage }: Signu
 
                 <p className="text-[13px] mt-8 text-slate-500 text-center font-medium">
                     Đã có tài khoản?{' '}
-                    <Link href="/signin" className="font-bold text-orange-600 hover:text-orange-700 underline underline-offset-4 cursor-pointer transition-colors">
+                    <Link href="/signin" className="font-bold text-yellow-600 hover:text-yellow-700 underline underline-offset-4 cursor-pointer transition-colors">
                         Đăng nhập ngay
                     </Link>
                 </p>
@@ -129,13 +129,13 @@ export default function SignupPageClient({ errorMessage, successMessage }: Signu
             {/* MODAL XEM PDF */}
             {activePdf && (
                 <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-in fade-in duration-300">
-                    <div className="bg-white w-full max-w-5xl h-[90vh] flex flex-col shadow-2xl overflow-hidden border-2 border-orange-500">
+                    <div className="bg-white w-full max-w-5xl h-[90vh] flex flex-col shadow-2xl overflow-hidden border-2 border-yellow-500">
                         <div className="bg-[#001a41] p-4 flex justify-between items-center">
                             <div className="flex items-center gap-3">
-                                <FileText className="text-orange-500" size={20} />
+                                <FileText className="text-yellow-500" size={20} />
                                 <span className="text-white text-[10px] font-black uppercase tracking-widest">{activePdf.title}</span>
                             </div>
-                            <button onClick={() => setActivePdf(null)} className="bg-orange-500 text-[#001a41] p-1 hover:rotate-90 transition-all cursor-pointer">
+                            <button onClick={() => setActivePdf(null)} className="bg-yellow-500 text-[#001a41] p-1 hover:rotate-90 transition-all cursor-pointer">
                                 <X size={24} />
                             </button>
                         </div>

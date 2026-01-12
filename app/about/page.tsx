@@ -8,17 +8,17 @@ import { BookOpen, Users, Lightbulb } from 'lucide-react';
 export default function AboutPage() {
   const learningPillars = [
     {
-      icon: <BookOpen className="text-orange-500" size={28} />,
+      icon: <BookOpen className="text-yellow-500" size={28} />,
       title: "Hệ thống kiến thức",
       desc: "Chia sẻ kiến thức cũng như kinh nghiệm đúc kết trong quá trình học tập và thực nghiệm."
     },
     {
-      icon: <Lightbulb className="text-orange-500" size={28} />,
+      icon: <Lightbulb className="text-yellow-500" size={28} />,
       title: "Tư duy phân tích",
       desc: "Rèn luyện cách nhìn nhận thị trường đa chiều, từ kinh tế vĩ mô đến sức khỏe nội tại doanh nghiệp."
     },
     {
-      icon: <Users className="text-orange-500" size={28} />,
+      icon: <Users className="text-yellow-500" size={28} />,
       title: "Kết nối cộng đồng",
       desc: "Xây dựng cộng đồng học tập, nơi mọi góc nhìn đều được tôn trọng và phản biện."
     }
@@ -34,7 +34,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <article className="space-y-8 order-1 lg:order-1">
               <div className="space-y-4">
-                <p className="text-orange-500 font-bold uppercase tracking-[0.4em] text-[10px]">About Y&TCapital</p>
+                <p className="text-yellow-500 font-bold uppercase tracking-[0.4em] text-[10px]">About Y&TCapital</p>
                 <div className="text-4xl md:text-6xl font-black text-[#001a41] uppercase tracking-tighter leading-[0.9]">
                   <h1 className="mb-4">Học tập. Chia sẻ.</h1>
                   <h2>Cùng phát triển.</h2>
@@ -43,11 +43,11 @@ export default function AboutPage() {
 
               <div className="space-y-6 text-gray-500 font-light text-lg leading-relaxed border-l-2 border-gray-100 pl-8">
                 <p><strong>YT2Future</strong> không phải là một tổ chức tài chính truyền thống. Chúng mình là đội ngũ những người trẻ đang trong hành trình khám phá thế giới đầu tư.</p>
-                <p>Mục tiêu của website là nơi <mark className="bg-orange-500 text-white px-1 rounded">học tập và chia sẻ</mark> kiến thức minh bạch nhất.</p>
+                <p>Mục tiêu của website là nơi <mark className="bg-yellow-500 text-white px-1 rounded">học tập và chia sẻ</mark> kiến thức minh bạch nhất.</p>
               </div>
 
               <div className="pt-4">
-                <blockquote className="text-[#001a41] text-xl md:text-2xl font-semibold italic border-l-4 border-orange-500 pl-6 py-1 leading-snug">
+                <blockquote className="text-[#001a41] text-xl md:text-2xl font-semibold italic border-l-4 border-yellow-500 pl-6 py-1 leading-snug">
                   "Kiến thức là nền tảng duy nhất của mọi khoản đầu tư thông minh."
                 </blockquote>
                 <p className="text-gray-400 text-[10px] uppercase tracking-[0.2em] font-bold mt-4 pl-7">
@@ -87,7 +87,7 @@ export default function AboutPage() {
         <section className="py-24 max-w-360 mx-auto">
           <div className="text-center mb-16 md:mb-24 px-6 md:px-12">
             <h2 className="text-3xl md:text-5xl font-black text-[#001a41] uppercase tracking-tighter">Core Founders</h2>
-            <div className="w-16 h-1.5 bg-orange-500 mx-auto mt-6"></div>
+            <div className="w-16 h-1.5 bg-yellow-500 mx-auto mt-6"></div>
           </div>
 
           {/* Container cho phép cuộn ngang trên điện thoại */}

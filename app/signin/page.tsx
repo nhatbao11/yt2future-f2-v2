@@ -19,7 +19,7 @@ export default async function SigninPage({ searchParams }: { searchParams: Promi
       <div className="relative z-10 bg-white p-6 md:p-10 rounded-lg shadow-2xl w-full max-w-120 border border-slate-100">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-black text-slate-900 uppercase tracking-tighter italic">Sign In</h2>
-          <div className="w-12 h-1.5 bg-orange-500 mx-auto mt-2 rounded-full"></div>
+          <div className="w-12 h-1.5 bg-yellow-500 mx-auto mt-2 rounded-full"></div>
 
           {errorMessage && (
             <div className="mt-6 p-4 bg-red-50 border-l-4 border-red-500 text-red-700 text-[11px] font-bold text-left animate-in fade-in slide-in-from-top-2">
@@ -38,7 +38,7 @@ export default async function SigninPage({ searchParams }: { searchParams: Promi
               required
               autoComplete="new-password" // Trick để chặn autofill triệt để
               placeholder="nhatbao@ytcapital.vn"
-              className="w-full bg-slate-50 border border-slate-200 p-3.5 mt-1 text-sm text-slate-900 font-bold rounded-md outline-none focus:border-orange-500 focus:bg-white transition-all"
+              className="w-full bg-slate-50 border border-slate-200 p-3.5 mt-1 text-sm text-slate-900 font-bold rounded-md outline-none focus:border-yellow-500 focus:bg-white transition-all"
             />
           </div>
 
@@ -61,7 +61,7 @@ export default async function SigninPage({ searchParams }: { searchParams: Promi
         </form>
 
         <p className="text-[13px] mt-8 text-slate-500 text-center font-medium">
-          Chưa có tài khoản? <Link href="/signup" className="font-bold text-orange-600 underline underline-offset-4">Đăng ký ngay</Link>
+          Chưa có tài khoản? <Link href="/signup" className="font-bold text-yellow-600 underline underline-offset-4">Đăng ký ngay</Link>
         </p>
       </div>
     </div>

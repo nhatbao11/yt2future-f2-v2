@@ -123,7 +123,7 @@ export default function AdminUsersPage() {
                       </div>
                       <div>
                         <div className="font-semibold text-gray-900">{user.fullName}</div>
-                        <div className="text-xs text-orange-600 font-medium flex items-center gap-1 mt-0.5">
+                        <div className="text-xs text-yellow-600 font-medium flex items-center gap-1 mt-0.5">
                           <ShieldCheck size={10} /> {user.roleTitle || 'Thành viên mới'}
                         </div>
                       </div>
@@ -134,7 +134,7 @@ export default function AdminUsersPage() {
                         value={user.role}
                         onChange={(e) => handleUpdateRole(user.id, e.target.value)}
                         className={`px-4 py-2 rounded-md text-xs font-semibold border border-gray-300 outline-none cursor-pointer transition-all ${user.role === 'ADMIN' ? 'bg-red-50 text-red-700' :
-                          user.role === 'CTV' ? 'bg-orange-50 text-orange-700' :
+                          user.role === 'CTV' ? 'bg-yellow-50 text-yellow-700' :
                             user.role === 'MEMBER' ? 'bg-blue-50 text-blue-700' : 'bg-gray-50 text-gray-700'
                           }`}
                       >

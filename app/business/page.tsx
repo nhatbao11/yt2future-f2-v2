@@ -70,10 +70,10 @@ export default function BusinessPage() {
                 <div className="space-y-4">
                   <div className="flex items-center gap-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
                     <span className="flex items-center gap-1"><Calendar size={12} /> {report.date}</span>
-                    <span className="flex items-center gap-1 text-orange-500"><Briefcase size={12} /> {report.category}</span>
+                    <span className="flex items-center gap-1 text-yellow-500"><Briefcase size={12} /> {report.category}</span>
                   </div>
 
-                  <h3 className="text-xl font-black text-[#001a41] uppercase tracking-tighter leading-tight group-hover:text-orange-500 transition-colors">
+                  <h3 className="text-xl font-black text-[#001a41] uppercase tracking-tighter leading-tight group-hover:text-yellow-500 transition-colors">
                     {report.title}
                   </h3>
 
@@ -83,7 +83,7 @@ export default function BusinessPage() {
 
                   {/* Author Profile */}
                   <div className="flex items-center gap-3 pt-4 border-t border-gray-50">
-                    <div className="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center text-orange-600">
+                    <div className="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600">
                       <User size={16} />
                     </div>
                     <div>
@@ -94,7 +94,7 @@ export default function BusinessPage() {
                 </div>
 
                 <div className="flex gap-3 mt-8">
-                  <Link href="#" className="flex-1 bg-[#001a41] text-white text-[10px] font-black uppercase tracking-widest py-3 text-center hover:bg-orange-500 transition-colors flex items-center justify-center gap-2">
+                  <Link href="#" className="flex-1 bg-[#001a41] text-white text-[10px] font-black uppercase tracking-widest py-3 text-center hover:bg-yellow-500 transition-colors flex items-center justify-center gap-2">
                     <Eye size={14} /> PDF Review
                   </Link>
                   <button className="px-4 border border-gray-200 hover:bg-gray-100 transition-colors">

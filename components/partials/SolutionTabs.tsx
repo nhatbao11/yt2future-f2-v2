@@ -18,12 +18,12 @@ export default function SolutionTabs({ onTabChange }: { onTabChange: (tab: strin
         <button
           key={tab.id}
           onClick={() => handleTab(tab.id)}
-          className={`pb-4 text-[11px] font-black uppercase tracking-[0.2em] transition-all relative ${active === tab.id ? 'text-orange-500' : 'text-gray-400 hover:text-[#001a41]'
+          className={`pb-4 text-[11px] font-black uppercase tracking-[0.2em] transition-all relative ${active === tab.id ? 'text-yellow-500' : 'text-gray-400 hover:text-[#001a41]'
             }`}
         >
           {tab.label}
           {active === tab.id && (
-            <div className="absolute bottom-0 left-0 w-full h-0.5 bg-orange-500 animate-in fade-in slide-in-from-bottom-1" />
+            <div className="absolute bottom-0 left-0 w-full h-0.5 bg-yellow-500 animate-in fade-in slide-in-from-bottom-1" />
           )}
         </button>
       ))}

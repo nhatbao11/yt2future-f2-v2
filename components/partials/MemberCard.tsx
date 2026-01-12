@@ -27,7 +27,7 @@ export default function MemberCard({ name, role, image, field }: MemberProps) {
         </div>
       </div>
       <h3 className="text-2xl font-black text-[#001a41] uppercase tracking-tighter">{name}</h3>
-      <p className="text-orange-500 text-[10px] font-bold uppercase tracking-[0.2em] mt-1">{role}</p>
+      <p className="text-yellow-500 text-[10px] font-bold uppercase tracking-[0.2em] mt-1">{role}</p>
     </div>
   );
 }

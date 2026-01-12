@@ -121,7 +121,7 @@ export default function AdminFeedback() {
                       {fb.status === 'APPROVED' ? 'Đã duyệt' : 'Đã loại'}
                     </span>
                   ) : (
-                    <div className="bg-orange-50 text-orange-600 p-1.5 rounded-md">
+                    <div className="bg-yellow-50 text-yellow-600 p-1.5 rounded-md">
                       <Clock size={14} />
                     </div>
                   )}
@@ -133,8 +133,8 @@ export default function AdminFeedback() {
                     <Star
                       key={i}
                       size={14}
-                      fill={i < fb.rating ? "#f97316" : "none"}
-                      className={i < fb.rating ? "text-orange-500" : "text-gray-300"}
+                      fill={i < fb.rating ? "#eab308" : "none"}
+                      className={i < fb.rating ? "text-yellow-500" : "text-gray-300"}
                     />
                   ))}
                   <span className="ml-2 text-xs font-semibold text-gray-700">({fb.rating}/5)</span>

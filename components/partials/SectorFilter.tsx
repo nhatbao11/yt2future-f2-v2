@@ -13,7 +13,7 @@ export default function SectorFilter({ categories }: { categories: string[] }) {
           onClick={() => setActive(cat)}
           className={`px-8 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 border ${active === cat
             ? 'bg-[#001a41] text-white border-[#001a41] shadow-lg shadow-blue-900/20'
-            : 'bg-white text-[#001a41] border-gray-200 hover:border-orange-500 hover:text-orange-500'
+            : 'bg-white text-[#001a41] border-gray-200 hover:border-yellow-500 hover:text-yellow-500'
             }`}
         >
           {cat}

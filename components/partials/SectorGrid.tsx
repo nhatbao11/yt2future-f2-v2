@@ -73,7 +73,7 @@ export default function SectorGrid() {
         }
         
         .sector-swiper-container .swiper-pagination-bullet-active {
-          background: #f97316 !important; 
+          background: #eab308 !important; 
         }
 
         /* Đảm bảo slide luôn có chiều cao 100% của slide cao nhất */

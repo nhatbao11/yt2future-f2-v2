@@ -12,14 +12,14 @@ export default function PageHeader({ title }: PageHeaderProps) {
         <nav className="flex items-center gap-2 text-white/50 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.15em]">
           <Link
             href="/"
-            className="hover:text-orange-500 transition-colors duration-200"
+            className="hover:text-yellow-500 transition-colors duration-200"
           >
             Home
           </Link>
 
           <span className="text-white/20 select-none font-light">/</span>
 
-          <span className="text-orange-500">
+          <span className="text-yellow-500">
             {title}
           </span>
         </nav>

@@ -57,7 +57,7 @@ export default function AdminDashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard title="Nhân sự" value={stats.totalUsers} Icon={Users} color="bg-blue-50" iconColor="text-blue-600" />
         <StatCard title="Báo cáo đã đăng" value={stats.totalReports} Icon={ShieldCheck} color="bg-green-50" iconColor="text-green-600" />
-        <StatCard title="Chờ duyệt bài" value={stats.pendingReports} Icon={FileText} color="bg-orange-50" iconColor="text-orange-600" pulse />
+        <StatCard title="Chờ duyệt bài" value={stats.pendingReports} Icon={FileText} color="bg-yellow-50" iconColor="text-yellow-600" pulse />
         <StatCard title="Danh mục ngành" value={stats.totalCategories} Icon={Layers} color="bg-purple-50" iconColor="text-purple-600" />
       </div>
 

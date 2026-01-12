@@ -37,7 +37,7 @@ export default async function ProfilePage() {
                 name="fullName"
                 defaultValue={profile?.fullName || ''}
                 placeholder="Nhập họ tên sếp..."
-                className="w-full bg-slate-50 border border-slate-200 p-4 mt-1 text-sm font-bold text-[#1a365d] rounded-xl outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all"
+                className="w-full bg-slate-50 border border-slate-200 p-4 mt-1 text-sm font-bold text-[#1a365d] rounded-xl outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-all"
               />
             </div>
 
@@ -52,7 +52,7 @@ export default async function ProfilePage() {
           </div>
 
           <div className="pt-4">
-            <PrimaryButton label="Lưu thay đổi ngay" type="submit" fullWidth={true} className="py-4 shadow-lg shadow-orange-200" />
+            <PrimaryButton label="Lưu thay đổi ngay" type="submit" fullWidth={true} className="py-4 shadow-lg shadow-yellow-200" />
           </div>
         </form>
       </div>

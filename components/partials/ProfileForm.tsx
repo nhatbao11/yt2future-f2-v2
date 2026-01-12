@@ -21,7 +21,7 @@ export default function ProfileForm({ profile }: { profile: any }) {
     }} className="space-y-6">
 
       <div className="flex flex-col items-center gap-4">
-        <div className="relative w-24 h-24 rounded-full overflow-hidden border-4 border-orange-100 shadow-md">
+        <div className="relative w-24 h-24 rounded-full overflow-hidden border-4 border-yellow-100 shadow-md">
           <Image
             src={avatarPreview} // Dùng preview để thay đổi tức thì
             alt="Avatar"
@@ -38,7 +38,7 @@ export default function ProfileForm({ profile }: { profile: any }) {
           <input
             name="fullName"
             defaultValue={profile?.fullName}
-            className="w-full bg-slate-50 border border-slate-200 p-3.5 mt-1 text-sm text-slate-900 font-bold rounded-md outline-none focus:border-orange-500 transition-all"
+            className="w-full bg-slate-50 border border-slate-200 p-3.5 mt-1 text-sm text-slate-900 font-bold rounded-md outline-none focus:border-yellow-500 transition-all"
           />
         </div>
 
@@ -49,7 +49,7 @@ export default function ProfileForm({ profile }: { profile: any }) {
             defaultValue={profile?.avatarUrl}
             onChange={(e) => setAvatarPreview(e.target.value)} // Cập nhật preview khi gõ
             placeholder="https://example.com/image.jpg"
-            className="w-full bg-slate-50 border border-slate-200 p-3.5 mt-1 text-sm text-slate-900 font-bold rounded-md outline-none focus:border-orange-500 transition-all"
+            className="w-full bg-slate-50 border border-slate-200 p-3.5 mt-1 text-sm text-slate-900 font-bold rounded-md outline-none focus:border-yellow-500 transition-all"
           />
         </div>
       </div>

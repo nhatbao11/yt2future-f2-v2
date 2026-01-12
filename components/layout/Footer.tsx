@@ -30,7 +30,7 @@ export default function Footer() {
             </div>
             <div className="space-y-4">
               <h3 className="text-2xl font-black tracking-tighter uppercase leading-none">
-                YT2 <span className="text-orange-500">FUTURE</span>
+                YT2 <span className="text-yellow-500">FUTURE</span>
               </h3>
               <p className="text-white/50 font-light text-[13px] leading-relaxed max-w-70 lg:max-w-none">
                 Shaping Tomorrow Through Agile Innovation.
@@ -41,7 +41,7 @@ export default function Footer() {
           {/* KHỐI 2: LINKS - CẬP NHẬT HOVER CHỈ TAY CHO LEGAL */}
           <div className="w-full flex flex-1 justify-around lg:justify-center gap-8 sm:gap-40 lg:gap-50 text-center lg:text-left">
             <div>
-              <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-orange-500 mb-6 lg:mb-8 italic">Menu</h4>
+              <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-yellow-500 mb-6 lg:mb-8 italic">Menu</h4>
               <ul className="space-y-4 lg:space-y-5 text-[12px] font-medium text-white/60 tracking-widest">
                 <li><Link href="/" className="hover:text-white transition-colors">TRANG CHỦ</Link></li>
                 <li><Link href="/about" className="hover:text-white transition-colors">VỀ CHÚNG TÔI</Link></li>
@@ -49,7 +49,7 @@ export default function Footer() {
               </ul>
             </div>
             <div>
-              <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-orange-500 mb-6 lg:mb-8 italic">Legal</h4>
+              <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-yellow-500 mb-6 lg:mb-8 italic">Legal</h4>
               <ul className="space-y-4 lg:space-y-5 text-[12px] font-medium text-white/60 tracking-widest">
                 {/* Thêm cursor-pointer và hover:text-white */}
                 <li>
@@ -82,11 +82,11 @@ export default function Footer() {
 
           {/* KHỐI 3: CONTACT */}
           <div className="w-full lg:w-[25%] flex flex-col items-center lg:items-end text-center lg:text-right space-y-8">
-            <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-orange-500 mb-6 lg:mb-8 italic">Connect With Us</h4>
+            <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-yellow-500 mb-6 lg:mb-8 italic">Connect With Us</h4>
             <div className="space-y-4 text-[13px] font-light text-white/60">
               <p className="hover:text-white transition-colors">Bình Tân, TP. Hồ Chí Minh</p>
               <p className="text-2xl font-black text-white tracking-tighter italic">0822 082 407</p>
-              <p className="text-[11px] text-orange-500/100 uppercase tracking-widest font-bold">ytcapital.group@gmail.com</p>
+              <p className="text-[11px] text-yellow-500/100 uppercase tracking-widest font-bold">ytcapital.group@gmail.com</p>
             </div>
             <div className="flex justify-center lg:justify-end gap-4">
               {[
@@ -116,13 +116,13 @@ export default function Footer() {
       {/* MODAL XEM PDF */}
       {activePdf && (
         <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-in fade-in duration-300">
-          <div className="bg-white w-full max-w-5xl h-[90vh] flex flex-col shadow-2xl overflow-hidden border-2 border-orange-500">
+          <div className="bg-white w-full max-w-5xl h-[90vh] flex flex-col shadow-2xl overflow-hidden border-2 border-yellow-500">
             <div className="bg-[#001a41] p-4 flex justify-between items-center">
               <div className="flex items-center gap-3">
-                <FileText className="text-orange-500" size={20} />
+                <FileText className="text-yellow-500" size={20} />
                 <span className="text-white text-[10px] font-black uppercase tracking-widest">{activePdf.title}</span>
               </div>
-              <button onClick={() => setActivePdf(null)} className="bg-orange-500 text-[#001a41] p-1 hover:rotate-90 transition-all cursor-pointer">
+              <button onClick={() => setActivePdf(null)} className="bg-yellow-500 text-[#001a41] p-1 hover:rotate-90 transition-all cursor-pointer">
                 <X size={24} />
               </button>
             </div>

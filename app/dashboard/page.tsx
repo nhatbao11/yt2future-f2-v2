@@ -13,8 +13,8 @@ export default function DashboardPage() {
 
         {/* ICON TRẠNG THÁI */}
         <div className="relative mb-10">
-          <div className="w-20 h-20 bg-orange-50 rounded-full flex items-center justify-center animate-bounce duration-[2000ms]">
-            <BarChart3 className="text-orange-500" size={36} />
+          <div className="w-20 h-20 bg-yellow-50 rounded-full flex items-center justify-center animate-bounce duration-[2000ms]">
+            <BarChart3 className="text-yellow-500" size={36} />
           </div>
           <div className="absolute -top-1 -right-1 bg-[#001a41] text-white p-2 rounded-full shadow-lg">
             <Clock size={14} className="animate-spin-slow" />
@@ -24,12 +24,12 @@ export default function DashboardPage() {
         {/* NỘI DUNG CHÍNH */}
         <div className="max-w-3xl space-y-6">
           <div className="space-y-3">
-            <h2 className="text-[10px] font-black uppercase tracking-[0.5em] text-orange-500 italic">
+            <h2 className="text-[10px] font-black uppercase tracking-[0.5em] text-yellow-500 italic">
               Market Overview
             </h2>
             <h1 className="text-4xl md:text-6xl font-black text-[#001a41] uppercase tracking-tighter leading-none">
               Báo Cáo <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#001a41] to-orange-500">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#001a41] to-yellow-500">
                 Thị Trường
               </span>
             </h1>
@@ -40,10 +40,10 @@ export default function DashboardPage() {
         <div className="mt-10 w-full max-w-sm">
           <div className="p-8 bg-white border-2 border-slate-900 shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] flex flex-col items-center gap-4 group hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all duration-300 cursor-wait">
             <div className="flex items-center gap-2 text-[#001a41]">
-              <Briefcase size={18} className="text-orange-500" />
+              <Briefcase size={18} className="text-yellow-500" />
               <h3 className="text-[11px] font-black uppercase tracking-[0.2em]">Dữ liệu thị trường</h3>
             </div>
-            <div className="h-[2px] w-10 bg-orange-500"></div>
+            <div className="h-[2px] w-10 bg-yellow-500"></div>
             <span className="text-[9px] font-black text-slate-400 uppercase tracking-[0.3em] animate-pulse">
               Coming Soon...
             </span>
@@ -52,7 +52,7 @@ export default function DashboardPage() {
 
         {/* ĐIỀU HƯỚNG QUAY LẠI */}
         <div className="mt-16">
-          <Link href="/" className="group flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.4em] text-[#001a41] hover:text-orange-600 transition-all border-b-2 border-transparent hover:border-orange-600 pb-1">
+          <Link href="/" className="group flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.4em] text-[#001a41] hover:text-yellow-600 transition-all border-b-2 border-transparent hover:border-yellow-600 pb-1">
             Quay lại trang chủ <ChevronRight size={14} />
           </Link>
         </div>

@@ -75,7 +75,7 @@ export default function AdminReportsPage() {
           <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mt-1">{reports.length} báo cáo (Trang {page})</p>
         </div>
         <div className="flex gap-3 w-full md:w-auto">
-          <button onClick={() => { setEditingReport(null); setIsModalOpen(true); }} className="flex-1 md:flex-none flex items-center justify-center gap-2 bg-orange-500 text-white px-6 py-3 text-xs font-semibold uppercase tracking-wide hover:bg-orange-600 transition-all rounded-md">
+          <button onClick={() => { setEditingReport(null); setIsModalOpen(true); }} className="flex-1 md:flex-none flex items-center justify-center gap-2 bg-yellow-500 text-white px-6 py-3 text-xs font-semibold uppercase tracking-wide hover:bg-yellow-600 transition-all rounded-md">
             <Plus size={16} /> Phát hành mới
           </button>
           <button onClick={() => loadReports(page)} className="p-3 border border-gray-300 bg-white hover:bg-gray-50 transition-all rounded-md">
@@ -121,7 +121,7 @@ export default function AdminReportsPage() {
                         <span className="px-3 py-1 bg-gray-100 border border-gray-200 rounded-md text-xs text-gray-600 font-medium whitespace-nowrap">{report.category?.name || '---'}</span>
                       </td>
                       <td className="p-4 text-center">
-                        <div className={`inline-block px-3 py-1 text-xs font-semibold rounded-md ${report.status === 'APPROVED' ? 'bg-green-100 text-green-700' : report.status === 'PENDING' ? 'bg-orange-100 text-orange-700' : 'bg-red-100 text-red-700'}`}>
+                        <div className={`inline-block px-3 py-1 text-xs font-semibold rounded-md ${report.status === 'APPROVED' ? 'bg-green-100 text-green-700' : report.status === 'PENDING' ? 'bg-yellow-100 text-yellow-700' : 'bg-red-100 text-red-700'}`}>
                           {report.status}
                         </div>
                       </td>
@@ -181,7 +181,7 @@ export default function AdminReportsPage() {
               <div className="lg:col-span-3 flex flex-col justify-between">
                 <div className="space-y-6 overflow-y-auto max-h-[50vh] pr-2">
                   <div className="space-y-2">
-                    <label className="text-xs text-orange-600 font-semibold uppercase tracking-wide">Visual Cover</label>
+                    <label className="text-xs text-yellow-600 font-semibold uppercase tracking-wide">Visual Cover</label>
                     <div className="aspect-video border border-gray-200 rounded-lg overflow-hidden bg-white">
                       <img src={previewData.thumbnail || '/Logo.jpg'} className="w-full h-full object-cover" onError={(e) => (e.currentTarget.src = '/Logo.jpg')} />
                     </div>

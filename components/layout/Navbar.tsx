@@ -168,7 +168,7 @@ export default function Navbar() {
             ) : userData ? (
               <div className="flex items-center gap-3">
                 {userData.role === 'ADMIN' && (
-                  <Link href="/admin" className="flex items-center gap-2 px-3 py-2 bg-orange-50 text-orange-600 rounded-md text-[11px] font-black uppercase tracking-wider hover:bg-orange-100 border border-orange-100 shadow-sm whitespace-nowrap">
+                  <Link href="/admin" className="flex items-center gap-2 px-3 py-2 bg-yellow-50 text-yellow-600 rounded-md text-[11px] font-black uppercase tracking-wider hover:bg-yellow-100 border border-yellow-100 shadow-sm whitespace-nowrap">
                     <ShieldCheck size={16} /> Quản trị
                   </Link>
                 )}
@@ -212,14 +212,14 @@ export default function Navbar() {
                   </div>
                   <div className="flex-1">
                     <p className="font-black text-[#1a365d] text-lg leading-tight">{userData.fullName}</p>
-                    <p className="text-[10px] uppercase text-orange-500 font-bold tracking-widest mt-1">{userData.role}</p>
+                    <p className="text-[10px] uppercase text-yellow-500 font-bold tracking-widest mt-1">{userData.role}</p>
                     <Link href="/profile" onClick={() => setIsMenuOpen(false)} className="inline-flex items-center gap-1 mt-2 text-blue-600 text-[11px] font-bold uppercase underline">
                       <Settings size={12} /> Sửa hồ sơ
                     </Link>
                   </div>
                 </div>
                 {userData.role === 'ADMIN' && (
-                  <Link href="/admin" onClick={() => setIsMenuOpen(false)} className="flex items-center justify-center gap-3 w-full py-4 bg-orange-500 text-white rounded-xl font-black uppercase text-xs shadow-lg">
+                  <Link href="/admin" onClick={() => setIsMenuOpen(false)} className="flex items-center justify-center gap-3 w-full py-4 bg-yellow-500 text-white rounded-xl font-black uppercase text-xs shadow-lg">
                     <LayoutDashboard size={18} /> Vào trang quản trị
                   </Link>
                 )}

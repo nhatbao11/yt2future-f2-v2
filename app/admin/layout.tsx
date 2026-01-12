@@ -45,9 +45,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                       : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                       }`}
                   >
-                    <span className={isActive ? 'text-orange-500' : 'text-gray-400'}>{item.icon}</span>
+                    <span className={isActive ? 'text-yellow-500' : 'text-gray-400'}>{item.icon}</span>
                     <span className="text-xs font-semibold uppercase tracking-wide whitespace-nowrap">{item.label}</span>
-                    {isActive && <ChevronRight size={14} className="ml-auto hidden lg:block text-orange-500" />}
+                    {isActive && <ChevronRight size={14} className="ml-auto hidden lg:block text-yellow-500" />}
                   </Link>
                 );
               })}

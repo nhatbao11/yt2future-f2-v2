@@ -106,7 +106,7 @@ export default function SectorPage() {
           </div>
 
           {userData?.role === 'CTV' && (
-            <button onClick={() => setIsModalOpen(true)} className="w-full md:w-auto flex items-center justify-center gap-3 bg-[#001a41] text-white px-8 py-4 text-[11px] tracking-widest hover:bg-orange-600 transition-all border-2 border-slate-900 shadow-md">
+            <button onClick={() => setIsModalOpen(true)} className="w-full md:w-auto flex items-center justify-center gap-3 bg-[#001a41] text-white px-8 py-4 text-[11px] tracking-widest hover:bg-yellow-600 transition-all border-2 border-slate-900 shadow-md">
               <PlusCircle size={18} /> THÊM BÁO CÁO (CTV)
             </button>
           )}
@@ -131,10 +131,10 @@ export default function SectorPage() {
                 <div className="p-6 flex flex-col justify-between flex-1 space-y-5">
                   <div className="space-y-3">
                     <div className="flex items-center gap-2 text-[9px] text-slate-500 font-black">
-                      <Calendar size={12} className="text-orange-500" />
+                      <Calendar size={12} className="text-yellow-500" />
                       {new Date(report.createdAt).toLocaleDateString('vi-VN')}
                     </div>
-                    <h3 className="text-[14px] font-black leading-tight text-[#001a41] group-hover:text-orange-600 transition-colors line-clamp-2 h-10">
+                    <h3 className="text-[14px] font-black leading-tight text-[#001a41] group-hover:text-yellow-600 transition-colors line-clamp-2 h-10">
                       {report.title}
                     </h3>
                     <div className="relative group/desc">
@@ -148,7 +148,7 @@ export default function SectorPage() {
                     <span className="text-[9px] text-slate-400 flex items-center gap-2 italic">
                       <User size={12} className="text-[#001a41]" /> @{report.user?.fullName}
                     </span>
-                    <div className="flex items-center gap-2 text-[#001a41] text-[9px] tracking-widest group-hover:text-orange-600 transition-all font-black">
+                    <div className="flex items-center gap-2 text-[#001a41] text-[9px] tracking-widest group-hover:text-yellow-600 transition-all font-black">
                       <FileText size={14} /> CHI TIẾT
                     </div>
                   </div>
@@ -186,7 +186,7 @@ export default function SectorPage() {
 
               <div className="bg-[#001a41] p-4 flex justify-between items-center text-white border-b-2 border-slate-900 font-black">
                 <span className="text-[10px] tracking-widest flex items-center gap-3">
-                  <FileText size={18} className="text-orange-500" /> BÁO CÁO PHÂN TÍCH CHIẾN LƯỢC
+                  <FileText size={18} className="text-yellow-500" /> BÁO CÁO PHÂN TÍCH CHIẾN LƯỢC
                 </span>
 
                 <div className="flex items-center gap-3">

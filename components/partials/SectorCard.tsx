@@ -32,7 +32,7 @@ export default function SectorCard({ title, desc, icon: Icon }: SectorProps) {
           </p>
 
           {/* Bottom bar */}
-          <div className="mt-8 h-1 bg-orange-500 transition-all duration-500 sector-bar"></div>
+          <div className="mt-8 h-1 bg-yellow-500 transition-all duration-500 sector-bar"></div>
         </div>
       </div>
 
@@ -44,7 +44,7 @@ export default function SectorCard({ title, desc, icon: Icon }: SectorProps) {
           color: rgba(255, 255, 255, 0.05);
         }
         .sector-icon-box {
-          background-color: rgb(249, 115, 22); /* orange-500 */
+          background-color: rgb(234, 179, 8); /* yellow-500 */
         }
         .sector-icon {
           color: white;
@@ -74,13 +74,13 @@ export default function SectorCard({ title, desc, icon: Icon }: SectorProps) {
             color: rgba(255, 255, 255, 0.05);
           }
           .sector-icon-box {
-            background-color: rgb(255, 237, 213); /* orange-50 */
+            background-color: rgb(254, 249, 195); /* yellow-100 */
           }
           .group:hover .sector-icon-box {
-            background-color: rgb(249, 115, 22);
+            background-color: rgb(234, 179, 8);
           }
           .sector-icon {
-            color: rgb(249, 115, 22);
+            color: rgb(234, 179, 8);
           }
           .group:hover .sector-icon {
             color: white;

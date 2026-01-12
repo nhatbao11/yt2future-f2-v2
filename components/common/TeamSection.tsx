@@ -7,7 +7,7 @@ export default function TeamSection() {
         <h2 className="text-3xl md:text-5xl font-black text-[#001a41] uppercase tracking-tighter">
           Core Founders
         </h2>
-        <div className="w-16 h-1.5 bg-orange-500 mx-auto mt-6"></div>
+        <div className="w-16 h-1.5 bg-yellow-500 mx-auto mt-6"></div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-16">

@@ -38,7 +38,7 @@ export default function ScrollToTop() {
         <div className={`fixed bottom-8 right-8 z-[9000] transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'}`}>
             <button
                 onClick={scrollToTop}
-                className="bg-[#001a41] hover:bg-orange-500 text-white p-3 rounded-full shadow-lg transition-all duration-300 group border-2 border-white/20"
+                className="bg-[#001a41] hover:bg-yellow-500 text-white p-3 rounded-full shadow-lg transition-all duration-300 group border-2 border-white/20"
                 aria-label="Scroll to top"
             >
                 <ArrowUp size={24} className="group-hover:-translate-y-1 transition-transform duration-300" />

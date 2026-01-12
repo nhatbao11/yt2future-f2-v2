@@ -23,12 +23,12 @@ export default function PasswordField({ name, label, placeholder }: PasswordFiel
           type={showPassword ? "text" : "password"}
           required
           placeholder={placeholder || "••••••••"}
-          className="w-full bg-slate-50 border border-slate-200 p-3.5 mt-1 text-sm text-slate-900 font-bold rounded-md outline-none focus:border-orange-500 focus:bg-white transition-all"
+          className="w-full bg-slate-50 border border-slate-200 p-3.5 mt-1 text-sm text-slate-900 font-bold rounded-md outline-none focus:border-yellow-500 focus:bg-white transition-all"
         />
         <button
           type="button"
           onClick={() => setShowPassword(!showPassword)}
-          className="absolute right-3 top-1/2 -translate-y-1/2 mt-0.5 text-slate-400 hover:text-orange-600 transition-colors p-1"
+          className="absolute right-3 top-1/2 -translate-y-1/2 mt-0.5 text-slate-400 hover:text-yellow-600 transition-colors p-1"
         >
           {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
         </button>
