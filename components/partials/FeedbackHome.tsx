@@ -64,7 +64,7 @@ export default function FeedbackHome() {
   };
 
   return (
-    <section className="py-12 md:py-24 bg-gray-50 relative overflow-hidden">
+    <section className="py-12 md:py-16 bg-gray-50 relative overflow-hidden">
       <div className="max-w-360 mx-auto px-4 md:px-12">
         {/* TIÊU ĐỀ - GIẢM SIZE TRÊN MOBILE */}
         <div className="mb-10 md:mb-16 border-l-4 md:border-l-8 border-[#001a41] pl-4 md:pl-6 text-left">

@@ -10,24 +10,26 @@ export default function SectorCard({ title, desc, icon: Icon }: SectorProps) {
   return (
     <>
       <div
-        className="group relative p-10 border border-gray-100 transition-all duration-500 flex flex-col items-start overflow-hidden sector-card"
+        className="group relative p-10 border border-gray-100 transition-all duration-500 flex flex-col items-start overflow-hidden sector-card h-full justify-between"
       >
         {/* Icon lớn mờ ở góc */}
         <Icon className="absolute -right-6 -bottom-6 size-32 sector-icon-bg transition-all duration-700" />
 
-        <div className="relative z-10">
+        <div className="relative z-10 flex flex-col h-full w-full">
           {/* Icon box */}
-          <div className="mb-8 p-4 transition-colors duration-500 rounded-sm sector-icon-box">
+          <div className="mb-8 p-4 transition-colors duration-500 rounded-sm sector-icon-box w-fit">
             <Icon className="transition-colors duration-500 sector-icon" size={32} />
           </div>
 
           {/* Title */}
-          <h3 className="text-xl font-black uppercase tracking-tighter mb-4 transition-colors sector-title">
-            {title}
-          </h3>
+          <div className="min-h-[3rem] mb-4 flex items-center">
+            <h3 className="text-lg font-black uppercase tracking-tighter transition-colors sector-title leading-tight">
+              {title}
+            </h3>
+          </div>
 
           {/* Description */}
-          <p className="text-sm leading-relaxed font-light transition-colors sector-desc">
+          <p className="text-sm leading-relaxed font-light transition-colors sector-desc text-justify grow">
             {desc}
           </p>
 

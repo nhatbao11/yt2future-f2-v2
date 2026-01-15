@@ -2,7 +2,7 @@
 
 import React from 'react';
 import SectorCard from './SectorCard';
-import { LineChart, Coins, Globe, Lightbulb } from 'lucide-react';
+import { LineChart, Coins, Globe, Lightbulb, Building } from 'lucide-react';
 // Import Swiper components và styles
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
@@ -14,22 +14,22 @@ export default function SectorGrid() {
   const sectors = [
     {
       title: "Chứng khoán",
-      desc: "Phân tích doanh nghiệp, hiểu báo cáo tài chính và tìm kiếm lợi thế cạnh tranh.",
+      desc: "Cập nhật kiến thức nền tảng dành cho người mới bắt đầu, với cách tiếp cận phân tích đơn giản, dễ hiểu và từng bước làm quen với thị trường.",
       icon: LineChart
     },
     {
-      title: "Thị trường Crypto",
-      desc: "Khám phá Blockchain, tài chính phi tập trung (DeFi) và tương lai của tài sản số.",
-      icon: Coins
+      title: "Bất động sản",
+      desc: "Tổng hợp các dự án đã và đang triển khai trên cả nước, cập nhật mặt bằng giá theo khu vực và phân tích doanh nghiệp bất động sản thông qua danh mục dự án thực tế.",
+      icon: Building
     },
     {
       title: "Kinh tế vĩ mô",
-      desc: "Nắm bắt nhịp đập kinh tế toàn cầu, từ lãi suất FED đến dòng chảy dòng tiền...",
+      desc: "Phân tích tác động của các chính sách kinh tế tại Việt Nam lên từng nhóm ngành, cập nhật lãi suất điều hành và chính sách tiền tệ, ngoại hối từ đó đề xuất những nhóm ngành tiềm năng theo từng giai đoạn.",
       icon: Globe
     },
     {
       title: "Tư duy tài chính",
-      desc: "Xây dựng tâm lý đầu tư vững vàng và kỹ năng quản lý vốn cá nhân hiệu quả....",
+      desc: "Thiết kế lộ trình hoàn chỉnh dành cho nhà đầu tư mới bắt đầu, đặc biệt là nhân viên văn phòng, giúp tiếp cận kiến thức tài chính một cách dễ hiểu và ứng dụng hiệu quả trong thực tiễn.",
       icon: Lightbulb
     },
   ];

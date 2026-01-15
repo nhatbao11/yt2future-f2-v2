@@ -10,24 +10,18 @@ interface MemberProps {
 
 export default function MemberCard({ name, role, image, field }: MemberProps) {
   return (
-    <div className="group relative">
-      <div className="relative aspect-3/4 overflow-hidden bg-gray-100 rounded-sm mb-6 shadow-md">
+    <div className="group flex flex-col items-center text-center">
+      <div className="relative w-32 h-32 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-gray-100 shadow-md mb-6 group-hover:border-[#001a41] transition-all duration-500">
         <Image
           src={image}
           alt={name}
           fill
-          className="object-cover grayscale-0 lg:grayscale lg:group-hover:grayscale-0 transition-all duration-700"
+          className="object-cover grayscale-0 transition-transform duration-700 group-hover:scale-105"
         />
-
-        <div className="absolute inset-0 bg-linear-to-t from-[#001a41]/90 via-[#001a41]/40 to-transparent 
-                        opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-500 
-                        flex flex-col justify-end p-5 md:p-8">
-          <p className="text-white text-[9px] uppercase tracking-[0.2em] font-bold mb-1 opacity-70">Expertise:</p>
-          <p className="text-white text-[12px] md:text-sm font-medium leading-tight uppercase tracking-wider">{field}</p>
-        </div>
       </div>
-      <h3 className="text-2xl font-black text-[#001a41] uppercase tracking-tighter">{name}</h3>
-      <p className="text-yellow-500 text-[10px] font-bold uppercase tracking-[0.2em] mt-1">{role}</p>
+      <h3 className="text-xl md:text-2xl font-black text-[#001a41] uppercase tracking-tighter leading-tight">{name}</h3>
+      <p className="text-yellow-500 text-[10px] font-bold uppercase tracking-[0.2em] mt-1 mb-3">{role}</p>
+      <p className="text-gray-500 text-xs md:text-sm font-medium leading-relaxed max-w-[240px] opacity-80">{field}</p>
     </div>
   );
 }

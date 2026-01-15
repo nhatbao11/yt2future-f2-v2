@@ -23,10 +23,10 @@ export default function Navbar() {
   );
 
   const navLinks = [
+    { name: 'About us', href: '/about' },
     { name: 'Dashboard', href: '/dashboard' },
-    { name: 'About Us', href: '/about' },
-    { name: 'Sector Analysis', href: '/sector' },
-    { name: 'Investment Solutions', href: '/investment' },
+    { name: 'Investment solutions', href: '/investment' },
+    { name: 'Sector analysis', href: '/sector' },
     { name: 'Contact', href: '/contact' },
   ];
 
