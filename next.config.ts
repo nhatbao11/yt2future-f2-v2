@@ -7,12 +7,17 @@ const nextConfig = {
     ],
   },
   async rewrites() {
-    return [
-      {
-        source: '/api/:path*',
-        destination: 'http://localhost:5000/api/:path*', // Proxy từ 3000 sang 5000
-      },
-    ];
+    // Chỉ dùng rewrite khi development (local)
+    // Production sẽ dùng Nginx làm reverse proxy
+    if (process.env.NODE_ENV === 'development') {
+      return [
+        {
+          source: '/api/:path*',
+          destination: 'http://localhost:5000/api/:path*',
+        },
+      ];
+    }
+    return [];
   },
 };
 
