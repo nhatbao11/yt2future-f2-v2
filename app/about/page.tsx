@@ -74,7 +74,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               <article className="space-y-8 order-1 lg:order-1">
                 <div className="space-y-4">
-                  <p className="text-yellow-500 font-bold uppercase tracking-[0.4em] text-[10px]">About Y&TCapital</p>
+                  <p className="text-yellow-500 font-bold uppercase tracking-[0.4em] text-[10px]">About YT2Future</p>
                   <div className="text-2xl md:text-4xl font-black text-[#001a41] uppercase tracking-tight leading-snug">
                     <h1>"Kiến tạo tương lai bằng tư duy linh hoạt và đổi mới không ngừng."</h1>
                   </div>
