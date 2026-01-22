@@ -236,5 +236,20 @@
         "next": "Sau",
         "page": "Trang",
         "modal_title": "Xem báo cáo"
+    },
+    "business_page": {
+        "title": "Giải pháp doanh nghiệp",
+        "subtitle": "Dành cho doanh nghiệp",
+        "description": "Các giải pháp tài chính và đầu tư chuyên nghiệp cho doanh nghiệp.",
+        "filters": {
+            "all": "Tất cả",
+            "banking": "Ngân hàng",
+            "real_estate": "Bất động sản",
+            "agriculture": "Nông nghiệp",
+            "tech": "Công nghệ"
+        },
+        "by": "Bởi",
+        "analyst": "Chuyên gia phân tích",
+        "view_pdf": "Xem PDF"
     }
 }

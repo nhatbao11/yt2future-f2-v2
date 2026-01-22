@@ -236,5 +236,20 @@
         "next": "Next",
         "page": "Page",
         "modal_title": "Report Viewer"
+    },
+    "business_page": {
+        "title": "Business Solutions",
+        "subtitle": "For Enterprises",
+        "description": "Professional financial and investment solutions for businesses.",
+        "filters": {
+            "all": "All",
+            "banking": "Banking",
+            "real_estate": "Real Estate",
+            "agriculture": "Agriculture",
+            "tech": "Technology"
+        },
+        "by": "By",
+        "analyst": "Financial Analyst",
+        "view_pdf": "View PDF"
     }
 }
