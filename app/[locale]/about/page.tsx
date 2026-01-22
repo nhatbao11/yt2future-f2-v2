@@ -139,7 +139,7 @@ export default function AboutPage() {
             </div>
 
             {/* Mobile: Horizontal Scroll with Auto-slide | Desktop: Grid */}
-            <div ref={sliderRef} className="flex overflow-x-auto pb-10 px-6 gap-6 md:grid md:grid-cols-3 md:px-12 md:gap-8 no-scrollbar snap-x snap-mandatory md:snap-none">
+            <div ref={sliderRef} className="max-w-360 mx-auto flex overflow-x-auto pb-10 px-6 gap-6 md:grid md:grid-cols-3 md:px-12 md:gap-8 no-scrollbar snap-x snap-mandatory md:snap-none">
 
               <div className="min-w-[80vw] sm:min-w-[45%] md:min-w-full snap-center shrink-0">
                 <MemberCard
