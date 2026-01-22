@@ -5,8 +5,13 @@ import PrimaryButton from '@/components/common/PrimaryButton';
 import AvatarUpload from '@/components/partials/AvatarUpload';
 import { getTranslations } from 'next-intl/server';
 
-export default async function ProfilePage() {
-  const t = await getTranslations('profile');
+export default async function ProfilePage({
+  params
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'profile' });
   const cookieStore = await cookies();
   const token = cookieStore.get('yt2future_token')?.value;
 

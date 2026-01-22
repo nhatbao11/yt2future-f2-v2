@@ -72,7 +72,7 @@ export default function ProcessSection() {
             <div className="relative z-10 lg:text-center space-y-4 pt-2 lg:pt-0">
               <div className="flex items-center lg:justify-center gap-2">
                 <span className="text-yellow-500 text-xl lg:text-lg tracking-[0.3em] font-black">0{i + 1}.</span>
-                <h3 className="text-base md:text-xl lg:text-3xl font-black text-[#001a41] uppercase tracking-tighter italic leading-none whitespace-nowrap">
+                <h3 className="text-base md:text-xl lg:text-3xl font-black text-[#001a41] uppercase tracking-tighter italic leading-none whitespace-normal md:whitespace-nowrap">
                   {step.title}
                 </h3>
               </div>
