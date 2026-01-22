@@ -2,12 +2,13 @@
 "use client";
 import React from 'react';
 import { useRouter } from 'next/navigation';
+import { useLocale } from 'next-intl';
 
 interface PrimaryButtonProps {
   label: string;
   href?: string;
   type?: "button" | "submit";
-  fullWidth?: boolean; // Thêm cái này để điều khiển độ rộng
+  fullWidth?: boolean;
   className?: string;
 }
 
@@ -15,13 +16,20 @@ export default function PrimaryButton({
   label,
   href,
   type = "button",
-  fullWidth = false, // Mặc định là không full
+  fullWidth = false,
   className = ""
 }: PrimaryButtonProps) {
   const router = useRouter();
+  const locale = useLocale();
 
   const handleClick = () => {
-    if (href) router.push(href);
+    if (href) {
+      // Add locale prefix if not already present
+      const isExternal = href.startsWith('http') || href.startsWith('//');
+      const hasLocale = href.startsWith(`/${locale}/`) || href.startsWith('/vi/') || href.startsWith('/en/');
+      const localizedHref = isExternal || hasLocale ? href : `/${locale}${href}`;
+      router.push(localizedHref);
+    }
   };
 
   return (

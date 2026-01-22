@@ -4,8 +4,12 @@ import PageHeader from '@/components/layout/PageHeader';
 import { reportService } from '@/services/reportService';
 import { Search, PlusCircle, User, FileText, X, ChevronDown, Calendar } from 'lucide-react';
 import CreateReportPage from '@/components/common/CreateReportPage';
+import { useTranslations, useLocale } from 'next-intl';
 
 export default function SectorPage() {
+  const t = useTranslations('sector_page');
+  const locale = useLocale();
+
   const [reports, setReports] = useState<any[]>([]);
   const [categories, setCategories] = useState<any[]>([]);
   const [activeCatId, setActiveCatId] = useState<number | undefined>(undefined);
@@ -53,8 +57,8 @@ export default function SectorPage() {
   }, [page, activeCatId, searchQuery]);
 
   return (
-    <div className="min-h-screen bg-[#fafafa] font-black italic uppercase tracking-tight">
-      <PageHeader title="Sector Analysis" />
+    <div className="min-h-screen bg-[#fafafa]">
+      <PageHeader title={t('title')} />
 
       <main className="max-w-[1440px] mx-auto px-4 md:px-12 py-10">
 
@@ -64,10 +68,10 @@ export default function SectorPage() {
             <div className="relative w-full lg:w-80">
               <input
                 type="text"
-                placeholder="TÌM KIẾM BÁO CÁO..."
+                placeholder={t('search_placeholder')}
                 value={searchQuery}
                 onChange={(e) => { setSearchQuery(e.target.value); setPage(1); }}
-                className="w-full bg-white border-2 border-slate-300 pl-12 pr-4 py-3.5 text-[11px] text-slate-900 placeholder-slate-600 outline-none focus:border-[#001a41] transition-all shadow-sm not-italic"
+                className="w-full bg-white border-2 border-slate-300 pl-12 pr-4 py-3.5 text-sm text-slate-900 placeholder-slate-400 outline-none focus:border-[#001a41] transition-all shadow-sm"
               />
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-900" size={18} />
             </div>
@@ -79,24 +83,24 @@ export default function SectorPage() {
             >
               <button
                 onClick={() => setIsFilterOpen(!isFilterOpen)}
-                className="w-full flex items-center justify-between gap-6 bg-white border-2 border-slate-300 px-5 py-3.5 text-[10px] text-slate-900 tracking-widest hover:border-[#001a41] transition-all"
+                className="w-full flex items-center justify-between gap-6 bg-white border-2 border-slate-300 px-5 py-3.5 text-sm text-slate-900 hover:border-[#001a41] transition-all"
               >
-                <span>{categories.find(c => c.id === activeCatId)?.name || 'CHUYÊN MỤC'}</span>
+                <span>{categories.find(c => c.id === activeCatId)?.name || t('category_select')}</span>
                 <ChevronDown size={14} className={`text-slate-900 transition-transform duration-300 ${isFilterOpen ? 'rotate-180' : ''}`} />
               </button>
 
               <div className={`absolute left-0 top-full mt-1 w-full lg:w-60 bg-white border-2 border-slate-900 z-50 shadow-2xl transition-all ${isFilterOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
                 <button
                   onClick={() => { setActiveCatId(undefined); setPage(1); setIsFilterOpen(false); }}
-                  className="w-full text-left px-5 py-4 text-[10px] hover:bg-slate-50 border-b border-slate-100 text-slate-900"
+                  className="w-full text-left px-5 py-4 text-sm hover:bg-slate-50 border-b border-slate-100 text-slate-900"
                 >
-                  TẤT CẢ DANH MỤC
+                  {t('all_categories')}
                 </button>
                 {categories.map((cat) => (
                   <button
                     key={cat.id}
                     onClick={() => { setActiveCatId(cat.id); setPage(1); setIsFilterOpen(false); }}
-                    className="w-full text-left px-5 py-4 text-[10px] hover:bg-slate-50 border-b border-slate-100 text-slate-900 last:border-0"
+                    className="w-full text-left px-5 py-4 text-sm hover:bg-slate-50 border-b border-slate-100 text-slate-900 last:border-0"
                   >
                     {cat.name}
                   </button>
@@ -106,15 +110,15 @@ export default function SectorPage() {
           </div>
 
           {userData?.role === 'CTV' && (
-            <button onClick={() => setIsModalOpen(true)} className="w-full md:w-auto flex items-center justify-center gap-3 bg-[#001a41] text-white px-8 py-4 text-[11px] tracking-widest hover:bg-yellow-600 transition-all border-2 border-slate-900 shadow-md">
-              <PlusCircle size={18} /> THÊM BÁO CÁO (CTV)
+            <button onClick={() => setIsModalOpen(true)} className="w-full md:w-auto flex items-center justify-center gap-3 bg-[#001a41] text-white px-8 py-4 text-sm font-bold uppercase tracking-wider hover:bg-yellow-600 transition-all border-2 border-slate-900 shadow-md">
+              <PlusCircle size={18} /> {t('add_report')}
             </button>
           )}
         </div>
 
         {/* DANH SÁCH BÁO CÁO */}
         {loading ? (
-          <div className="text-center py-20 text-[12px] animate-pulse text-slate-400 tracking-[0.4em]">SYNCING INTELLIGENCE...</div>
+          <div className="text-center py-20 text-sm animate-pulse text-slate-400">{t('syncing')}</div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {reports.map((report) => (
@@ -132,14 +136,14 @@ export default function SectorPage() {
                   <div className="space-y-3">
                     <div className="flex items-center gap-2 text-[9px] text-slate-500 font-black">
                       <Calendar size={12} className="text-yellow-500" />
-                      {new Date(report.createdAt).toLocaleDateString('vi-VN')}
+                      {new Date(report.createdAt).toLocaleDateString(locale === 'vi' ? 'vi-VN' : 'en-US')}
                     </div>
-                    <h3 className="text-[14px] font-black leading-tight text-[#001a41] group-hover:text-yellow-600 transition-colors line-clamp-2 h-10">
+                    <h3 className="text-lg font-bold leading-tight text-[#001a41] group-hover:text-yellow-600 transition-colors line-clamp-2 h-10">
                       {report.title}
                     </h3>
                     <div className="relative group/desc">
-                      <p className="text-[11px] text-slate-500 line-clamp-2 leading-relaxed italic border-l-2 border-slate-300 pl-3 min-h-[32px] lowercase first-letter:uppercase">
-                        "{report.description || 'Chưa có mô tả chi tiết cho báo cáo này.'}"
+                      <p className="text-sm text-slate-500 line-clamp-2 leading-relaxed border-l-2 border-slate-300 pl-3 min-h-[32px]">
+                        "{report.description || t('no_desc')}"
                       </p>
                     </div>
                   </div>
@@ -148,8 +152,8 @@ export default function SectorPage() {
                     <span className="text-[9px] text-slate-400 flex items-center gap-2 italic">
                       <User size={12} className="text-[#001a41]" /> @{report.user?.fullName}
                     </span>
-                    <div className="flex items-center gap-2 text-[#001a41] text-[9px] tracking-widest group-hover:text-yellow-600 transition-all font-black">
-                      <FileText size={14} /> CHI TIẾT
+                    <div className="flex items-center gap-2 text-[#001a41] text-sm group-hover:text-yellow-600 transition-all font-bold">
+                      <FileText size={14} /> {t('details')}
                     </div>
                   </div>
                 </div>
@@ -166,15 +170,15 @@ export default function SectorPage() {
               onClick={(e) => { e.stopPropagation(); setPage(page - 1); }}
               className="px-6 py-2.5 border-2 border-slate-300 text-slate-900 hover:border-[#001a41] disabled:opacity-20 transition-all active:scale-95"
             >
-              TRƯỚC
+              {t('prev')}
             </button>
-            <span className="text-[11px] text-slate-900">TRANG {page} / {totalPages}</span>
+            <span className="text-[11px] text-slate-900">{t('page')} {page} / {totalPages}</span>
             <button
               disabled={page === totalPages}
               onClick={(e) => { e.stopPropagation(); setPage(page + 1); }}
               className="px-6 py-2.5 border-2 border-slate-300 text-slate-900 hover:border-[#001a41] disabled:opacity-20 transition-all active:scale-95"
             >
-              SAU
+              {t('next')}
             </button>
           </div>
         )}
@@ -186,7 +190,7 @@ export default function SectorPage() {
 
               <div className="bg-[#001a41] p-4 flex justify-between items-center text-white border-b-2 border-slate-900 font-black">
                 <span className="text-[10px] tracking-widest flex items-center gap-3">
-                  <FileText size={18} className="text-yellow-500" /> BÁO CÁO PHÂN TÍCH CHIẾN LƯỢC
+                  <FileText size={18} className="text-yellow-500" /> {t('modal_title')}
                 </span>
 
                 <div className="flex items-center gap-3">

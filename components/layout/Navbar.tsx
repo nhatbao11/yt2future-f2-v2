@@ -1,20 +1,22 @@
 "use client";
 
-import Link from 'next/link';
+import Link from '@/components/common/Link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect, useCallback } from 'react';
 import { Menu, X, User, LogOut, ShieldCheck, LayoutDashboard, Settings } from 'lucide-react';
 import { createBrowserClient } from '@supabase/ssr';
+import { useTranslations, useLocale } from 'next-intl';
+import LanguageSwitcher from '@/components/common/LanguageSwitcher';
 
 export default function Navbar() {
+  const t = useTranslations('nav');
+  const locale = useLocale();
   const pathname = usePathname();
-  const [lang, setLang] = useState<'EN' | 'VN'>('EN');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [userData, setUserData] = useState<{ fullName: string, avatarUrl: string | null, role?: string } | null>(null);
   const [loading, setLoading] = useState(true);
   const [isInitialRender, setIsInitialRender] = useState(true);
-  // Thêm state để theo dõi scroll hiện shadow
   const [isScrolled, setIsScrolled] = useState(false);
 
   const supabase = createBrowserClient(
@@ -23,19 +25,17 @@ export default function Navbar() {
   );
 
   const navLinks = [
-    { name: 'About us', href: '/about' },
-    { name: 'Dashboard', href: '/dashboard' },
-    { name: 'Investment solutions', href: '/investment' },
-    { name: 'Sector analysis', href: '/sector' },
-    { name: 'Contact', href: '/contact' },
+    { name: t('about'), href: '/about' },
+    { name: t('dashboard'), href: '/dashboard' },
+    { name: t('investment'), href: '/investment' },
+    { name: t('sector'), href: '/sector' },
+    { name: t('contact'), href: '/contact' },
   ];
 
   const getAvatarSrc = (url: string | null) => {
-    // Nếu không có url hoặc url là ảnh mặc định local, trả về path sạch
     if (!url || url === '/Logo.jpg' || url.startsWith('/')) {
       return '/Logo.jpg';
     }
-    // Chỉ thêm timestamp cho ảnh từ bên ngoài (Cloudinary, Google) để tránh cache
     return `${url}${url.includes('?') ? '&' : '?'}t=${Date.now()}`;
   };
 
@@ -51,7 +51,7 @@ export default function Navbar() {
         setUserData(null);
         document.cookie = "yt2future_token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;";
         if (pathname.startsWith('/admin')) {
-          window.location.replace('/signin?err=expired');
+          window.location.replace(`/${locale}/signin?err=expired`);
         }
         return;
       }
@@ -66,7 +66,7 @@ export default function Navbar() {
       setLoading(false);
       setIsInitialRender(false);
     }
-  }, [pathname]);
+  }, [pathname, locale]);
 
   useEffect(() => {
     if (isInitialRender) {
@@ -75,7 +75,6 @@ export default function Navbar() {
       fetchUser(true);
     }
 
-    // Lắng nghe sự kiện scroll
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
@@ -83,30 +82,23 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [pathname, fetchUser, isInitialRender]);
 
-  // src/components/Navbar.tsx
-
   useEffect(() => {
     const handleSync = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       const hasMyToken = document.cookie.includes('yt2future_token');
 
-      // Kiểm tra nếu có session từ Supabase nhưng chưa có Token của Backend mình
       if (session?.user && !hasMyToken) {
         try {
-          // Gửi đầy đủ thông tin sang Backend cổng 5000
           await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'}/auth/grant-google-role`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               email: session.user.email,
-              // Bốc dữ liệu từ metadata của Google trả về
               name: session.user.user_metadata?.full_name || session.user.user_metadata?.name,
               picture: session.user.user_metadata?.avatar_url || session.user.user_metadata?.picture
             }),
             credentials: 'include'
           });
-
-          // Sau khi Backend lưu xong và trả về Cookie, gọi lại hàm lấy thông tin để hiện Navbar
           await fetchUser(true);
         } catch (err) {
           console.error("Sync error:", err);
@@ -115,7 +107,6 @@ export default function Navbar() {
     };
 
     handleSync();
-
     window.addEventListener('profileUpdated', () => fetchUser(true));
     return () => window.removeEventListener('profileUpdated', () => fetchUser(true));
   }, [supabase, fetchUser]);
@@ -126,17 +117,29 @@ export default function Navbar() {
       await supabase.auth.signOut({ scope: 'global' });
       await fetch('/api/auth/logout', { method: 'POST' });
       document.cookie = "yt2future_token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;";
-      window.location.replace(`/signin?status=logout&t=${Date.now()}`);
+      window.location.replace(`/${locale}/signin?status=logout&t=${Date.now()}`);
     } catch (error) {
-      window.location.replace('/signin');
+      window.location.replace(`/${locale}/signin`);
     }
   };
 
   const getLinkStyle = (path: string, isMobile = false) => {
-    const isActive = pathname === path;
+    // Với next-intl, pathname có thể chứa locale prefix (ví dụ /en/about)
+    // path truyền vào là /about. Cần so sánh tương đối.
+    // Tuy nhiên đơn giản nhất là kiểm tra xem pathname có kết thúc bằng path không
+    // hoặc remove locale prefix từ pathname để so sánh. 
+    // Nhưng Link component của chúng ta tự handle active state? Không, Link chỉ là a tag.
+    // Ta cần logic check active.
+
+    // Clean pathname: remove locale prefix
+    let cleanPath = pathname;
+    if (cleanPath.startsWith('/en')) cleanPath = cleanPath.replace('/en', '');
+    else if (cleanPath.startsWith('/vi')) cleanPath = cleanPath.replace('/vi', '');
+    if (cleanPath === '') cleanPath = '/';
+
+    const isActive = cleanPath === path;
     const baseStyle = `text-[12px] font-bold uppercase tracking-wider transition-all duration-200 rounded-sm cursor-pointer whitespace-nowrap`;
     if (isMobile) return `${baseStyle} w-full px-6 py-4 border-b border-gray-50 ${isActive ? 'bg-[#1a365d] text-white' : 'text-[#1a365d]'}`;
-    // Hover màu đậm như cũ sếp yêu cầu
     return `${baseStyle} px-4 py-2 ${isActive ? 'bg-[#1a365d] text-white shadow-md' : 'text-[#1a365d] hover:bg-[#1a365d] hover:text-white'}`;
   };
 
@@ -150,8 +153,6 @@ export default function Navbar() {
           </div>
           <div className="flex flex-col justify-center">
             <h1 className="text-[#1a365d] font-extrabold text-base md:text-xl tracking-tighter uppercase leading-none whitespace-nowrap">YT2FUTURE</h1>
-            {/* Slogan quay trở lại đây sếp */}
-            {/* <span className="text-[8px] md:text-[10px] text-gray-400 font-bold uppercase tracking-[0.3em] mt-1 italic"></span> */}
           </div>
         </Link>
 
@@ -169,7 +170,7 @@ export default function Navbar() {
               <div className="flex items-center gap-3">
                 {userData.role === 'ADMIN' && (
                   <Link href="/admin" className="flex items-center gap-2 px-3 py-2 bg-yellow-50 text-yellow-600 rounded-md text-[11px] font-black uppercase tracking-wider hover:bg-yellow-100 border border-yellow-100 shadow-sm whitespace-nowrap">
-                    <ShieldCheck size={16} /> Quản trị
+                    <ShieldCheck size={16} /> {t('admin')}
                   </Link>
                 )}
                 <div className="relative group ml-2">
@@ -182,20 +183,18 @@ export default function Navbar() {
                       <p className="text-[9px] text-gray-400 uppercase font-bold tracking-widest">{userData.role}</p>
                     </div>
                     <div className="p-2">
-                      <Link href="/profile" className="flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-md text-xs font-medium"><User size={16} /> Hồ sơ</Link>
-                      <button onClick={handleLogout} className="w-full flex items-center gap-3 px-3 py-2 text-red-500 hover:bg-red-50 rounded-md text-xs font-medium mt-1 border-t pt-2"><LogOut size={16} /> Đăng xuất</button>
+                      <Link href="/profile" className="flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-md text-xs font-medium"><User size={16} /> {t('profile')}</Link>
+                      <button onClick={handleLogout} className="w-full flex items-center gap-3 px-3 py-2 text-red-500 hover:bg-red-50 rounded-md text-xs font-medium mt-1 border-t pt-2"><LogOut size={16} /> {t('signOut')}</button>
                     </div>
                   </div>
                 </div>
               </div>
             ) : (
-              <Link href="/signin" className={getLinkStyle('/signin')}>Sign In</Link>
+              <Link href="/signin" className={getLinkStyle('/signin')}>{t('signIn')}</Link>
             )}
           </div>
 
-          <button className="flex items-center justify-center w-10 h-8 bg-gray-50 rounded-md border border-gray-100 shrink-0" onClick={() => setLang(lang === 'EN' ? 'VN' : 'EN')}>
-            <span className="text-[#1a365d] text-[11px] font-bold">{lang}</span>
-          </button>
+          <LanguageSwitcher />
 
           <button className="lg:hidden p-2 text-[#1a365d] shrink-0" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -214,18 +213,18 @@ export default function Navbar() {
                     <p className="font-black text-[#1a365d] text-lg leading-tight">{userData.fullName}</p>
                     <p className="text-[10px] uppercase text-yellow-500 font-bold tracking-widest mt-1">{userData.role}</p>
                     <Link href="/profile" onClick={() => setIsMenuOpen(false)} className="inline-flex items-center gap-1 mt-2 text-blue-600 text-[11px] font-bold uppercase underline">
-                      <Settings size={12} /> Sửa hồ sơ
+                      <Settings size={12} /> {t('profile')}
                     </Link>
                   </div>
                 </div>
                 {userData.role === 'ADMIN' && (
                   <Link href="/admin" onClick={() => setIsMenuOpen(false)} className="flex items-center justify-center gap-3 w-full py-4 bg-yellow-500 text-white rounded-xl font-black uppercase text-xs shadow-lg">
-                    <LayoutDashboard size={18} /> Vào trang quản trị
+                    <LayoutDashboard size={18} /> {t('admin')}
                   </Link>
                 )}
               </div>
             ) : (
-              <Link href="/signin" className="mb-8 w-full py-4 bg-[#1a365d] text-white text-center rounded-xl font-bold uppercase text-xs" onClick={() => setIsMenuOpen(false)}>Đăng nhập</Link>
+              <Link href="/signin" className="mb-8 w-full py-4 bg-[#1a365d] text-white text-center rounded-xl font-bold uppercase text-xs" onClick={() => setIsMenuOpen(false)}>{t('signIn')}</Link>
             )}
 
             <div className="flex flex-col">
@@ -237,7 +236,7 @@ export default function Navbar() {
             {userData && (
               <div className="mt-auto pb-12">
                 <button onClick={handleLogout} className="w-full flex items-center justify-center gap-3 py-5 bg-red-50 text-red-600 rounded-2xl font-bold uppercase text-[12px] tracking-widest border border-red-100">
-                  <LogOut size={20} /> Đăng xuất ngay
+                  <LogOut size={20} /> {t('signOut')}
                 </button>
               </div>
             )}

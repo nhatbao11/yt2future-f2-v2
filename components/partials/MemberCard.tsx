@@ -1,4 +1,4 @@
-"use client"; // Giữ tương tác ở đây
+"use client";
 import Image from 'next/image';
 
 interface MemberProps {
@@ -10,18 +10,23 @@ interface MemberProps {
 
 export default function MemberCard({ name, role, image, field }: MemberProps) {
   return (
-    <div className="group flex flex-col items-center text-center">
-      <div className="relative w-32 h-32 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-gray-100 shadow-md mb-6 group-hover:border-[#001a41] transition-all duration-500">
+    <div className="group flex flex-col items-center text-center bg-white p-6 md:p-8 border border-slate-200 hover:border-slate-300 shadow-sm hover:shadow-md transition-all duration-300">
+      {/* Avatar - Higher Quality */}
+      <div className="relative w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden mb-6 bg-slate-100 ring-4 ring-slate-100 group-hover:ring-yellow-500 transition-all duration-300">
         <Image
           src={image}
           alt={name}
           fill
-          className="object-cover grayscale-0 transition-transform duration-700 group-hover:scale-105"
+          quality={95}
+          priority
+          className="object-cover"
         />
       </div>
-      <h3 className="text-xl md:text-2xl font-black text-[#001a41] uppercase tracking-tighter leading-tight">{name}</h3>
-      <p className="text-yellow-500 text-[10px] font-bold uppercase tracking-[0.2em] mt-1 mb-3">{role}</p>
-      <p className="text-gray-500 text-xs md:text-sm font-medium leading-relaxed max-w-[240px] opacity-80">{field}</p>
+
+      {/* Info */}
+      <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-2">{name}</h3>
+      <p className="text-sm font-semibold text-yellow-600 uppercase tracking-wider mb-3">{role}</p>
+      <p className="text-sm text-slate-600 leading-relaxed max-w-xs">{field}</p>
     </div>
   );
 }

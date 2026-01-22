@@ -1,34 +1,38 @@
+"use client";
+import { useTranslations } from 'next-intl';
 import PageHeader from '@/components/layout/PageHeader';
 import PrimaryButton from '@/components/common/PrimaryButton';
 import { Mail, Phone, MapPin, Clock } from 'lucide-react';
 
 export default function ContactPage() {
+  const t = useTranslations('contact');
+
   const contactInfo = [
     {
       icon: <MapPin className="text-yellow-500" size={24} />,
-      title: "Địa chỉ",
-      content: "Bình Tân, TP. Hồ Chí Minh"
+      title: t('info.address'),
+      content: t('values.address')
     },
     {
       icon: <Mail className="text-yellow-500" size={24} />,
-      title: "Email",
-      content: "ytcapital.group@gmail.com"
+      title: t('info.email'),
+      content: t('values.email')
     },
     {
       icon: <Phone className="text-yellow-500" size={24} />,
-      title: "Hotline",
-      content: "0822 082 407"
+      title: t('info.hotline'),
+      content: t('values.hotline')
     },
     {
       icon: <Clock className="text-yellow-500" size={24} />,
-      title: "Giờ làm việc",
-      content: "Thứ 2 - Thứ 6: 08:00 - 17:30"
+      title: t('info.hours'),
+      content: t('values.hours')
     }
   ];
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <PageHeader title="Contact Us" />
+      <PageHeader title={t('pageTitle')} />
 
       <main className="grow py-7 md:py-12 lg:py-16">
         <div className="max-w-360 mx-auto px-6 md:px-12">
@@ -40,10 +44,10 @@ export default function ContactPage() {
             <div className="space-y-12">
               <div>
                 <h2 className="text-4xl md:text-5xl font-black text-[#001a41] uppercase tracking-tighter mb-6">
-                  Get in <span className="text-yellow-500">Touch</span>
+                  {t('getInTouch')} <span className="text-yellow-500">{t('getInTouchHighlight')}</span>
                 </h2>
                 <p className="text-gray-500 font-light text-lg leading-relaxed max-w-md border-l-2 border-yellow-500 pl-6">
-                  Chúng tôi luôn sẵn sàng lắng nghe và giải đáp mọi thắc mắc của bạn về các giải pháp đầu tư và hợp tác chiến lược.
+                  {t('desc')}
                 </p>
               </div>
 
@@ -72,11 +76,11 @@ export default function ContactPage() {
             <div className="bg-white p-8 md:p-12 rounded-sm shadow-2xl border border-yellow-500 relative overflow-hidden">
               {/* Decor góc cho Form */}
               <div className="absolute top-0 right-0 w-16 h-16 bg-yellow-500/10 -rotate-45 translate-x-8 -translate-y-8" />
-              <h2 className="text-center text-black">Gửi Tin Nhắn Cho Chúng Tôi</h2>
+              <h2 className="text-center text-black">{t('formTitle')}</h2>
               <form className="space-y-6 relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-[11px] font-bold text-[#001a41] uppercase tracking-wider">Họ và tên</label>
+                    <label className="text-[11px] font-bold text-[#001a41] uppercase tracking-wider">{t('name')}</label>
                     <input
                       type="text"
                       placeholder="Your Name"
@@ -84,7 +88,7 @@ export default function ContactPage() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-[11px] font-bold text-[#001a41] uppercase tracking-wider">Email</label>
+                    <label className="text-[11px] font-bold text-[#001a41] uppercase tracking-wider">{t('email')}</label>
                     <input
                       type="email"
                       placeholder="Your Email"
@@ -94,7 +98,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-[11px] font-bold text-[#001a41] uppercase tracking-wider">Chủ đề</label>
+                  <label className="text-[11px] font-bold text-[#001a41] uppercase tracking-wider">{t('subject')}</label>
                   <input
                     type="text"
                     placeholder="Subject"
@@ -103,7 +107,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-[11px] font-bold text-[#001a41] uppercase tracking-wider">Tin nhắn</label>
+                  <label className="text-[11px] font-bold text-[#001a41] uppercase tracking-wider">{t('message')}</label>
                   <textarea
                     rows={4}
                     placeholder="Your Message"
@@ -112,7 +116,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="pt-4">
-                  <PrimaryButton label="Submit Inquiry" type="submit" fullWidth={true} />
+                  <PrimaryButton label={t('submit')} type="submit" fullWidth={true} />
                 </div>
               </form>
             </div>

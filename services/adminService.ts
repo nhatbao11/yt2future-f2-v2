@@ -1,10 +1,25 @@
 import axios from 'axios';
 
+// Helper function to get current locale from URL
+const getLocale = () => {
+  if (typeof window === 'undefined') return 'vi';
+  const path = window.location.pathname;
+  if (path.startsWith('/en')) return 'en';
+  return 'vi';
+};
+
 // Cấu hình axios để gửi kèm Cookie (yt2future_token)
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api',
   withCredentials: true,
 });
+
+// Add request interceptor to include Accept-Language header
+api.interceptors.request.use((config) => {
+  config.headers['Accept-Language'] = getLocale();
+  return config;
+});
+
 
 export const adminService = {
   // Lấy danh sách user

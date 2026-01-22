@@ -1,0 +1,240 @@
+{
+    "common": {
+        "readMore": "Đọc thêm",
+        "learnMore": "Tìm hiểu thêm",
+        "contactUs": "Liên hệ",
+        "loading": "Đang tải...",
+        "submit": "Gửi",
+        "cancel": "Hủy",
+        "save": "Lưu",
+        "delete": "Xóa",
+        "edit": "Sửa",
+        "close": "Đóng",
+        "search": "Tìm kiếm"
+    },
+    "nav": {
+        "home": "Trang chủ",
+        "about": "Về chúng tôi",
+        "business": "Kinh doanh",
+        "investment": "Giải pháp đầu tư",
+        "sector": "Phân tích ngành",
+        "contact": "Liên hệ",
+        "dashboard": "Bảng điều khiển",
+        "profile": "Hồ sơ",
+        "signIn": "Đăng nhập",
+        "signUp": "Đăng ký",
+        "signOut": "Đăng xuất",
+        "admin": "Quản trị"
+    },
+    "footer": {
+        "slogan": "Kiến tạo tương lai bằng đổi mới linh hoạt.",
+        "menu": "Danh mục",
+        "legal": "Pháp lý",
+        "privacy": "Chính sách bảo mật",
+        "terms": "Điều khoản sử dụng",
+        "cookies": "Chính sách Cookie",
+        "connect": "Kết nối",
+        "address": "Bình Tân, TP. Hồ Chí Minh",
+        "copyright": "© 2025 YT2Future. Đội ngũ Đổi mới Linh hoạt.",
+        "tagline": "Tương lai bền vững",
+        "description": "Kiến tạo tương lai bằng tư duy linh hoạt và đổi mới không ngừng.",
+        "quickLinks": "Liên kết nhanh",
+        "followUs": "Theo dõi chúng tôi"
+    },
+    "sectors": {
+        "stock": {
+            "title": "Chứng khoán",
+            "desc": "Cập nhật kiến thức nền tảng dành cho người mới bắt đầu, với cách tiếp cận phân tích đơn giản, dễ hiểu và từng bước làm quen với thị trường."
+        },
+        "realEstate": {
+            "title": "Bất động sản",
+            "desc": "Tổng hợp các dự án đã và đang triển khai trên cả nước, cập nhật mặt bằng giá theo khu vực và phân tích doanh nghiệp bất động sản thông qua danh mục dự án thực tế."
+        },
+        "macro": {
+            "title": "Kinh tế vĩ mô",
+            "desc": "Phân tích tác động của các chính sách kinh tế tại Việt Nam lên từng nhóm ngành, cập nhật lãi suất điều hành và chính sách tiền tệ, ngoại hối từ đó đề xuất những nhóm ngành tiềm năng theo từng giai đoạn."
+        },
+        "mindset": {
+            "title": "Tư duy tài chính",
+            "desc": "Thiết kế lộ trình hoàn chỉnh dành cho nhà đầu tư mới bắt đầu, đặc biệt là nhân viên văn phòng, giúp tiếp cận kiến thức tài chính một cách dễ hiểu và ứng dụng hiệu quả trong thực tiễn."
+        }
+    },
+    "feedback": {
+        "title": "Cảm nhận",
+        "titleHighlight": "khách hàng",
+        "tagline": "Hệ thống đánh giá từ YT2Future",
+        "role": "Hội viên chiến lược",
+        "send": "Gửi phản hồi",
+        "modalTitle": "Viết đánh giá",
+        "placeholder": "Sếp nhập cảm nghĩ tại đây...",
+        "sending": "Đang xử lý...",
+        "submit": "Xác nhận gửi",
+        "loginRequired": "Vui lòng đăng nhập để gửi phản hồi!",
+        "success": "Gửi phản hồi thành công!",
+        "error": "Lỗi kết nối server!",
+        "failure": "Gửi thất bại!"
+    },
+    "home": {
+        "hero": {
+            "title": "YT2",
+            "titleHighlight": "FUTURE",
+            "subtitle": "Kiến tạo tương lai\nbằng đổi mới linh hoạt",
+            "cta": "Bắt đầu hành trình"
+        },
+        "about": {
+            "title": "Về",
+            "titleHighlight": "chúng tôi",
+            "tagline": "Về chúng tôi & Tầm nhìn",
+            "desc1": "YT2Future được xây dựng với niềm tin rằng tương lai tài chính bền vững bắt đầu từ tư duy linh hoạt và tinh thần đổi mới không ngừng. Chúng tôi cung cấp kiến thức đầu tư, phân tích thị trường và thông tin tài chính được chọn lọc, hướng tới việc giúp người đọc hiểu đúng bản chất của đầu tư và ra quyết định dựa trên tư duy dài hạn.",
+            "desc2": "YT2Future mong muốn đồng hành cùng cộng đồng trên hành trình học hỏi, thích nghi và kiến tạo tương lai bằng tri thức.",
+            "learnMore": "Tìm hiểu về đội ngũ"
+        },
+        "explore": {
+            "title": "Lĩnh vực",
+            "titleHighlight": "nghiên cứu",
+            "tagline": "Những gì chúng tôi khám phá",
+            "desc": "Chúng tôi tập trung vào những mảng thị trường cốt lõi, nơi sự đổi mới đang diễn ra mạnh mẽ nhất."
+        },
+        "values": {
+            "tagline": "Giá trị của chúng tôi"
+        }
+    },
+    "about": {
+        "pageTitle": "Về chúng tôi",
+        "tagline": "Về YT2Future",
+        "headline": "Kiến tạo tương lai bằng tư duy linh hoạt và đổi mới không ngừng.",
+        "description": "YT2Future được xây dựng với niềm tin rằng tương lai tài chính bền vững bắt đầu từ tư duy linh hoạt và tinh thần đổi mới không ngừng. Chúng tôi cung cấp kiến thức đầu tư, phân tích thị trường và thông tin tài chính được chọn lọc, hướng tới việc giúp người đọc hiểu đúng bản chất của đầu tư và ra quyết định dựa trên tư duy dài hạn. YT2Future mong muốn đồng hành cùng cộng đồng trên hành trình học hỏi, thích nghi và kiến tạo tương lai bằng tri thức.",
+        "quote": "Kiến tạo tương lai bằng đổi mới linh hoạt.",
+        "values": {
+            "title": "Giá trị",
+            "subtitle": "chúng tôi mang lại",
+            "tagline": "Giá trị của chúng tôi",
+            "knowledge": {
+                "title": "HỆ THỐNG KIẾN THỨC",
+                "desc": "Chia sẻ kiến thức và kinh nghiệm được đúc kết từ học tập và thực tiễn đầu tư."
+            },
+            "thinking": {
+                "title": "TƯ DUY PHÂN TÍCH",
+                "desc": "Rèn luyện khả năng nhìn nhận thị trường đa chiều, từ vĩ mô đến nội tại doanh nghiệp."
+            },
+            "community": {
+                "title": "KẾT NỐI CỘNG ĐỒNG",
+                "desc": "Xây dựng cộng đồng học tập cởi mở, nơi mọi góc nhìn được tôn trọng và phản biện."
+            }
+        },
+        "founders": {
+            "title": "Đội ngũ sáng lập",
+            "tagline": "Gặp gỡ đội ngũ của chúng tôi",
+            "swipeHint": "← Trượt ngang để xem thêm →",
+            "nhat": {
+                "name": "Trần Minh Nhật",
+                "role": "Founder",
+                "field": "Hoạch định chiến lược & Tầm nhìn tổng thể."
+            },
+            "nga": {
+                "name": "Phạm Phương Nga",
+                "role": "Co-Founder",
+                "field": "Phát triển kinh doanh & Quan hệ đối tác."
+            },
+            "bao": {
+                "name": "Nguyễn Nhất Bảo",
+                "role": "Co-Founder",
+                "field": "Phát triển công nghệ & Trải nghiệm người dùng."
+            }
+        }
+    },
+    "contact": {
+        "pageTitle": "Liên hệ",
+        "getInTouch": "Liên hệ",
+        "getInTouchHighlight": "ngay",
+        "desc": "Chúng tôi luôn sẵn sàng lắng nghe và giải đáp mọi thắc mắc của bạn về các giải pháp đầu tư và hợp tác chiến lược.",
+        "formTitle": "Gửi Tin Nhắn Cho Chúng Tôi",
+        "name": "Họ và tên",
+        "email": "Email",
+        "subject": "Chủ đề",
+        "message": "Tin nhắn",
+        "submit": "Gửi yêu cầu",
+        "info": {
+            "address": "Địa chỉ",
+            "email": "Email",
+            "hotline": "Hotline",
+            "hours": "Giờ làm việc"
+        },
+        "values": {
+            "address": "Bình Tân, TP. Hồ Chí Minh",
+            "email": "ytcapital.group@gmail.com",
+            "hotline": "0822 082 407",
+            "hours": "Thứ 2 - Thứ 6: 08:00 - 17:30"
+        }
+    },
+    "dashboard": {
+        "welcome": "Chào mừng",
+        "overview": "Tổng quan",
+        "statistics": "Thống kê",
+        "title": "Bảng điều khiển",
+        "market_overview": "Tổng quan thị trường",
+        "market_report_title": "BÁO CÁO",
+        "market_report_subtitle": "THỊ TRƯỜNG",
+        "market_data": "Dữ liệu thị trường",
+        "coming_soon": "Sớm ra mắt...",
+        "back_home": "Quay lại trang chủ"
+    },
+    "auth": {
+        "socialLogin": "Đăng nhập mạng xã hội",
+        "googleLogin": "Đăng nhập bằng Google",
+        "agree": "Tôi đồng ý với",
+        "terms": "Điều khoản sử dụng",
+        "privacy": "Chính sách bảo mật",
+        "and": "và",
+        "createAccount": "Tạo tài khoản",
+        "loginNow": "Đăng nhập ngay",
+        "signIn": {
+            "title": "Đăng nhập",
+            "email": "Email",
+            "password": "Mật khẩu",
+            "submit": "Đăng nhập",
+            "noAccount": "Chưa có tài khoản?",
+            "signUpLink": "Đăng ký ngay",
+            "forgotPassword": "Quên mật khẩu?"
+        },
+        "signUp": {
+            "title": "Đăng ký",
+            "name": "Họ và tên",
+            "email": "Email",
+            "password": "Mật khẩu",
+            "confirmPassword": "Xác nhận mật khẩu",
+            "submit": "Đăng ký",
+            "hasAccount": "Đã có tài khoản?",
+            "signInLink": "Đăng nhập"
+        }
+    },
+    "admin": {
+        "categories": "Danh mục",
+        "users": "Người dùng",
+        "reports": "Báo cáo",
+        "settings": "Cài đặt"
+    },
+    "investment_page": {
+        "title": "Giải pháp đầu tư",
+        "subtitle": "Giải pháp đầu tư",
+        "main_title": "Giải pháp đầu tư",
+        "main_title_sub": "Sắp ra mắt",
+        "academic_db": "Cơ sở dữ liệu học thuật",
+        "coming_soon": "Sắp ra mắt",
+        "back_home": "Quay lại trang chủ"
+    },
+    "sector_page": {
+        "title": "Phân tích ngành",
+        "search_placeholder": "Tìm kiếm báo cáo...",
+        "category_select": "Chọn danh mục",
+        "all_categories": "Tất cả danh mục",
+        "add_report": "Thêm báo cáo",
+        "syncing": "Đang tải...",
+        "no_desc": "Không có mô tả",
+        "details": "Chi tiết",
+        "prev": "Trước",
+        "next": "Sau",
+        "page": "Trang",
+        "modal_title": "Xem báo cáo"
+    }
+}

@@ -1,11 +1,14 @@
 "use client";
 import React, { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from '@/components/common/Link';
 import { FaFacebookF, FaInstagram, FaTiktok } from 'react-icons/fa';
 import { X, FileText } from 'lucide-react';
 
+import { useTranslations } from 'next-intl';
+
 export default function Footer() {
+  const t = useTranslations();
   const [activePdf, setActivePdf] = useState<{ url: string; title: string } | null>(null);
 
   const POLICY_LINKS = {
@@ -33,7 +36,7 @@ export default function Footer() {
                 YT2 <span className="text-yellow-500">FUTURE</span>
               </h3>
               <p className="text-white/50 font-light text-[13px] leading-relaxed max-w-70 lg:max-w-none">
-                Shaping Tomorrow Through Agile Innovation.
+                {t('footer.slogan')}
               </p>
             </div>
           </div>
@@ -41,39 +44,39 @@ export default function Footer() {
           {/* KHỐI 2: LINKS - CẬP NHẬT HOVER CHỈ TAY CHO LEGAL */}
           <div className="w-full flex flex-1 justify-around lg:justify-center gap-8 sm:gap-40 lg:gap-50 text-center lg:text-left">
             <div>
-              <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-yellow-500 mb-6 lg:mb-8 italic">Menu</h4>
+              <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-yellow-500 mb-6 lg:mb-8 italic">{t('footer.menu')}</h4>
               <ul className="space-y-4 lg:space-y-5 text-[12px] font-medium text-white/60 tracking-widest">
-                <li><Link href="/" className="hover:text-white transition-colors">TRANG CHỦ</Link></li>
-                <li><Link href="/about" className="hover:text-white transition-colors">VỀ CHÚNG TÔI</Link></li>
-                <li><Link href="/contact" className="hover:text-white transition-colors">LIÊN HỆ</Link></li>
+                <li><Link href="/" className="hover:text-white transition-colors">{t('nav.home').toUpperCase()}</Link></li>
+                <li><Link href="/about" className="hover:text-white transition-colors">{t('nav.about').toUpperCase()}</Link></li>
+                <li><Link href="/contact" className="hover:text-white transition-colors">{t('nav.contact').toUpperCase()}</Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-yellow-500 mb-6 lg:mb-8 italic">Legal</h4>
+              <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-yellow-500 mb-6 lg:mb-8 italic">{t('footer.legal')}</h4>
               <ul className="space-y-4 lg:space-y-5 text-[12px] font-medium text-white/60 tracking-widest">
                 {/* Thêm cursor-pointer và hover:text-white */}
                 <li>
                   <button
-                    onClick={() => openPdf(POLICY_LINKS.privacy, "PRIVACY POLICY")}
+                    onClick={() => openPdf(POLICY_LINKS.privacy, t('footer.privacy').toUpperCase())}
                     className="hover:text-white transition-colors uppercase cursor-pointer outline-none text-left"
                   >
-                    PRIVACY POLICY
+                    {t('footer.privacy')}
                   </button>
                 </li>
                 <li>
                   <button
-                    onClick={() => openPdf(POLICY_LINKS.terms, "TERMS OF USE")}
+                    onClick={() => openPdf(POLICY_LINKS.terms, t('footer.terms').toUpperCase())}
                     className="hover:text-white transition-colors uppercase cursor-pointer outline-none text-left"
                   >
-                    TERMS OF USE
+                    {t('footer.terms')}
                   </button>
                 </li>
                 <li>
                   <button
-                    onClick={() => openPdf(POLICY_LINKS.cookies, "COOKIE POLICY")}
+                    onClick={() => openPdf(POLICY_LINKS.cookies, t('footer.cookies').toUpperCase())}
                     className="hover:text-white transition-colors uppercase cursor-pointer outline-none text-left"
                   >
-                    COOKIE POLICY
+                    {t('footer.cookies')}
                   </button>
                 </li>
               </ul>
@@ -82,9 +85,9 @@ export default function Footer() {
 
           {/* KHỐI 3: CONTACT */}
           <div className="w-full lg:w-[25%] flex flex-col items-center lg:items-end text-center lg:text-right space-y-8">
-            <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-yellow-500 mb-6 lg:mb-8 italic">Connect With Us</h4>
+            <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-yellow-500 mb-6 lg:mb-8 italic">{t('footer.connect')}</h4>
             <div className="space-y-4 text-[13px] font-light text-white/60">
-              <p className="hover:text-white transition-colors">Bình Tân, TP. Hồ Chí Minh</p>
+              <p className="hover:text-white transition-colors">{t('footer.address')}</p>
               <p className="text-2xl font-black text-white tracking-tighter italic">0822 082 407</p>
               <p className="text-[11px] text-yellow-500/100 uppercase tracking-widest font-bold">ytcapital.group@gmail.com</p>
             </div>
@@ -104,11 +107,11 @@ export default function Footer() {
 
         {/* ROW 2: BOTTOM BAR */}
         <div className="border-t border-white/5 pt-10 mt-16 lg:mt-20 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-[9px] font-medium opacity-20 uppercase tracking-[0.5em] text-center">
-            © 2025 YT2Future. Agile Innovation Team.
+          <p className="text-[9px] font-medium opacity-20 uppercase tracking-[0.5em] text-center whitespace-nowrap">
+            {t('footer.copyright')}
           </p>
-          <div className="flex items-center gap-4 text-[9px] font-bold tracking-[0.3em] opacity-30 uppercase">
-            <span>Sustainable Future</span>
+          <div className="flex items-center gap-4 text-[9px] font-bold tracking-[0.3em] opacity-30 uppercase whitespace-nowrap">
+            <span>{t('footer.tagline')}</span>
           </div>
         </div>
       </div>

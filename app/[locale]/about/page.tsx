@@ -1,14 +1,14 @@
 "use client";
 import { useEffect, useRef } from 'react';
-import { Metadata } from 'next';
+import { useTranslations } from 'next-intl';
 import PageHeader from '@/components/layout/PageHeader';
 import MemberCard from '@/components/partials/MemberCard';
 import Image from 'next/image';
-import Link from 'next/link';
 import { BookOpen, Users, Lightbulb } from 'lucide-react';
 import ScrollReveal from '@/components/common/ScrollReveal';
 
 export default function AboutPage() {
+  const t = useTranslations('about');
   const sliderRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -48,24 +48,24 @@ export default function AboutPage() {
   const learningPillars = [
     {
       icon: <BookOpen className="text-yellow-500" size={28} />,
-      title: "HỆ THỐNG KIẾN THỨC",
-      desc: "Chia sẻ kiến thức và kinh nghiệm được đúc kết từ học tập và thực tiễn đầu tư."
+      title: t('values.knowledge.title'),
+      desc: t('values.knowledge.desc')
     },
     {
       icon: <Lightbulb className="text-yellow-500" size={28} />,
-      title: "TƯ DUY PHÂN TÍCH",
-      desc: "Rèn luyện khả năng nhìn nhận thị trường đa chiều, từ vĩ mô đến nội tại doanh nghiệp."
+      title: t('values.thinking.title'),
+      desc: t('values.thinking.desc')
     },
     {
       icon: <Users className="text-yellow-500" size={28} />,
-      title: "KẾT NỐI CỘNG ĐỒNG",
-      desc: "Xây dựng cộng đồng học tập cởi mở, nơi mọi góc nhìn được tôn trọng và phản biện."
+      title: t('values.community.title'),
+      desc: t('values.community.desc')
     }
   ];
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <PageHeader title="About Us" />
+      <PageHeader title={t('pageTitle')} />
 
       <main className="grow">
         {/* SECTION 1: GIỚI THIỆU */}
@@ -74,21 +74,19 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               <article className="space-y-8 order-1 lg:order-1">
                 <div className="space-y-4">
-                  <p className="text-yellow-500 font-bold uppercase tracking-[0.4em] text-[10px]">About YT2Future</p>
+                  <p className="text-yellow-500 font-bold uppercase tracking-[0.4em] text-[10px]">{t('tagline')}</p>
                   <div className="text-2xl md:text-4xl font-black text-[#001a41] uppercase tracking-tight leading-snug">
-                    <h1>"Kiến tạo tương lai bằng tư duy linh hoạt và đổi mới không ngừng."</h1>
+                    <h1>"{t('headline')}"</h1>
                   </div>
                 </div>
 
                 <div className="space-y-6 text-gray-500 font-light text-lg leading-relaxed border-l-2 border-gray-100 pl-8">
-                  <p>
-                    YT2Future được xây dựng với niềm tin rằng tương lai tài chính bền vững bắt đầu từ tư duy linh hoạt và tinh thần đổi mới không ngừng. Chúng tôi cung cấp kiến thức đầu tư, phân tích thị trường và thông tin tài chính được chọn lọc, hướng tới việc giúp người đọc hiểu đúng bản chất của đầu tư và ra quyết định dựa trên tư duy dài hạn. YT2Future mong muốn đồng hành cùng cộng đồng trên hành trình học hỏi, thích nghi và kiến tạo tương lai bằng tri thức.
-                  </p>
+                  <p>{t('description')}</p>
                 </div>
 
                 <div className="pt-4">
                   <blockquote className="text-[#001a41] text-xl md:text-2xl font-semibold italic border-l-4 border-yellow-500 pl-6 py-1 leading-snug">
-                    "Shaping tomorrow through agile innovation."
+                    "{t('quote')}"
                   </blockquote>
                 </div>
               </article>
@@ -111,7 +109,7 @@ export default function AboutPage() {
           <div className="max-w-360 mx-auto px-6 md:px-12">
             <div className="mb-12 border-l-4 md:border-l-8 border-[#001a41] pl-4 md:pl-6 text-left">
               <h2 className="font-black text-[#001a41] text-2xl md:text-5xl uppercase tracking-tighter leading-tight">
-                Giá trị <span className="text-yellow-500">chúng tôi mang lại</span>
+                {t('values.title')} <span className="text-yellow-500">{t('values.subtitle')}</span>
               </h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x divide-gray-200 border border-gray-200 shadow-sm rounded-sm overflow-hidden">
@@ -126,41 +124,47 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* SECTION 3: ĐỘI NGŨ FOUNDERS (FIXED: SLIDE ON MOBILE) */}
-        <section className="py-12 md:py-16 max-w-360 mx-auto">
+        {/* SECTION 3: ĐỘI NGŨ FOUNDERS */}
+        <section className="py-12 md:py-16 bg-gray-50">
           <ScrollReveal>
-            <div className="text-center mb-16 md:mb-24 px-6 md:px-12">
-              <h2 className="text-3xl md:text-5xl font-black text-[#001a41] uppercase tracking-tighter">Core Founders</h2>
-              <div className="w-16 h-1.5 bg-yellow-500 mx-auto mt-6"></div>
+            <div className="max-w-360 mx-auto px-6 md:px-12">
+              <div className="mb-12 border-l-4 md:border-l-8 border-[#001a41] pl-4 md:pl-6 text-left">
+                <h2 className="font-black text-[#001a41] text-2xl md:text-5xl uppercase tracking-tighter leading-tight">
+                  {t('founders.title')}
+                </h2>
+                <p className="text-[8px] md:text-xs font-bold text-slate-400 uppercase tracking-[0.2em] mt-1">
+                  {t('founders.tagline')}
+                </p>
+              </div>
             </div>
 
-            {/* Mobile Slider / Desktop Grid */}
-            <div ref={sliderRef} className="flex overflow-x-auto pb-10 px-[10vw] gap-6 md:grid md:grid-cols-3 md:px-12 md:gap-16 no-scrollbar snap-x snap-mandatory">
+            {/* Mobile: Horizontal Scroll with Auto-slide | Desktop: Grid */}
+            <div ref={sliderRef} className="flex overflow-x-auto pb-10 px-6 gap-6 md:grid md:grid-cols-3 md:px-12 md:gap-8 no-scrollbar snap-x snap-mandatory md:snap-none">
 
               <div className="min-w-[80vw] sm:min-w-[45%] md:min-w-full snap-center shrink-0">
                 <MemberCard
-                  name="Trần Minh Nhật"
-                  role="Founder"
+                  name={t('founders.nhat.name')}
+                  role={t('founders.nhat.role')}
                   image="/Nhat.jpg"
-                  field="Hoạch định chiến lược & Tầm nhìn tổng thể."
+                  field={t('founders.nhat.field')}
                 />
               </div>
 
               <div className="min-w-[80vw] sm:min-w-[45%] md:min-w-full snap-center shrink-0">
                 <MemberCard
-                  name="Phạm Phương Nga"
-                  role="Co-Founder"
+                  name={t('founders.nga.name')}
+                  role={t('founders.nga.role')}
                   image="/Nga.jpg"
-                  field="Phát triển kinh doanh & Quan hệ đối tác."
+                  field={t('founders.nga.field')}
                 />
               </div>
 
               <div className="min-w-[80vw] sm:min-w-[45%] md:min-w-full snap-center shrink-0">
                 <MemberCard
-                  name="Nguyễn Nhất Bảo"
-                  role="Co-Founder"
+                  name={t('founders.bao.name')}
+                  role={t('founders.bao.role')}
                   image="/Bao.jpg"
-                  field="Phát triển công nghệ & Trải nghiệm người dùng."
+                  field={t('founders.bao.field')}
                 />
               </div>
 
@@ -169,7 +173,7 @@ export default function AboutPage() {
             {/* Gợi ý lướt (chỉ hiện trên mobile) */}
             <div className="md:hidden text-center mt-2">
               <p className="text-[10px] font-black uppercase text-slate-300 tracking-widest italic animate-pulse">
-                ← Trượt ngang để xem thêm →
+                {t('founders.swipeHint')}
               </p>
             </div>
           </ScrollReveal>

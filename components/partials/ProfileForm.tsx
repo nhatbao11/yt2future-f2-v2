@@ -4,7 +4,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import PrimaryButton from '@/components/common/PrimaryButton';
-import { handleUpdateProfile } from '@/app/profile/actions.js';
+import { handleUpdateProfile } from '@/app/[locale]/profile/actions';
 
 export default function ProfileForm({ profile }: { profile: any }) {
   const [loading, setLoading] = useState(false);

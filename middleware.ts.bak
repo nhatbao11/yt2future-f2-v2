@@ -1,0 +1,22 @@
+import createMiddleware from 'next-intl/middleware';
+import { locales } from '@/i18n/request';
+
+export default createMiddleware({
+    // Danh sách locales
+    locales,
+
+    // Locale mặc định
+    defaultLocale: 'vi',
+
+    // Tự động detect ngôn ngữ từ browser
+    localeDetection: true,
+});
+
+export const config = {
+    // Match all pathnames except for
+    // - /api routes
+    // - /_next (Next.js internals)
+    // - /_vercel (Vercel internals)
+    // - /images, /icons, etc. (static files)
+    matcher: ['/((?!api|_next|_vercel|.*\\..*).*)']
+};

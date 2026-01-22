@@ -1,11 +1,15 @@
 "use client";
-import Link from 'next/link';
+import Link from '@/components/common/Link';
+
+import { useTranslations } from 'next-intl';
 
 interface PageHeaderProps {
   title: string;
 }
 
 export default function PageHeader({ title }: PageHeaderProps) {
+  const t = useTranslations('nav');
+
   return (
     <div className="w-full bg-[#001a41] py-3 md:py-4">
       <div className="max-w-360 mx-auto px-6 md:px-12">
@@ -14,7 +18,7 @@ export default function PageHeader({ title }: PageHeaderProps) {
             href="/"
             className="hover:text-yellow-500 transition-colors duration-200"
           >
-            Home
+            {t('home')}
           </Link>
 
           <span className="text-white/20 select-none font-light">/</span>

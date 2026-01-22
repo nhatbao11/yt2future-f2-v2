@@ -3,8 +3,10 @@ import { redirect } from 'next/navigation';
 import { handleUpdateProfile } from './actions';
 import PrimaryButton from '@/components/common/PrimaryButton';
 import AvatarUpload from '@/components/partials/AvatarUpload';
+import { getTranslations } from 'next-intl/server';
 
 export default async function ProfilePage() {
+  const t = await getTranslations('profile');
   const cookieStore = await cookies();
   const token = cookieStore.get('yt2future_token')?.value;
 
@@ -23,7 +25,7 @@ export default async function ProfilePage() {
     <div className="min-h-[80vh] flex items-center justify-center py-12 px-4 bg-slate-50">
       <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-lg border border-slate-100">
         <h2 className="text-2xl font-black text-[#1a365d] uppercase italic mb-8 text-center tracking-tight">
-          Hồ sơ của sếp
+          {t('title')}
         </h2>
 
         <form action={handleUpdateProfile} className="space-y-6">
@@ -32,17 +34,17 @@ export default async function ProfilePage() {
 
           <div className="space-y-4">
             <div className="group text-left">
-              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Họ và Tên</label>
+              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">{t('fullName')}</label>
               <input
                 name="fullName"
                 defaultValue={profile?.fullName || ''}
-                placeholder="Nhập họ tên sếp..."
+                placeholder={t('fullNamePlaceholder')}
                 className="w-full bg-slate-50 border border-slate-200 p-4 mt-1 text-sm font-bold text-[#1a365d] rounded-xl outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-all"
               />
             </div>
 
             <div className="group text-left">
-              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Email hệ thống</label>
+              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">{t('email')}</label>
               <input
                 value={profile?.email || ''}
                 disabled
@@ -52,7 +54,7 @@ export default async function ProfilePage() {
           </div>
 
           <div className="pt-4">
-            <PrimaryButton label="Lưu thay đổi ngay" type="submit" fullWidth={true} className="py-4 shadow-lg shadow-yellow-200" />
+            <PrimaryButton label={t('submit')} type="submit" fullWidth={true} className="py-4 shadow-lg shadow-yellow-200" />
           </div>
         </form>
       </div>

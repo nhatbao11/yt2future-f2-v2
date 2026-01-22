@@ -3,12 +3,23 @@
 // Tự động bốc URL từ .env, nếu không có thì mặc định cổng 5000 của BE
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
 
+// Helper function to get current locale from URL
+const getLocale = () => {
+  if (typeof window === 'undefined') return 'vi';
+  const path = window.location.pathname;
+  if (path.startsWith('/en')) return 'en';
+  return 'vi';
+};
+
 export const authService = {
   // 1. Đăng nhập truyền thống
   login: async (data: any) => {
     const response = await fetch(`${API_URL}/auth/login`, { // Thêm URL tuyệt đối
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept-Language': getLocale()
+      },
       body: JSON.stringify(data),
       credentials: 'include',
     });
@@ -21,7 +32,10 @@ export const authService = {
   register: async (data: any) => {
     const response = await fetch(`${API_URL}/auth/register`, { // Thêm URL tuyệt đối
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept-Language': getLocale()
+      },
       body: JSON.stringify(data),
       credentials: 'include',
     });
@@ -34,7 +48,10 @@ export const authService = {
   grantGoogleRole: async (profile: { email: string; name: string; picture: string }) => {
     const response = await fetch(`${API_URL}/auth/grant-google-role`, { // Thêm URL tuyệt đối
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept-Language': getLocale()
+      },
       body: JSON.stringify(profile),
       credentials: 'include',
     });
@@ -48,6 +65,9 @@ export const authService = {
   getMe: async () => {
     const response = await fetch(`${API_URL}/auth/me`, { // Thêm URL tuyệt đối
       method: 'GET',
+      headers: {
+        'Accept-Language': getLocale()
+      },
       credentials: 'include',
     });
     const result = await response.json();

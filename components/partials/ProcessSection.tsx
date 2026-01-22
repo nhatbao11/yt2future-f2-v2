@@ -3,22 +3,26 @@ import { Search, PenTool, Share2, BookOpen, Lightbulb, Users } from 'lucide-reac
 
 import ScrollReveal from '@/components/common/ScrollReveal';
 
+import { useTranslations } from 'next-intl';
+
 export default function ProcessSection() {
+  const t = useTranslations('about.values');
+
   const steps = [
     {
       icon: <BookOpen size={32} />,
-      title: "HỆ THỐNG KIẾN THỨC",
-      desc: "Chia sẻ kiến thức và kinh nghiệm được đúc kết từ học tập và thực tiễn đầu tư."
+      title: t('knowledge.title'),
+      desc: t('knowledge.desc')
     },
     {
       icon: <Lightbulb size={32} />,
-      title: "TƯ DUY PHÂN TÍCH",
-      desc: "Rèn luyện khả năng nhìn nhận thị trường đa chiều, từ vĩ mô đến nội tại doanh nghiệp."
+      title: t('thinking.title'),
+      desc: t('thinking.desc')
     },
     {
       icon: <Users size={32} />,
-      title: "KẾT NỐI CỘNG ĐỒNG",
-      desc: "Xây dựng cộng đồng học tập cởi mở, nơi mọi góc nhìn được tôn trọng và phản biện."
+      title: t('community.title'),
+      desc: t('community.desc')
     }
   ];
 
@@ -28,10 +32,10 @@ export default function ProcessSection() {
       <ScrollReveal>
         <div className="mb-16 border-l-4 md:border-l-8 border-[#001a41] pl-4 md:pl-6 text-left">
           <h2 className="font-black text-[#001a41] text-2xl md:text-5xl uppercase tracking-tighter leading-tight">
-            Giá trị <span className="text-yellow-500">chúng tôi mang lại</span>
+            {t('title')} <span className="text-yellow-500">{t('subtitle')}</span>
           </h2>
           <p className="text-[8px] md:text-xs font-bold text-slate-400 uppercase tracking-[0.2em] mt-1">
-            Our Values
+            {t('tagline')}
           </p>
         </div>
       </ScrollReveal>
@@ -68,7 +72,7 @@ export default function ProcessSection() {
             <div className="relative z-10 lg:text-center space-y-4 pt-2 lg:pt-0">
               <div className="flex items-center lg:justify-center gap-2">
                 <span className="text-yellow-500 text-xl lg:text-lg tracking-[0.3em] font-black">0{i + 1}.</span>
-                <h3 className="text-xl lg:text-3xl font-black text-[#001a41] uppercase tracking-normal italic leading-none">
+                <h3 className="text-base md:text-xl lg:text-3xl font-black text-[#001a41] uppercase tracking-tighter italic leading-none whitespace-nowrap">
                   {step.title}
                 </h3>
               </div>

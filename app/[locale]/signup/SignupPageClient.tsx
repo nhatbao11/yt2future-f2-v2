@@ -1,11 +1,12 @@
 "use client";
 
 import React, { useState } from 'react';
-import Link from 'next/link';
+import Link from '@/components/common/Link';
 import { handleSignup } from './actions';
 import PrimaryButton from '@/components/common/PrimaryButton';
 import PasswordField from '@/components/partials/PasswordField';
 import { FileText, X } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 interface SignupPageClientProps {
     errorMessage?: string;
@@ -13,6 +14,8 @@ interface SignupPageClientProps {
 }
 
 export default function SignupPageClient({ errorMessage, successMessage }: SignupPageClientProps) {
+    const t = useTranslations('auth.signUp');
+    const tAuth = useTranslations('auth');
     const [activePdf, setActivePdf] = useState<{ url: string; title: string } | null>(null);
 
     const POLICY_LINKS = {
@@ -28,7 +31,7 @@ export default function SignupPageClient({ errorMessage, successMessage }: Signu
         <>
             <div className="relative z-10 bg-white p-6 md:p-10 rounded-lg shadow-2xl w-full max-w-120 border border-slate-100 transition-all text-left">
                 <div className="text-center mb-8">
-                    <h2 className="text-3xl font-black text-slate-900 uppercase tracking-tighter italic">Sign Up</h2>
+                    <h2 className="text-3xl font-black text-slate-900 uppercase tracking-tighter italic">{t('title')}</h2>
                     <div className="w-12 h-1.5 bg-yellow-500 mx-auto mt-2 rounded-full"></div>
 
                     {/* THÔNG BÁO LỖI (MÀU ĐỎ) */}
@@ -53,57 +56,57 @@ export default function SignupPageClient({ errorMessage, successMessage }: Signu
 
                 <form action={handleSignup} className="space-y-5">
                     <div className="group">
-                        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Full Name</label>
+                        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">{t('name')}</label>
                         <input
                             name="fullName"
                             type="text"
                             required
-                            placeholder="Nhất Bảo Admin"
+                            placeholder="YT2Future"
                             className="w-full bg-slate-50 border border-slate-200 p-3.5 mt-1 text-sm text-slate-900 font-bold rounded-md outline-none focus:border-yellow-500 focus:bg-white transition-all placeholder:text-slate-300"
                         />
                     </div>
 
                     <div className="group">
-                        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Email Address</label>
+                        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">{t('email')}</label>
                         <input
                             name="email"
                             type="email"
                             required
-                            placeholder="nhatbao@ytcapital.vn"
+                            placeholder="ytcapital.group@gmail.com"
                             className="w-full bg-slate-50 border border-slate-200 p-3.5 mt-1 text-sm text-slate-900 font-bold rounded-md outline-none focus:border-yellow-500 focus:bg-white transition-all placeholder:text-slate-300"
                         />
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <PasswordField name="password" label="Password" />
-                        <PasswordField name="confirmPassword" label="Confirm" />
+                        <PasswordField name="password" label={t('password')} />
+                        <PasswordField name="confirmPassword" label={t('confirmPassword')} />
                     </div>
 
                     <div className="flex items-start gap-2 py-1">
                         <input type="checkbox" required id="terms" className="w-4 h-4 mt-0.5 cursor-pointer accent-yellow-600" />
                         <label htmlFor="terms" className="text-[11px] text-slate-500 leading-tight cursor-pointer select-none">
-                            Tôi đồng ý với{' '}
+                            {tAuth('agree')}{' '}
                             <button
                                 type="button"
-                                onClick={() => openPdf(POLICY_LINKS.terms, "TERMS OF USE")}
+                                onClick={() => openPdf(POLICY_LINKS.terms, tAuth('terms'))}
                                 className="font-bold text-slate-900 hover:text-yellow-600 transition-colors cursor-pointer outline-none align-baseline"
                             >
-                                Điều khoản sử dụng
+                                {tAuth('terms')}
                             </button>{' '}
-                            và{' '}
+                            {tAuth('and')}{' '}
                             <button
                                 type="button"
-                                onClick={() => openPdf(POLICY_LINKS.privacy, "PRIVACY POLICY")}
+                                onClick={() => openPdf(POLICY_LINKS.privacy, tAuth('privacy'))}
                                 className="font-bold text-slate-900 hover:text-yellow-600 transition-colors cursor-pointer outline-none align-baseline"
                             >
-                                Chính sách bảo mật
+                                {tAuth('privacy')}
                             </button>
                         </label>
                     </div>
 
                     <div className="pt-2">
                         <PrimaryButton
-                            label="Tạo tài khoản"
+                            label={tAuth('createAccount')}
                             type="submit"
                             fullWidth={true}
                             className="cursor-pointer hover:shadow-xl hover:shadow-yellow-100 active:scale-[0.97] transition-all py-4 font-black uppercase tracking-wider"
@@ -114,14 +117,14 @@ export default function SignupPageClient({ errorMessage, successMessage }: Signu
                 <div className="relative my-8">
                     <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-slate-100"></span></div>
                     <div className="relative flex justify-center text-[10px] uppercase font-bold tracking-widest text-slate-400">
-                        <span className="bg-white px-4">Social Login</span>
+                        <span className="bg-white px-4">{tAuth('socialLogin')}</span>
                     </div>
                 </div>
 
                 <p className="text-[13px] mt-8 text-slate-500 text-center font-medium">
-                    Đã có tài khoản?{' '}
+                    {t('hasAccount')}{' '}
                     <Link href="/signin" className="font-bold text-yellow-600 hover:text-yellow-700 underline underline-offset-4 cursor-pointer transition-colors">
-                        Đăng nhập ngay
+                        {t('signInLink')}
                     </Link>
                 </p>
             </div>

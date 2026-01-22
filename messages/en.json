@@ -1,0 +1,240 @@
+{
+    "common": {
+        "readMore": "Read more",
+        "learnMore": "Learn more",
+        "contactUs": "Contact us",
+        "loading": "Loading...",
+        "submit": "Submit",
+        "cancel": "Cancel",
+        "save": "Save",
+        "delete": "Delete",
+        "edit": "Edit",
+        "close": "Close",
+        "search": "Search"
+    },
+    "nav": {
+        "home": "Home",
+        "about": "About Us",
+        "business": "Business",
+        "investment": "Investment Solutions",
+        "sector": "Sector Analysis",
+        "contact": "Contact",
+        "dashboard": "Dashboard",
+        "profile": "Profile",
+        "signIn": "Sign In",
+        "signUp": "Sign Up",
+        "signOut": "Sign Out",
+        "admin": "Admin"
+    },
+    "footer": {
+        "slogan": "Shaping Tomorrow Through Agile Innovation.",
+        "menu": "Menu",
+        "legal": "Legal",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Use",
+        "cookies": "Cookie Policy",
+        "connect": "Connect With Us",
+        "address": "Binh Tan, Ho Chi Minh City",
+        "copyright": "© 2025 YT2Future. Agile Innovation Team.",
+        "tagline": "Sustainable Future",
+        "description": "Shaping tomorrow through agile thinking and continuous innovation.",
+        "quickLinks": "Quick Links",
+        "followUs": "Follow Us"
+    },
+    "sectors": {
+        "stock": {
+            "title": "Stock Market",
+            "desc": "Updating foundational knowledge for beginners, with a simple, easy-to-understand analytical approach and gradual market familiarization."
+        },
+        "realEstate": {
+            "title": "Real Estate",
+            "desc": "Synthesizing ongoing projects nationwide, updating price levels by region, and analyzing real estate businesses through actual project portfolios."
+        },
+        "macro": {
+            "title": "Macroeconomics",
+            "desc": "Analyzing the impact of economic policies in Vietnam on specific sectors, updating operating interest rates and monetary/foreign exchange policies to propose potential sectors for each stage."
+        },
+        "mindset": {
+            "title": "Financial Mindset",
+            "desc": "Designing a complete roadmap for beginner investors, especially office workers, helping access financial knowledge in an easy-to-understand way and applying it effectively in practice."
+        }
+    },
+    "feedback": {
+        "title": "Customer",
+        "titleHighlight": "Feedback",
+        "tagline": "Review System from YT2Future",
+        "role": "Strategic Member",
+        "send": "Send Feedback",
+        "modalTitle": "Write a Review",
+        "placeholder": "Enter your thoughts here...",
+        "sending": "Processing...",
+        "submit": "Confirm Send",
+        "loginRequired": "Please sign in to send feedback!",
+        "success": "Feedback sent successfully!",
+        "error": "Server connection error!",
+        "failure": "Sending failed!"
+    },
+    "home": {
+        "hero": {
+            "title": "YT2",
+            "titleHighlight": "FUTURE",
+            "subtitle": "Shaping tomorrow\nthrough agile innovation",
+            "cta": "Start Journey"
+        },
+        "about": {
+            "title": "About",
+            "titleHighlight": "us",
+            "tagline": "About Us & Vision",
+            "desc1": "YT2Future is built on the belief that a sustainable financial future begins with agile thinking and a spirit of continuous innovation. We provide investment knowledge, market analysis, and curated financial information, aiming to help readers understand the true nature of investment and make decisions based on long-term thinking.",
+            "desc2": "YT2Future wishes to accompany the community on a journey of learning, adapting, and creating the future through knowledge.",
+            "learnMore": "Meet the Team"
+        },
+        "explore": {
+            "title": "Core",
+            "titleHighlight": "Research",
+            "tagline": "What we explore",
+            "desc": "We focus on core market sectors where innovation is happening most vigorously."
+        },
+        "values": {
+            "tagline": "Our Values"
+        }
+    },
+    "about": {
+        "pageTitle": "About Us",
+        "tagline": "About YT2Future",
+        "headline": "Shaping tomorrow through agile thinking and continuous innovation.",
+        "description": "YT2Future is built on the belief that sustainable financial future begins with agile thinking and continuous innovation. We provide curated investment knowledge, market analysis, and financial information, aiming to help readers understand the true nature of investing and make decisions based on long-term thinking. YT2Future aspires to accompany the community on the journey of learning, adapting, and shaping the future through knowledge.",
+        "quote": "Shaping tomorrow through agile innovation.",
+        "values": {
+            "title": "Values",
+            "subtitle": "we bring",
+            "tagline": "Our Values",
+            "knowledge": {
+                "title": "KNOWLEDGE SYSTEM",
+                "desc": "Sharing knowledge and experience distilled from learning and investment practice."
+            },
+            "thinking": {
+                "title": "ANALYTICAL THINKING",
+                "desc": "Training multi-dimensional market perspective, from macro to enterprise fundamentals."
+            },
+            "community": {
+                "title": "COMMUNITY CONNECTION",
+                "desc": "Building an open learning community where all perspectives are respected and debated."
+            }
+        },
+        "founders": {
+            "title": "Core Founders",
+            "tagline": "Meet our team",
+            "swipeHint": "← Swipe to see more →",
+            "nhat": {
+                "name": "Tran Minh Nhat",
+                "role": "Founder",
+                "field": "Strategic Planning & Overall Vision."
+            },
+            "nga": {
+                "name": "Pham Phuong Nga",
+                "role": "Co-Founder",
+                "field": "Business Development & Partnerships."
+            },
+            "bao": {
+                "name": "Nguyen Nhat Bao",
+                "role": "Co-Founder",
+                "field": "Tech Development & User Experience."
+            }
+        }
+    },
+    "contact": {
+        "pageTitle": "Contact",
+        "getInTouch": "Get in",
+        "getInTouchHighlight": "Touch",
+        "desc": "We are always ready to listen and answer all your questions about investment solutions and strategic cooperation.",
+        "formTitle": "Send Us a Message",
+        "name": "Full Name",
+        "email": "Email",
+        "subject": "Subject",
+        "message": "Message",
+        "submit": "Submit Inquiry",
+        "info": {
+            "address": "Address",
+            "email": "Email",
+            "hotline": "Hotline",
+            "hours": "Working Hours"
+        },
+        "values": {
+            "address": "Binh Tan, Ho Chi Minh City",
+            "email": "ytcapital.group@gmail.com",
+            "hotline": "0822 082 407",
+            "hours": "Mon - Fri: 08:00 - 17:30"
+        }
+    },
+    "dashboard": {
+        "welcome": "Welcome",
+        "overview": "Overview",
+        "statistics": "Statistics",
+        "title": "Dashboard",
+        "market_overview": "Market Overview",
+        "market_report_title": "MARKET",
+        "market_report_subtitle": "REPORTS",
+        "market_data": "Market Data",
+        "coming_soon": "Coming Soon...",
+        "back_home": "Back to Home"
+    },
+    "auth": {
+        "socialLogin": "Social Login",
+        "googleLogin": "Sign in with Google",
+        "agree": "I agree to",
+        "terms": "Terms of Use",
+        "privacy": "Privacy Policy",
+        "and": "and",
+        "createAccount": "Create Account",
+        "loginNow": "Login Now",
+        "signIn": {
+            "title": "Sign In",
+            "email": "Email",
+            "password": "Password",
+            "submit": "Sign In",
+            "noAccount": "Don't have an account?",
+            "signUpLink": "Sign up now",
+            "forgotPassword": "Forgot password?"
+        },
+        "signUp": {
+            "title": "Sign Up",
+            "name": "Full Name",
+            "email": "Email",
+            "password": "Password",
+            "confirmPassword": "Confirm Password",
+            "submit": "Sign Up",
+            "hasAccount": "Already have an account?",
+            "signInLink": "Sign in"
+        }
+    },
+    "admin": {
+        "categories": "Categories",
+        "users": "Users",
+        "reports": "Reports",
+        "settings": "Settings"
+    },
+    "investment_page": {
+        "title": "Investment Solutions",
+        "subtitle": "Investment Solutions",
+        "main_title": "Investment Solutions",
+        "main_title_sub": "Coming Soon",
+        "academic_db": "Academic Database",
+        "coming_soon": "Coming Soon",
+        "back_home": "Back Home"
+    },
+    "sector_page": {
+        "title": "Sector Analysis",
+        "search_placeholder": "Search reports...",
+        "category_select": "Select Category",
+        "all_categories": "All Categories",
+        "add_report": "Add Report",
+        "syncing": "Loading...",
+        "no_desc": "No description",
+        "details": "Details",
+        "prev": "Previous",
+        "next": "Next",
+        "page": "Page",
+        "modal_title": "Report Viewer"
+    }
+}

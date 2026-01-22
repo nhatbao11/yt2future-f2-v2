@@ -10,26 +10,30 @@ import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
+import { useTranslations } from 'next-intl';
+
 export default function SectorGrid() {
+  const t = useTranslations('sectors');
+
   const sectors = [
     {
-      title: "Chứng khoán",
-      desc: "Cập nhật kiến thức nền tảng dành cho người mới bắt đầu, với cách tiếp cận phân tích đơn giản, dễ hiểu và từng bước làm quen với thị trường.",
+      title: t('stock.title'),
+      desc: t('stock.desc'),
       icon: LineChart
     },
     {
-      title: "Bất động sản",
-      desc: "Tổng hợp các dự án đã và đang triển khai trên cả nước, cập nhật mặt bằng giá theo khu vực và phân tích doanh nghiệp bất động sản thông qua danh mục dự án thực tế.",
+      title: t('realEstate.title'),
+      desc: t('realEstate.desc'),
       icon: Building
     },
     {
-      title: "Kinh tế vĩ mô",
-      desc: "Phân tích tác động của các chính sách kinh tế tại Việt Nam lên từng nhóm ngành, cập nhật lãi suất điều hành và chính sách tiền tệ, ngoại hối từ đó đề xuất những nhóm ngành tiềm năng theo từng giai đoạn.",
+      title: t('macro.title'),
+      desc: t('macro.desc'),
       icon: Globe
     },
     {
-      title: "Tư duy tài chính",
-      desc: "Thiết kế lộ trình hoàn chỉnh dành cho nhà đầu tư mới bắt đầu, đặc biệt là nhân viên văn phòng, giúp tiếp cận kiến thức tài chính một cách dễ hiểu và ứng dụng hiệu quả trong thực tiễn.",
+      title: t('mindset.title'),
+      desc: t('mindset.desc'),
       icon: Lightbulb
     },
   ];
