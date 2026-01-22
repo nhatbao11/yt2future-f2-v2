@@ -251,5 +251,13 @@
         "by": "By",
         "analyst": "Financial Analyst",
         "view_pdf": "View PDF"
+    },
+    "profile": {
+        "title": "My Profile",
+        "fullName": "Full Name",
+        "fullNamePlaceholder": "Enter your full name...",
+        "email": "Email",
+        "submit": "Save Changes",
+        "uploadHint": "Click camera to change photo"
     }
 }

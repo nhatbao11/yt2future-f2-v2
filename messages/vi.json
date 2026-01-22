@@ -251,5 +251,13 @@
         "by": "Bởi",
         "analyst": "Chuyên gia phân tích",
         "view_pdf": "Xem PDF"
+    },
+    "profile": {
+        "title": "Hồ sơ cá nhân",
+        "fullName": "Họ và tên",
+        "fullNamePlaceholder": "Nhập họ và tên...",
+        "email": "Email",
+        "submit": "Lưu thay đổi",
+        "uploadHint": "Bấm cam để chọn ảnh (Chế độ Signed)"
     }
 }

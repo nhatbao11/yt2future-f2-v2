@@ -4,8 +4,10 @@ import Image from 'next/image';
 import { Camera } from 'lucide-react';
 
 import { toast } from 'react-hot-toast';
+import { useTranslations } from 'next-intl';
 
 export default function AvatarUpload({ initialAvatar }: { initialAvatar: string }) {
+  const t = useTranslations('profile');
   const [preview, setPreview] = useState(initialAvatar || '/Logo.jpg');
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +34,7 @@ export default function AvatarUpload({ initialAvatar }: { initialAvatar: string 
       </div>
       {/* Quan trọng: name="avatarFile" để Server Action bốc được file thật */}
       <input id="avatar-upload" name="avatarFile" type="file" accept="image/*" className="hidden" onChange={handleImageChange} />
-      <p className="text-[10px] text-slate-400 font-bold uppercase italic">Bấm cam để chọn ảnh (Chế độ Signed)</p>
+      <p className="text-[10px] text-slate-400 font-bold uppercase italic">{t('uploadHint')}</p>
     </div>
   );
 }
